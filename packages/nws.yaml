@@ -26,10 +26,10 @@ sensor:
 #  #  TEST SENSORs  ##  
   - platform: nws_alerts
     name: NWS Alerts
-    zone_id: 'TXC065'
+    zone_id: 'AZZ542'
   - platform: feedparser
     name: NWS Alerts
-    feed_url: 'https://alerts.weather.gov/cap/wwaatmget.php?x=TXC065&y=0'
+    feed_url: 'https://alerts.weather.gov/cap/wwaatmget.php?x=AZZ542&y=0'
     date_format: '%a, %b %d %I:%M %p'
     inclusions:
      - title
@@ -137,8 +137,8 @@ automation:
       conditions:
         - condition: template
           value_template: "{{states.sensor.nws_alerts_2.state | int > 0}}"
-#        - condition: template
-#          value_template: '{{ trigger.to_state.state|float > trigger.from_state.state|float }}'
+        - condition: template
+          value_template: '{{ trigger.to_state.state|float > trigger.from_state.state|float }}'
         - condition: template
           value_template: "{{ (('Severe' in states.sensor.nws_alerts_2.attributes.title) or ('Tornado' in states.sensor.nws_alerts_2.attributes.title)) and 'Warning' in states.sensor.nws_alerts_2.attributes.title }}"
     action:
