@@ -1,3 +1,4 @@
+#
    automation.alert_emptycondo:
      autodoc_description: 'Process alert sent when no motion in condo is detected.  deviceless occupancy detection'
      autodoc_file: 'openings.yaml'
