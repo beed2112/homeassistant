@@ -116,7 +116,40 @@
       entity_id: switch.patio_outlet
     - service: homeassistant.turn_on
       entity_id: switch.patio_outlet
-      
+
+
+- alias: 'Alexa annnouncement testing'
+  initial_state: false
+  trigger:
+    platform: state
+    entity_id: input_boolean.always_on
+    from: 'off'
+    to: 'on'          
+  action:
+    - service: notify.alexa_media
+      data_template:
+        target: >- 
+          {% if is_state("binary_sensor.occupied_den", "on") -%}
+          {% set player = 'media_player.den' %}
+          {% set found = 'on'%}
+          {%- endif %}
+          {%- if is_state("binary_sensor.occupied_master", "on") -%}
+          {%- if found == 'on' -%}  
+          {% set player = (player ~ ", media_player.bedroom") %}
+          {% else %}
+          {% set player = "media_player.bedroom" %}
+          {%- endif %}
+          {% else %}
+          {% set player = "media_player.main" %}
+          {%- endif %}
+          {{player}}
+        data:
+          type: announce
+          #method: all
+        message: "This is a test message"
+
+
+
  
  #- alias: 'zzz toggle automations off'
 #  initial_state: True
