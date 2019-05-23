@@ -1,0 +1,157 @@
+#----     Window or door open havac shutdown
+#
+#--
+#
+#-autodoc
+#-autodoc        name:
+#-autodoc description:
+#-autodoc        file: hvac-ceiling-fan.yaml
+#-autodoc
+- alias: 'Cooling Outside timer begin'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: group.hvac_watchlist_g
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: sensor.arizona_thermostat_arizona_operation_mode
+    state: 'cool'
+  action:
+    - service: timer.start
+      data_template:
+        entity_id: "timer.hvac_watchdog"
+
+- alias: 'HVAC Watchdog ends'
+  initial_state: True
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.hvac_watchdog
+  action:
+    - service: climate.turn_off
+      entity_id: climate.arizona_arizona
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.hvac_cool_off_watchdog
+        
+- alias: 'Windows close maybe turn hvac on'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: group.hvac_watchlist_g
+    from: 'on'
+    to: 'off'
+  condition:
+    condition: state
+    entity_id: input_boolean.hvac_cool_off_watchdog
+    state: 'on'
+  action:
+    - service: climate.turn_on
+      entity_id: climate.arizona_arizona
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.hvac_cool_off_watchdog
+
+        
+#----     Night time bedroom ceiling fan coordinated with Air conditioning
+#When House goes is in night mode and the HVAC is cooling turn on the bedroom ceiling fan when the HVAC fan stops. (The HVAC Fan dance)
+
+- alias: 'BR Fan ON when air off'
+  initial_state: False
+  trigger:
+    platform: state
+    entity_id: binary_sensor.arizona_thermostat_arizona_fan
+    from: 'on'
+    to: 'off'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.night_mode
+        state: 'on'
+      - condition: state
+        entity_id: sensor.arizona_thermostat_arizona_operation_mode
+        state: 'cool'
+  action:
+    - service: switch.turn_on
+      entity_id:
+      - switch.br_ceiling_fan
+      
+#--    turn fan off when air turned on
+
+- alias: 'BR Fan OFF when air on'
+  initial_state: False
+  trigger:
+    platform: state
+    entity_id: binary_sensor.arizona_thermostat_arizona_fan
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.night_mode
+        state: 'on'
+      - condition: state
+        entity_id: sensor.arizona_thermostat_arizona_operation_mode
+        state: 'cool'
+  action:
+    - service: switch.turn_off
+      entity_id:
+      - switch.br_ceiling_fan
+
+
+# turn off bedroom ceiling fan
+
+- alias: 'Stop the HVAC fan dance'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: input_boolean.night_mode
+    from: 'on'
+    to: 'off'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.br_ceiling_fan
+#    - service: homeassistant.turn_off
+#      entity_id: group.hvac_automations_g
+
+      
+# converting to control by attributes in mode-control
+#When House goes into night mode turn on the HVAC fan dance automation.
+
+#- alias: 'zzz enable the HVAC fan dance'
+#  initial_state: True
+#  trigger:
+#    platform: state
+#    entity_id: input_boolean.night_mode
+#    from: 'off'
+#    to: 'on'
+#  action:
+#    - service: homeassistant.turn_on
+#      entity_id: group.hvac_automations_g
+
+#-When House goes into night mode, HVAC is in cool mode, and HVAC fan is off turn on the bedroom ceiling fan.
+
+- alias: 'start ceiling fan if hvac not running night'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: input_boolean.night_mode
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.arizona_thermostat_arizona_fan
+        state: 'off'
+      - condition: state
+        entity_id: sensor.arizona_thermostat_arizona_operation_mode
+        state: 'cool'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.br_ceiling_fan
+      
+      

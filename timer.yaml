@@ -1,0 +1,47 @@
+  
+  occupied_den_motion:
+    duration: '600'
+  occupied_entry_motion:
+    duration: '600'   
+  occupied_kitchen_motion:
+    duration: '600'
+  occupied_living_room_motion:
+    duration: '600' 
+  occupied_master_motion:
+    duration: '600'  
+  occupied_master_bath_motion:
+    duration: '600'  
+  occupied_dining_room_motion:
+    duration: '600'            
+  somfy_raised_wind:
+    duration: '1200'  
+  den_motion:
+    duration: '600'
+  br_night_motion:
+    duration: '180'
+  entry_motion:
+    duration: '180'
+  kitchen_motion:
+    duration: '180'
+  master_motion:
+    duration: '300'  
+  master_bath_motion:
+    duration: '300'  
+  dining_room_motion:
+    duration: '300'            
+  hvac_watchdog:
+    duration: '300'
+  occupancy_sim:
+    duration: '300'
+  occupancy_sim_morning:
+    duration: '300'
+  occupancy_sim_afternoon:
+    duration: '300'
+  occupancy_sim_evening:
+    duration: '300'
+  occupancy_sim_late_nite:
+    duration: '120'
+  occupancy_check:
+    duration: '300'  
+  hallshower:
+    duration: '300'  

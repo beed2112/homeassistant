@@ -1,0 +1,311 @@
+# entity Locations
+# location: 'entry'
+# location: 'mudroom'
+# ocation: 'bathroom'
+# location: 'den'
+# location: 'kitchen'
+# location: 'diningroom'
+# location: 'master'
+# location: 'livingroom'
+# location: 'wc'
+# location: 'masterbath'
+
+    switch.melodie_nightstand:
+      friendly_name: Den Tv
+      occupancy_simulation: 'off'
+      occupancy_controlled: 'on'
+      location: 'den'
+
+    switch.patio_outlet:
+      friendly_name: Dresser
+      occupancy_simulation: 'on'
+      occupancy_controlled: 'on'
+      location: 'master'
+
+    light.kitchenoh:
+      friendly_name: Kitchen
+      occupancy_simulation: 'on'
+      occupancy_controlled: 'on'
+      location: 'kitchen'
+    
+    light.kitchenundercab:
+      friendly_name: Under Cabinet
+      occupancy_simulation: 'on'
+      occupancy_controlled: 'on'
+      location: 'kitchen'
+
+    light.diningroom:
+      friendly_name: Dining Room
+      occupancy_simulation: 'on'
+      occupancy_controlled: 'on'
+      location: 'diningroom'
+
+
+
+    light.entryhall:
+      friendly_name: Entry 
+      #occupancy_simulation: 'on'
+      occupancy_controlled: 'on'
+      location: 'entry'
+
+    switch.entryhalltable:
+      friendly_name: Entry Hall Table
+      occupancy_simulation: 'on'
+      occupancy_controlled: 'on'
+      location: 'entry'
+
+    switch.hallbathroom:
+      friendly_name: Hall Bathroom
+     #occupancy_simulation: 'on'
+      occupancy_controlled: 'on'
+      location: 'bathroom'
+
+    switch.hallbathroomfan:
+      friendly_name: Hall Bathroom Fan
+      occupancy_controlled: 'on'
+      location: 'bathroom'
+
+    switch.hallshower:
+      friendly_name: Hall Bathroom Shower
+      occupancy_controlled: 'on'
+      location: 'bathroom'
+
+    light.lr_oh:
+      friendly_name: Living Room Overhead
+      occupancy_simulation: 'on'
+      occupancy_controlled: 'on'
+      location: 'livingroom'
+    
+    switch.lrlight:
+      friendly_name: Living Room Lamp
+      occupancy_simulation: 'on'
+      occupancy_controlled: 'on'
+      location: 'livingroom'
+      
+    switch.lr_switch:
+      friendly_name: Living Room table
+      occupancy_simulation: 'on'
+      occupancy_controlled: 'on'
+      location: 'livingroom'
+      
+ 
+      
+    switch.lr_ceiling_fan:
+      friendly_name: Living Room Ceiling fan
+      location: 'livingroom'
+      occupancy_controlled: 'on'
+      ceilingfan: 'on'
+
+
+      
+    switch.router_fan:
+      friendly_name: Den Lamp 
+      occupancy_simulation: 'on'
+      occupancy_controlled: 'on'
+      location: 'den'
+
+
+    switch.den_switch:
+      friendly_name: Den outlet
+      #occupancy_simulation: 'on'
+      occupancy_controlled: 'on' 
+      location: 'den'
+  
+    switch.den_test:
+      occupancy_simulation: 'off'
+      location: 'master'
+      friendly_name: BR Sensor
+  
+    switch.den_middle:
+      friendly_name: Den Overhead
+      occupancy_simulation: 'on'
+      occupancy_controlled: 'on'
+      location: 'den'
+  
+    switch.den_oh:
+      occupancy_controlled: 'on'
+      friendly_name: Den Ceiling Fan
+      location: 'den'
+         
+      
+    
+    switch.dendresser:
+      occupancy_simulation: 'on'
+      occupancy_controlled: 'on'
+      location: 'den'
+      friendly_name: Den Dresser
+      
+
+    switch.br_ceiling_fan:
+      friendly_name: Bedroom Ceiling Fan
+      location: 'master'
+      occupancy_controlled: 'on'
+      ceilingfan: 'on'
+      
+    switch.br_hall:
+      friendly_name: Bedroom Hall
+      location: 'master'
+      #occupancy_simulation: 'on'
+      occupancy_controlled: 'on'
+
+    switch.br_oh:
+      friendly_name: Bedroom Overhead
+      location: 'master'
+      occupancy_simulation: 'on'
+      occupancy_controlled: 'on'
+
+    switch.br_shower:
+      friendly_name: Bathroom Shower
+      location: 'masterbath'
+      occupancy_controlled: 'on'
+
+    switch.vanity_left:
+      occupancy_controlled: 'on'
+      wax_warmer: 'on'
+      friendly_name: Vanity Left
+      icon: mdi:fire  
+
+    switch.vanity_Right:
+      occupancy_controlled: 'on'
+      wax_warmer: 'on'
+      friendly_name: Vanity Right      
+ 
+    switch.masterbathfan:
+      friendly_name: Bathroom fan
+      occupancy_controlled: 'on'
+      location: 'masterbath'
+
+    switch.masterbathlight:
+      friendly_name: Bathroom Light
+      occupancy_controlled: 'on'
+      location: 'masterbath'
+      
+    switch.br_switch:
+      friendly_name: Nightstand
+      location: 'master'
+      occupancy_controlled: 'on'
+      occupancy_simulation: 'on'
+
+   # switch.melodie_nightstand:
+   #   friendly_name: Unused
+   #   occupancy_simulation: 'on'
+   #   occupancy_controlled: 'on'
+   #   location: 'master'
+
+
+
+    switch.coffee:
+      location: 'kitchen'
+      occupancy_controlled: 'on'
+   
+    light.masterbathtub:
+      friendly_name: Master Bath Tub
+      occupancy_controlled: 'on'
+      location: 'masterbath'
+ 
+
+    switch.wc_light_switch:
+      location: 'masterbath'
+      occupancy_controlled: 'on'
+      friendly_name: Water Closet Light
+
+    switch.wcfan:
+      location: 'masterbath'
+      occupancy_controlled: 'on'
+      friendly_name: Water Closet Fan
+
+    switch.mudroom:
+      occupancy_controlled: 'on'
+      wax_warmer: 'on'
+      friendly_name: Mudroom Wax
+      icon: mdi:fire
+      
+    switch.lrwarmer:
+      occupancy_controlled: 'on'
+      wax_warmer: 'on'
+      friendly_name: LR Wax
+      icon: mdi:fire
+          
+    
+    group.all_automations:
+      hidden: false
+      control: hidden
+
+    device_tracker.michaels_iphone:
+      friendly_name: Mike Phone BT
+      
+    device_tracker.michaelsiphone:
+      friendly_name: Mike Phone WL
+     
+      
+      
+    device_tracker.iphone_melodie_personal:
+      friendly_name: Melodie Phone BT
+      
+    
+    device_tracker.melodies_ipad_2:
+      friendly_name: Melodie iPad BT
+    
+    binary_sensor.entry_motion:
+      friendly_name: Entry
+
+###---------------------------------lights-switches begin------------------------------------###
+
+    light.masterwclight:
+      friendly_name: WC Light
+      
+
+      
+    switch.somfy:
+      friendly_name: 'Shade at Rail'
+      icon: mdi:blinds
+
+###---------------------------------lights-switches end------------------------------------###
+
+
+
+
+
+###---------------------------------sun  begin ------------------------------------###
+    sensor.sun_dawn_time:
+      friendly_name: 'Next Dawn'
+      icon: mdi:weather-sunset-up
+    sensor.sun_sunrise_time:
+      friendly_name: 'Next Sunrise'
+      icon: mdi:weather-sunny
+    sensor.sun_sunset_time:
+      friendly_name: 'Next Sunset'
+      icon: mdi:weather-sunset
+    sensor.sun_dusk_time:
+      friendly_name: 'Next Dusk'
+      icon: mdi:weather-sunset-down
+    sensor.sun_elevation:
+      friendly_name: 'Elevation'
+      icon: mdi:elevation-rise
+    sensor.sun_azimuth:
+      friendly_name: 'Azimuth'
+      icon: mdi:alpha
+###---------------------------------sun  end ------------------------------------###
+
+
+
+
+
+
+###---------------------------------scripts ------------------------------------###
+
+    script.white:
+      friendly_name: 'Light to White'
+      icon: mdi:home-assistant
+    script.green:
+      friendly_name: 'Light to Green'
+      icon: mdi:home-assistant
+    script.night:
+      friendly_name: 'Good Night'
+      icon: mdi:sleep
+      
+      
+      
+
+
+  

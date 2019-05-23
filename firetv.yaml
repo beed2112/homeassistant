@@ -1,0 +1,3 @@
+devices:
+  lr-firetv:
+    host: !secret lrFiretv

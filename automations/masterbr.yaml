@@ -1,0 +1,68 @@
+
+- alias: 'Motion for Master light on'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.multimasterbr1_burglar
+      from: '0'
+      to: '8'
+  condition:
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'off'  
+    - condition: state
+      entity_id: switch.patio_outlet
+      state: 'off'
+    - condition: state
+      entity_id: switch.br_switch
+      state: 'off'    
+    - condition: state
+      entity_id:  switch.br_oh
+      state: 'off'
+    - condition: state
+      entity_id: switch.br_hall
+      state: 'off'   
+  action:
+    - service: switch.turn_on
+      entity_id:
+        -  switch.br_switch
+    - service: timer.start
+      data_template:
+        entity_id: "timer.master_motion"
+        duration: '{{ states.input_number.master_motion_time_on.state | multiply(60) |int}}'
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.motionactivated_master
+#Restart the timer when motion detected.  On time is set in the GUI
+
+- alias: 'Motion for master light timer restart'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.multimasterbr1_burglar
+      from: '0'
+      to: '8'
+  condition:
+    condition: state
+    entity_id: timer.master_motion
+    state: 'active'     
+  action:
+    - service: timer.start
+      data_template:
+        entity_id: "timer.master_motion"
+        duration: '{{ states.input_number.master_motion_time_on.state | multiply(60) |int}}'
+
+#-If timer ends motion has not been detected turn light off. On time is set in the GUI
+
+- alias: 'Motion master light time ends'
+  initial_state: True
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.master_motion
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.motionactivated_master
+    - service: switch.turn_off
+      entity_id:
+        -  switch.br_switch

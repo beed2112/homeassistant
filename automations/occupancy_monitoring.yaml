@@ -1,0 +1,82 @@
+- alias: 'Motion Den timer start occupancy only'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.multiden_burglar 
+      from: '0'
+      to: '8'
+  action:    
+    - service: timer.start
+      entity_id: "timer.occupied_den_motion"
+        
+
+- alias: 'Motion Entry timer start occupancy only'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.multientryhalldoor_burglar
+      from: '0'
+      to: '8'
+    - platform: state
+      entity_id: sensor.multientryhallkitchen_burglar 
+      from: '0'
+      to: '8'
+  action:
+    - service: timer.start
+      entity_id: "timer.occupied_entry_motion"
+        
+- alias: 'Motion Kitchen timer start occupancy only'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.multikitchen_burglar
+      from: '0'
+      to: '8'
+  action:    
+    - service: timer.start
+      entity_id: "timer.occupied_kitchen_motion"
+        
+- alias: 'Motion Living Room timer start occupancy only'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.multilr1_burglar
+      from: '0'
+      to: '8'
+  action:  
+    - service: timer.start
+      entity_id: "timer.occupied_living_room_motion"   
+
+- alias: 'Motion Dining Room timer start occupancy only'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.multidining_burglar
+      from: '0'
+      to: '8'
+  action:    
+    - service: timer.start
+      entity_id: "timer.occupied_dining_room_motion"     
+
+- alias: 'Motion occupied master timer start occupancy only'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.multimasterbr1_burglar 
+      from: '0'
+      to: '8'
+  action:    
+    - service: timer.start
+      entity_id: "timer.occupied_master_motion"
+
+- alias: 'Motion occupied master bath timer start occupancy only'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.multimasterhall_burglar
+      from: '0'
+      to: '8'
+  action: 
+    - service: timer.start
+      entity_id: "timer.occupied_master_bath_motion"
+       

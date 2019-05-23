@@ -1,0 +1,13 @@
+homeassistant.bootstrap
+homeassistant.components.automation
+homeassistant.components.binary_sensor
+homeassistant.components.camera
+homeassistant.components.climate
+homeassistant.components.discovery
+homeassistant.components.light
+homeassistant.components.notify
+homeassistant.components.wemo
+homeassistant.core
+homeassistant.helpers.script
+homeassistant.loader
+homeassistant.setup

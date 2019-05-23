@@ -1,0 +1,663 @@
+###----------------------default view begin ----------------------------------------------###
+
+  default_view:
+   name: DEFAULT
+   view: true
+   icon: mdi:home
+   entities:
+     - group.basic
+
+  basic:
+    name: "Main "
+    control: hidden
+    entities:
+      - climate.arizona_arizona
+      - binary_sensor.arizona_thermostat_arizona_fan
+      - light.entryhall
+      - switch.entryhalltable
+      - light.kitchenoh
+      - light.kitchenundercab
+      - light.diningroom
+      - switch.lrlight
+      - switch.lr_switch
+      - light.lr_oh
+      - switch.br_oh
+      - switch.br_switch
+      - switch.br_hall
+      - switch.patio_outlet
+      - light.masterbathtub
+      - switch.wc_light_switch
+      - switch.br_shower
+      - switch.coffee
+      - switch.lr_ceiling_fan
+      - switch.br_ceiling_fan
+      - switch.somfy
+      - switch.patiolight
+      - switch.patiofan
+      - switch.lrwarmer
+      - switch.mudroom
+      - switch.vanity_left
+      - switch.vanity_right      
+
+
+  livingroom_g:
+    name: "Living Room "
+    control: hidden
+    entities:
+      - light.entryhall
+      - light.kitchenoh
+ 
+  bedroom_g:
+    name: "Bedroom"
+    control: hidden
+    entities:
+      - switch.br_overhead
+      - switch.br_switch  
+      - switch.patio_outlet     
+     
+###----------------------default view end----------------------------------------------###
+  home2_view:
+    name: "Other"
+    view: yes
+    icon: mdi:home-plus
+    entities:
+      - group.home2_g
+      
+      
+  home2_g:
+    name: " "
+    control: hidden
+    #icon: mdi:white-balance-sunny
+    entities:
+      - switch.hallbathroom
+      - switch.hallbathroomfan
+      - switch.hallshower
+      - switch.melodie_nightstand
+      - switch.den_oh
+      - switch.den_switch
+      - switch.dendresser
+#      - switch.den_switch
+      - switch.den_middle
+      - switch.masterbathlight
+      - switch.masterbathfan
+      - switch.wcfan
+      
+
+
+
+###----------------------weather begin----------------------------------------------###
+
+  weather_view:
+    name: Weather
+    view: yes
+    icon: mdi:white-balance-sunny
+    entities:
+      - group.dark_sky_g
+      - group.condo_temperatures_g
+      - group.condo_humids_g
+
+  dark_sky_g:
+    name: Weather
+    icon: mdi:white-balance-sunny
+    entities:
+      - sensor.dark_sky_icon
+      - sensor.dark_sky_daily_summary
+      - sensor.dark_sky_temperature
+      - sensor.dark_sky_humidity
+      - sensor.dark_sky_precip_probability
+      - sensor.dark_sky_uv_index
+      - sensor.friendly_wind_direction
+      - sensor.dark_sky_wind_speed
+      - sensor.dark_sky_wind_gust
+      - sensor.friendly_storm_direction  
+      - sensor.dark_sky_nearest_storm_distance
+
+  weather_alert_group:
+    name: Weather
+    icon: mdi:white-balance-sunny
+    entities:
+      - sensor.weather_alert_description
+      - sensor.weather_alert_expires
+      - sensor.weather_alert
+      
+
+
+
+###----------------------weather end----------------------------------------------###
+
+###----------------------------control panel begin----------------------------------------###
+  control_v:
+    name: 'Control Panel'
+    view: yes
+    icon: mdi:tune
+    control: hidden
+    entities:
+      - group.control_g
+      - group.actions_g
+      
+
+ 
+  control_g:
+    name: 'Controls'
+    icon: mdi:tune
+    control: hidden
+    entities:
+      - input_boolean.emptycondo
+      - input_boolean.night_mode
+      - input_boolean.on_vaca
+      - input_boolean.guest_mode
+      - input_boolean.bulb_wc_green
+      - input_boolean.bulb_br_shower_green
+      - input_boolean.bulb_hall_shower_green
+      - input_number.wind_speed_threshold
+      - input_number.den_motion_time_on
+      - input_number.entry_motion_time_on
+      - input_number.kitchen_motion_time_on
+      - input_number.master_motion_time_on
+      - input_number.master_bath_motion_time_on
+      - input_number.wc_motion_time_on
+      - input_number.occupancy_delay
+      - input_number.entry_night_brightness
+      - input_datetime.vacation_return_date
+
+
+  actions_g:
+    name: 'Actions'
+    icon: mdi:tune
+    control: hidden
+    entities:
+      - script.white
+      - script.green
+      - script.night
+
+  condo_temperatures_g:
+    name: 'Inside Temp'
+    icon: mdi:tune
+    control: hidden
+    entities:
+      - sensor.nest_temperature
+      - sensor.multientryhalldoor_temperature
+      - sensor.multientryhallkitchen_temperature
+      - sensor.multiden_temperature
+      - sensor.multikitchen_temperature
+      - sensor.multidining_temperature
+      - sensor.multilr1_temperature
+      - sensor.multimasterbr1_temperature
+      - sensor.multimasterhall_temperature
+      - sensor.multibedmike_temperature
+      - sensor.multibedmelodie_temperature
+
+  condo_humids_g:
+    name: 'Inside Humidity'
+    icon: mdi:tune
+    control: hidden
+    entities:
+      - sensor.multientryhalldoor_relative_humidity
+      - sensor.multientryhallkitchen_relative_humidity
+      - sensor.multiden_relative_humidity
+      - sensor.multikitchen_relative_humidity
+      - sensor.multidining_relative_humidity
+      - sensor.multilr1_relative_humidity
+      - sensor.multimasterbr1_relative_humidity
+      - sensor.multimasterhall_relative_humidity
+      - sensor.multibedmike_relative_humidity
+      - sensor.multibedmelodie_relative_humidity     
+
+
+  inside_views:
+    name: Radio Stuff
+    view: yes
+    icon: mdi:radar
+    entities:
+      - group.occupied_sensors_g
+      - group.multimotion
+      - group.doors_windows_g
+      - group.multibrightness
+      - group.batteries_g
+      - group.tamperalerts
+      - group.sense_sensors_g
+
+      
+ 
+
+      
+  condo_motion_g:
+    name: 'Motion'
+    icon: mdi:tune
+    control: hidden
+    entities:
+      - binary_sensor.motion_entrydoor 
+      - binary_sensor.motion_entrykitchen
+      - binary_sensor.motion_kitchen
+      - binary_sensor.motion_den
+      - binary_sensor.motion_dining
+      - binary_sensor.motion_lr1
+      - binary_sensor.motion_masterbath1
+      - binary_sensor.motion_masterhall
+      - binary_sensor.motion_mikebed
+      - binary_sensor.motion_melodiebed      
+
+  
+  doors_windows_g:
+    name: 'Doors & Windows'
+    icon: mdi:tune
+    control: hidden
+    entities:
+      - binary_sensor.opening_entrydoor
+      - binary_sensor.opening_patiodoor
+      - binary_sensor.opening_patio_shade
+      - binary_sensor.opening_lrn_window
+      - binary_sensor.opening_lre_window
+      - binary_sensor.opening_kitchen_window
+      - binary_sensor.opening_dining_window
+      - binary_sensor.opening_den_window
+      - binary_sensor.opening_master_window
+      
+      
+  
+  multimotion:
+    control: hidden
+    entities:
+      - binary_sensor.motion_entrydoor 
+      - binary_sensor.motion_entrykitchen
+      - binary_sensor.motion_kitchen
+      - binary_sensor.motion_den
+      - binary_sensor.motion_dining
+      - binary_sensor.motion_lr1
+      - binary_sensor.motion_masterbr1
+      - binary_sensor.motion_masterhall
+      - binary_sensor.motion_mikebed
+      - binary_sensor.motion_melodiebed
+
+  multibrightness:
+    control: hidden
+    entities:      
+      - sensor.multientryhalldoor_luminance
+      - sensor.multientryhallkitchen_luminance
+      - sensor.multiden_luminance
+      - sensor.multikitchen_luminance
+      - sensor.multidining_luminance
+      - sensor.multilr1_luminance
+      - sensor.multimasterbr1_luminance
+      - sensor.multimasterhall_luminance
+      - sensor.multibedmike_luminance
+      - sensor.multibedmelodie_luminance
+  multitemp:
+    control: hidden
+    entities:
+      - sensor.multientryhalldoor_temperature
+      - sensor.multientryhallkitchen_temperature
+      - sensor.multiden_temperature
+      - sensor.multikitchen_temperature
+      - sensor.multidining_temperature
+      - sensor.multilr1_temperature
+      - sensor.multimasterbr1_temperature
+      - sensor.multimasterhall_temperature
+      - sensor.multibedmike_temperature
+      - sensor.multibedmelodie_temperature
+
+  multihumid:
+    control: hidden
+    entities:
+      - sensor.multientryhalldoor_relative_humidity
+      - sensor.multientryhallkitchen_relative_humidity
+      - sensor.multiden_relative_humidity
+      - sensor.multikitchen_relative_humidity
+      - sensor.multidining_relative_humidity
+      - sensor.multilr1_relative_humidity
+      - sensor.multimasterbr1_relative_humidity
+      - sensor.multimasterhall_relative_humidity
+      - sensor.multibedmike_relative_humidity
+      - sensor.multibedmelodie_relative_humidity
+
+  batteries_g:
+    name: 'Bettery Levels'
+    icon: mdi:car-battery
+    control: hidden
+    entities:
+      - sensor.multikitchen_battlevel
+      - sensor.multientryhalldoor_battlevel
+      - sensor.multientryhallkitchen_battlevel
+      - sensor.multidining_battlevel
+      - sensor.multilr1_battlevel
+      - sensor.multibedmelodie_battlevel
+      - sensor.multibedmike_battlevel
+      - sensor.multimasterbr1_battlevel
+      - sensor.multimasterhall_battlevel
+      - sensor.patio_shade_battlevel
+      - sensor.patiodoor_battlevel
+      - sensor.master_window_battlevel
+      - sensor.lrn_window_battlevel
+      - sensor.lre_window_battlevel
+      - sensor.diningroom_window_battlevel
+      - sensor.kitchen_window_battlevel
+      - sensor.den_window_battlevel
+      - sensor.entrydoor_battlevel    
+
+  occupied_sensors_g:
+    name: 'Occupied'
+    icon: mdi:tune
+    control: hidden
+    entities:
+      - binary_sensor.occupied_den
+      - binary_sensor.occupied_entry
+      - binary_sensor.occupied_kitchen
+      - binary_sensor.occupied_living_room
+      - binary_sensor.occupied_master
+      - binary_sensor.occupied_bath
+      - binary_sensor.occupied_dining_room    
+  
+  sense_sensors_g:
+    name: 'Sense'
+    icon: mdi:battery-charging-100
+    control: hidden
+    entities:
+      - binary_sensor.samsung_tv
+      - binary_sensor.ac
+      - binary_sensor.coffee_maker
+      - binary_sensor.dryer
+      - binary_sensor.fridge_2
+      - binary_sensor.light_1
+      - binary_sensor.light_2
+      - binary_sensor.light_3
+      - binary_sensor.light_4
+      - binary_sensor.microwave
+      - binary_sensor.washer
+          
+
+
+  #group needs update to reflect new sensors
+
+  hvac_watchlist_g:
+    name: 'HVAC Watchlist'
+    icon: mdi:tune
+    control: hidden
+    entities:
+      - binary_sensor.opening_entrydoor
+      - binary_sensor.opening_patiodoor
+      - binary_sensor.opening_lrn_window
+      - binary_sensor.opening_lre_window
+      - binary_sensor.opening_kitchen_window
+      - binary_sensor.opening_dining_window
+      - binary_sensor.opening_den_window
+      - binary_sensor.opening_master_window
+
+###----------------------------control panel end----------------------------------------###
+
+
+
+
+###----------------------------timedate begin----------------------------------------###
+  timedate_views:
+    name: Time~Dates
+    view: yes
+    icon: mdi:clock
+    entities:
+      - group.timedates
+      - group.timedates2
+      - group.timedates4
+      - group.timedates3
+      
+  timedates:
+    name: Time Date
+    control: hidden
+    entities:
+      - sensor.time
+      - sensor.date
+      - sensor.date_time
+      - sensor.time_date
+      - sensor.time_utc
+
+  den_motion:
+    name: den motion stuff
+    control: hidden
+    entities:
+      - switch.router_fan
+      - switch.den_oh
+
+  timedates2:
+    name: Sun info
+    control: hidden
+    entities:
+      - sun.sun
+      - sensor.sun_sunset_time
+      - sensor.sun_dusk_time
+      - sensor.sun_dawn_time
+      - sensor.sun_sunrise_time
+      - sensor.sun_elevation
+      - sensor.sun_azimuth
+
+  timedates3:
+    name: Random Times
+    control: hidden
+    entities:
+      - binary_sensor.occupancy_simulation_active
+      - sensor.random_late_nite_time
+      - sensor.random_late_nite_Duration
+      - sensor.random_evening_time
+      - sensor.random_evening_Duration
+      - sensor.random_afternoon_time
+      - sensor.random_afternoon_Duration
+      - sensor.random_morning_time
+      - sensor.random_morning_Duration
+      - sensor.random_early_morning_time
+      - sensor.random_early_morning_Duration
+      - switch.den_oh
+      - switch.den_switch
+      - switch.den_middle
+
+  
+###----------------------------timedate end----------------------------------------###
+      
+###----------------------stats begin----------------------------------------------###
+
+  stats_view:
+    name: Stats
+    view: yes
+    icon: mdi:percent
+    entities:
+      - group.iosstats
+#      - group.geekview2
+#      - group.geekview21
+#      - group.geekview22
+#      - group.geekview23
+#      - group.geekview24
+      
+  #   - group.stats_group_day
+  #   - group.stats_group_week
+  #   - group.stats_group_last30
+
+  iosstats:
+    name: iosNotify Stats
+    control: hidden
+    entities:
+    - sensor.mikeiossent
+    - sensor.mikeioslimit
+    - sensor.mikeioserrors
+    - sensor.mikeiosresetin
+    
+
+ 
+  cam_view:
+    name: Camera
+    view: yes
+    icon: mdi:weather-hurricane
+    entities:
+      - group.cam_group
+
+  cam_group:
+    name: Camera
+    icon: mdi:weather-hurricane
+    entities:
+      - camera.atlantic_hurricane
+      
+      
+  
+###----------------------------geek views begin----------------------------------------###
+  
+  geek_views:
+    name: System
+    view: yes
+    icon: mdi:pier-crane
+    entities:
+      - group.geekview1
+      - group.geekview
+      - group.geekview3
+      - group.geekview31
+      - group.people_status
+      - group.all_automations
+      
+  geekview:
+    name: ' '
+    control: hidden
+    entities:
+      - sensor.lr_tv_status
+      - light.masterwclight
+      - light.master_br_shower
+      - switch.esp
+      - switch.router_fan
+      - switch.patio_outlet
+     # - switch.den_test
+      - switch.lrhutch
+
+      
+  geekview1:
+    name: ' '
+    control: hidden
+    entities:
+      - binary_sensor.coffee_on
+      - binary_sensor.hold_open
+      - binary_sensor.emptycondo
+
+
+      
+      
+  
+ 
+      
+
+
+  geekview3:
+    name: 'Mike'
+    control: hidden
+    entities:
+      - device_tracker.michaels_iphone
+      # - device_tracker.mike_ipad
+      # - device_tracker.mikechromebook
+      - device_tracker.michaelsiphone
+
+  geekview31:
+    name: 'Melodie'
+    control: hidden
+    entities:
+      - device_tracker.iphone_melodie_personal
+      - device_tracker.melodies_ipad2
+      - device_tracker.melodiesipad2
+      
+
+###----------------------------geek views end----------------------------------------###
+      
+
+###----------------------------alarm begin----------------------------------------###
+  alarm_clock:
+    name: 'Alarm Clock'
+    view: yes
+    icon: mdi:alarm
+    entities:
+      - group.alarm_clock1
+      - group.alarm_clock2
+      - group.morning
+ 
+  alarm_clock1:
+    name: 'Controls'
+    icon: mdi:alarm
+    control: hidden
+    entities:
+      - sensor.alarm_clock_time
+      - input_number.alarm_clock_hour
+      - input_number.alarm_clock_minute
+
+  alarm_clock2:
+    name: 'Off/On '
+    icon: mdi:switch
+    control: hidden
+    entities:
+      - input_boolean.alarm_clock_status
+  
+  morning:
+    name: Morning on
+    control: hidden
+    entities:
+ #     - switch.br_switch
+      - switch.coffee
+ #     - switch.br_shower
+ #     - switch.wc_light_switch
+ #     - switch.br_overhead
+      - switch.patio_outlet
+ #     - switch.melodie_nightstand_
+      
+  
+# automations_to_toggle_g:
+#    name: Automations to toggle
+#    #control: hidden
+#    entities:
+#      - automation.br_fan_off_when_air_on
+#      - automation.br_fan_on_when_air_off
+#      - automation.good_night
+#      - automation.melodie_nightstand_off_dash_
+#      - automation.melodie_nightstand_on_dash_
+#      - automation.morning_alarm
+#      - automation.wc_light_on_color_dash_
+#      - automation.wc_light_reset_to_white_at_morning
+##      - automation.wc_light_reset_to_white_script
+#      - automation.wc_light_reset_to_white_switch_trigger
+#      - automation.wc_prime_it_green
+#      - automation.xx_coffee_pot_is_on_send
+#      - automation.xx_coffeepot_off_response
+#      - automation.xx_coffeepot_on_response
+#      - automation.yy_ios_notify_test_off
+#      - automation.yy_ios_notify_test_on
+#      - automation.zzz_enable_once_a_day_automatons
+#      - automation.zzz_nightstand_sensor_to_off
+#      - automation.zzz_nightstand_sensor_to_on
+      
+#  hvac_automations_g:
+#    name: HVAC Automations to toggle
+#    #control: hidden
+#    entities:
+#      - automation.br_fan_off_when_air_on
+#      - automation.br_fan_on_when_air_off
+#      - automation.stop_the_hvac_fan_dance
+      
+      
+  all_view:
+    name: all stuff
+    view: yes
+    entities:
+      - group.all_lights
+      - group.all_switches
+      
+###--------------------------------------------------------------------###
+
+  br_mode_triggers:
+    name: " "
+    control: hidden
+    entities:
+      - switch.br_overhead
+      - switch.br_hall
+
+  people_status:
+    name: Occupancy Status
+    control: hidden
+    entities:
+      - sensor.mike_status
+      - sensor.melodie_status
+      - sensor.condo_status
+      
+  wax_warmers:
+    name: Warmers
+    entities:
+      - switch.mudroom
+      - switch.lrwarmer
+    
+    

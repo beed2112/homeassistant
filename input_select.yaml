@@ -1,0 +1,119 @@
+
+  opening_list:
+    name: Sensor
+    options:
+     - Nothing
+     - Shade
+     - Entry
+     - Patio
+     - Screen
+     - BR
+     - Den
+     - Kitchen
+     - LR N
+     - LR E
+     - DR
+     - WC door
+     
+
+
+  opening_list_action:
+    name: Action
+    options:
+     - "Off"
+     - "On"
+
+
+  mike_status_dropdown:
+    name: Mike
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
+    initial: Home
+
+  melodie_status_dropdown:
+    name: Melodie
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
+    initial: Home
+
+  condo_status_dropdown:
+    name: Condo
+    options:
+      - Occupied
+      - Just Occupied
+      - Just Unoccupied
+      - Unoccupied
+      - Unoccupied Extended
+    initial: Occupied
+
+  last_motion:
+    name: Last Motion
+    options:
+      - Den
+      - Entry Door
+      - Entry Kitchen
+      - Kitchen
+      - Living Room 1
+      - Mike
+      - Melodie
+      - Master BR1
+      - Master Hall 
+      - Dining
+      - none
+    initial: none
+
+  last_motion1:
+    name: Last Motion 1
+    options:
+      - Den
+      - Entry Door
+      - Entry Kitchen
+      - Kitchen
+      - Living Room 1
+      - Mike
+      - Melodie
+      - Master BR1
+      - Master Hall 
+      - Dining
+      - none
+    initial: none
+    
+  last_motion2:
+    name: Last Motion 2
+    options:
+      - Den
+      - Entry Door
+      - Entry Kitchen
+      - Kitchen
+      - Living Room 1
+      - Mike
+      - Melodie
+      - Master BR1
+      - Master Hall 
+      - Dining
+      - none
+    initial: none
+    
+  last_motion3:
+    name: Last Motion 3
+    options:
+      - Den
+      - Entry Door
+      - Entry Kitchen
+      - Kitchen
+      - Living Room 1
+      - Mike
+      - Melodie
+      - Master BR1
+      - Master Hall 
+      - Dining
+      - none
+    initial: none

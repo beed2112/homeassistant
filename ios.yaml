@@ -1,0 +1,33 @@
+  push:
+    categories:
+      - name: coffeepot
+        identifier: 'coffeepot'
+        actions:
+          - identifier: 'OFF_COFFEEPOT'
+            title: 'CP Off'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'
+          - identifier: 'ON_COFFEEPOT'
+            title: 'CP On'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: no
+            behavior: 'default'
+      - name: iostest
+        identifier: 'iostest'
+        actions:
+          - identifier: 'OFF_IOSTEST'
+            title: 'OK'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'
+          - identifier: 'ON_IOSTEST'
+            title: 'Later'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: no
+            behavior: 'default'
+  

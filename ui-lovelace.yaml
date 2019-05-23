@@ -1,0 +1,316 @@
+resources:
+  - url: /local/monster-card.js?v=1
+    type: js
+
+  - type: custom:monster-card
+    card:
+      type: glance
+      title: Monster
+    filter:
+      include:
+          attributes:
+            - location: livingroom
+            - location: master
+            - location: den
+name: Condo
+views:
+  - name: DEFAULT
+    tab_icon: mdi:home
+    cards:
+      - type: entities
+        title: ' '
+        entities:
+          - climate.arizona_arizona
+          - binary_sensor.arizona_thermostat_arizona_fan
+          - sensor.pws_weather
+          - sensor.pws_temp_f
+          - switch.lrlight
+          - switch.lr_switch
+          - light.lr_oh
+          - switch.br_overhead
+          - switch.br_switch
+          - switch.br_hall
+          - switch.melodie_nightstand_
+          - switch.wc_light_switch
+          - switch.br_shower
+          - switch.coffee
+          - switch.lr_ceiling_fan
+          - switch.br_ceiling_fan
+          - switch.somfy
+          - switch.patiolight
+          - switch.patiofan
+  - name: Weather
+    tab_icon: mdi:white-balance-sunny
+    cards:
+      - type: entities
+        title: Weather
+        entities:
+          - sensor.pws_weather
+          - sensor.pws_temp_f
+          - sensor.pws_feelslike_string
+          - sensor.pws_relative_humidity
+          - sensor.pws_wind_mph
+          - sensor.pws_wind_dir
+          - sensor.pws_wind_gust_mph
+          - sensor.pws_precip_today_in
+      - type: entities
+        title: Inside
+        entities:
+          - sensor.nest_temperature
+          - sensor.mqtt_rf_temperature
+          - sensor.living_room_temperature
+          - sensor.bed_room_temperature
+          - sensor.den_temperature
+          - sensor.mqtt_rf_humidity
+          - sensor.living_room_humidity
+          - sensor.bed_room_humidity
+          - sensor.den_humidity
+      - type: entities
+        title: Weather
+        entities:
+          - sensor.weather_update_time
+          - sensor.pws_station_id
+          - sensor.pws_location
+          - sensor.pws_elevation
+      - type: entities
+        title: Weather
+        entities:
+          - sensor.weather_alert_description
+          - sensor.weather_alert_expires
+          - sensor.weather_alert
+  - name: Control Panel
+    tab_icon: mdi:tune
+    cards:
+      - type: entities
+        title: Controls
+        entities:
+          - input_boolean.emptycondo
+          - input_boolean.night_mode
+          - input_boolean.on_vaca
+          - input_boolean.bulb_wc_green
+          - input_boolean.bulb_br_shower_green
+          - sensor.wind_speed_threshold
+          - input_number.wind_speed_threshold
+          - input_number.den_motion_time_on
+          - input_number.wc_motion_time_on
+      - type: entities
+        title: Actions
+        entities:
+          - script.white
+          - script.green
+          - script.night
+  - name: Radio Stuff
+    tab_icon: mdi:radar
+    cards:
+      - type: entities
+        title: Doors & Windows
+        entities:
+          - binary_sensor.entry
+          - binary_sensor.patio
+          - binary_sensor.screen
+          - binary_sensor.shade
+          - binary_sensor.lr_n
+          - binary_sensor.lr_e
+          - binary_sensor.dr
+          - binary_sensor.kitchen
+          - binary_sensor.br
+          - binary_sensor.den
+      - type: entities
+        title: Motion
+        entities:
+          - binary_sensor.den_motion
+          - binary_sensor.entry_motion
+          - binary_sensor.kitchen_motion
+          - binary_sensor.kitchen_cabinet
+          - binary_sensor.test1_motion
+          - binary_sensor.test2_motion
+          - binary_sensor.openmqttgateway1_motion
+          - binary_sensor.br_melodie
+      - type: entities
+        title: Sensor Reset
+        entities:
+          - input_select.opening_list_action
+          - input_select.opening_list
+  - name: Travel Times
+    tab_icon: mdi:car
+    cards:
+      - type: entities
+        title: Travel Times
+        entities:
+          - sensor.duration_home_to_sf
+          - sensor.duration_sf_to_home
+          - sensor.duration_home_to_sky_harbor
+          - sensor.duration_sky_harbor_to_home
+          - sensor.duration_north_i17_to_i10
+          - sensor.duration_south_i10_to_i17
+          - sensor.duration_home_to_tanger
+          - sensor.duration_tanger_westgate_to_home
+          - sensor.duration_home_to_mesa_gateway
+          - sensor.duration_mesa_gateway_to_home
+          - sensor.duration_home_to_apt
+  - name: Time~Dates
+    tab_icon: mdi:clock
+    cards:
+      - type: entities
+        title: Time Date
+        entities:
+          - sensor.time
+          - sensor.date
+          - sensor.date__time
+          - sensor.time__date
+          - sensor.time_utc
+      - type: entities
+        title: Sun info
+        entities:
+          - sun.sun
+          - sensor.sun_sunset_time
+          - sensor.sun_dusk_time
+          - sensor.sun_dawn_time
+          - sensor.sun_sunrise_time
+          - sensor.sun_elevation
+          - sensor.sun_azimuth
+      - type: entities
+        title: Random Times
+        entities:
+          - binary_sensor.occupancy_simulation_active
+          - sensor.occupancy_sim_active_entity
+          - sensor.random_late_nite_time
+          - sensor.random_late_nite_duration
+          - sensor.random_evening_time
+          - sensor.random_evening_duration
+          - sensor.random_afternoon_time
+          - sensor.random_afternoon_duration
+          - sensor.random_morning_time
+          - sensor.random_morning_duration
+          - sensor.random_early_morning_time
+          - sensor.random_early_morning_duration
+          - switch.den_oh
+          - switch.den_switch
+          - switch.den_test
+          - switch.den_middle
+  - name: Stats
+    tab_icon: mdi:percent
+    cards:
+      - type: entities
+        title: iosNotify Stats
+        entities:
+          - sensor.mikeiossent
+          - sensor.mikeioslimit
+          - sensor.mikeioserrors
+          - sensor.mikeiosresetin
+      - type: entities
+        title: 'HA Processor '
+        entities:
+          - sensor.processor_use
+          - sensor.load_1m
+          - sensor.load_5m
+          - sensor.load_15m
+      - type: entities
+        title: 'HA Memory '
+        entities:
+          - sensor.memory_use_percent
+          - sensor.memory_use
+          - sensor.memory_free
+      - type: entities
+        title: 'HA Disk '
+        entities:
+          - sensor.disk_use_percent_varlog
+          - sensor.swap_use_percent
+          - sensor.swap_use
+          - sensor.swap_free
+      - type: entities
+        title: 'HA Network '
+        entities:
+          - sensor.network_in_eth0
+          - sensor.network_out_eth0
+          - sensor.packets_in_eth0
+          - sensor.packets_out_eth0
+      - type: entities
+        title: 'HA Uptime '
+        entities:
+          - sensor.last_boot
+          - sensor.since_last_boot
+  - name: System
+    tab_icon: mdi:raspberrypi
+    cards:
+      - type: entities
+        title: ' '
+        entities:
+          - binary_sensor.openmqttgateway1
+          - binary_sensor.living_room_gw
+          - binary_sensor.bed_room_gw
+          - binary_sensor.den_gw
+          - binary_sensor.den_on_with_motion
+          - binary_sensor.coffee_on
+          - binary_sensor.hold_open
+          - binary_sensor.emptycondo
+      - type: entities
+        title: ' '
+        entities:
+          - sensor.lr_tv_status
+          - light.masterwclight
+          - light.master_br_shower
+          - switch.esp
+          - switch.router_fan
+          - switch.patio_outlet
+          - switch.lrhutch
+          - light.limelight02
+          - light.limelight03
+          - light.limelight04
+      - type: entities
+        title: Mike
+        entities:
+          - device_tracker.michaels_iphone
+          - device_tracker.michaelsiphone
+      - type: entities
+        title: Melodie
+        entities:
+          - device_tracker.iphone_melodie_personal
+          - device_tracker.melodies_ipad2
+          - device_tracker.melodiesipad2
+      - type: entity-filter
+        card_config:
+          title: All Automations
+        filter:
+          - domain: automation
+  - name: Alarm Clock
+    tab_icon: mdi:alarm
+    cards:
+      - type: entities
+        title: Controls
+        entities:
+          - sensor.alarm_clock_time
+          - input_number.alarm_clock_hour
+          - input_number.alarm_clock_minute
+      - type: entities
+        title: 'Off/On '
+        entities:
+          - input_boolean.alarm_clock_status
+      - type: entities
+        title: Morning on
+        entities:
+          - switch.br_switch
+          - switch.coffee
+          - switch.br_shower
+          - switch.wc_light_switch
+          - switch.br_switch
+  - name: all stuff
+    cards:
+      - type: entity-filter
+        card_config:
+          title: All Lights
+        filter:
+          - domain: light
+      - type: entity-filter
+        card_config:
+          title: All Switches
+        filter:
+          - domain: switch
+  - name: All Entities
+    tab_icon: mdi:settings
+    cards:
+      - type: entity-filter
+        card_config:
+          title: All Entities
+        filter:
+          - {}

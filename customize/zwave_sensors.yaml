@@ -1,0 +1,179 @@
+    ################################################
+    ## Sensors
+    ################################################
+
+    sensor.multiden_luminance:
+      friendly_name: Den
+      location: 'den'
+
+    sensor.multiden_temperature:
+      friendly_name: Den
+      location: 'den'
+
+    sensor.multiden_relative_humidity:
+      friendly_name: Den
+      location: 'den'
+
+
+    sensor.multientryhalldoor_luminance:
+      friendly_name: Entry Door
+      location: 'entry'
+
+    sensor.multientryhalldoor_temperature:
+      friendly_name: Entry Door
+      location: 'entry'
+
+    sensor.multientryhalldoor_relative_humidity:
+      friendly_name: Entry Door
+      location: 'entry'
+
+    sensor.multientryhallkitchen_luminance:
+      friendly_name: "Entry Kitchen"
+      location: 'entry'
+
+    sensor.multientryhallkitchen_temperature:
+      friendly_name: "Entry Kitchen"
+      location: 'entry'
+
+    sensor.multientryhallkitchen_relative_humidity:
+      friendly_name: "Entry Kitchen"
+      location: 'entry'
+
+    sensor.multikitchen_luminance:
+      friendly_name: "Kitchen"
+      location: 'kitchen'
+
+    sensor.multikitchen_temperature:
+      friendly_name: "Kitchen"
+      location: 'kitchen'
+
+    sensor.multikitchen_relative_humidity:
+      friendly_name: "Kitchen"
+      location: 'kitchen'
+
+    sensor.multilr1_luminance:
+      friendly_name: "Living Room 1"
+      location: 'livingroom'
+
+    sensor.multilr1_temperature:
+      friendly_name: "Living Room 1"
+      location: 'livingroom'
+
+    sensor.multilr1_relative_humidity:
+      friendly_name: "Living Room 1"
+      location: 'livingroom'
+
+    sensor.multibedmike_luminance:
+      friendly_name: "Mike"
+      location: 'master'
+
+    sensor.multibedmike_temperature:
+      friendly_name: "Mike"
+      location: 'master'
+
+    sensor.multibedmike_relative_humidity:
+      friendly_name: "Mike"
+      location: 'master'
+ 
+    sensor.multibedmelodie_luminance:
+      friendly_name: "Melodie"
+      location: 'master'
+
+    sensor.multibedmelodie_temperature:
+      friendly_name: "Melodie"
+      location: 'master'
+
+    sensor.multibedmelodie_relative_humidity:
+      friendly_name: "Melodie"
+      location: 'master'
+
+    sensor.multimasterbr1_luminance:
+      friendly_name: "Master BR1"
+      location: 'masterbath'
+
+    sensor.multimasterbr1_temperature:
+      friendly_name: "Master BR1"
+      location: 'masterbath'
+
+    sensor.multimasterbr1_relative_humidity:
+      friendly_name: "Master BR1"
+      location: 'masterbath'
+
+    sensor.multimasterhall_luminance:
+      friendly_name: "Master Hall "
+      location: 'masterbath'
+
+    sensor.multimasterhall_temperature:
+      friendly_name: "Master Hall "
+      location: 'masterbath'
+
+    sensor.multimasterhall_relative_humidity:
+      friendly_name: "Master Hall "
+      location: 'masterbath'
+
+    sensor.multidining_luminance:
+      friendly_name: "Dining"
+      location: 'multidining'
+
+    sensor.multidining_temperature:
+      friendly_name: "Dining"
+      location: 'multidining'
+
+    sensor.multidining_relative_humidity:
+      friendly_name: "Dining"
+      location: 'multidining'
+
+    sensor.multikitchen_battlevel:
+      icon: mdi:car-battery
+
+    sensor.multientryhalldoor_battlevel:
+      icon: mdi:car-battery
+
+    sensor.multientryhallkitchen_battlevel:
+      icon: mdi:car-battery
+
+    sensor.multidining_battlevel:
+      icon: mdi:car-battery
+
+    sensor.multilr1_battlevel:
+      icon: mdi:car-battery
+
+
+    sensor.multibedmelodie_battlevel:
+      icon: mdi:car-battery
+
+    sensor.multibedmike_battlevel:
+      icon: mdi:car-battery
+
+    sensor.multimasterbr1_battlevel:
+      icon: mdi:car-battery
+
+    sensor.multimasterhall_battlevel:
+      icon: mdi:car-battery
+
+    sensor.patio_shade_battlevel:
+      icon: mdi:car-battery
+
+    sensor.patiodoor_battlevel:
+      icon: mdi:car-battery
+
+    sensor.master_window_battlevel:
+      icon: mdi:car-battery
+
+    sensor.lrn_window_battlevel:
+      icon: mdi:car-battery
+
+    sensor.lre_window_battlevel:
+      icon: mdi:car-battery
+
+    sensor.diningroom_window_battlevel:
+      icon: mdi:car-battery
+
+    sensor.kitchen_window_battlevel:
+      icon: mdi:car-battery
+
+    sensor.den_window_battlevel:
+      icon: mdi:car-battery
+
+    sensor.entrydoor_battlevel:
+      icon: mdi:car-battery

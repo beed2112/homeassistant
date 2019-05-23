@@ -1,0 +1,115 @@
+  - platform: template
+    switches:
+      dummy:
+        value_template: "{{ is_state('switch.dummy', 'on') }}"
+        turn_on:
+          service: shell_command.br14
+        turn_off:
+          service: shell_command.br14
+
+
+
+
+
+  - platform: command_line
+    switches:
+      somfy:
+        command_on: "/config/cmds/midshade.sh"
+        command_off: "/config/cmds/upshade.sh"
+        command_state: "cat /config/cmds/shade.sensor"
+        value_template: '{{ value == "0" }}'
+        friendly_name: Shade to MY
+  - platform: command_line
+    switches:
+      patiofan:
+        command_on: "/config/cmds/hunterfanmed.sh"
+        command_off: "/config/cmds/hunterfanoff.sh"
+        command_state: "cat /config/cmds/hunterfan.sensor"
+        value_template: '{{ value == "0" }}'
+        friendly_name: Patio Fan
+  - platform: command_line
+    switches:
+      patiolight:
+        command_on: "/config/cmds/hunterlighton.sh"
+        command_off: "/config/cmds/hunterlightoff.sh"
+        command_state: "cat /config/cmds/hunterlight.sensor"
+        value_template: '{{ value == "0" }}'
+        friendly_name: Patio Light
+        
+  #- platform: mqtt
+  #  name: "LIMELIGHT_01"
+  #  retain: true
+  #  optimistic: true
+  #  state_topic: "LIMELIGHT_01/out"
+  #  command_topic: "LIMELIGHT_01/in"
+  #  rgb_command_template: "#{{ '%02x%02x%02x' | format(red, green, blue)}}"
+  #  rgb_command_topic: "LIMELIGHT_01/in"
+  #  effect_command_topic: "LIMELIGHT_01/in"
+  #  payload_off: "*0000000"
+  #  effect_list:
+  #  - "/0"
+  #  - "/1"
+  #  - "/2"
+  #  - "/3"
+  #  - "/4"
+  #  - "/5"
+  #  - "/6"
+  #  - "/7"
+  #  - "/8"
+  #  - "/9"
+  #  - "/10"
+  #  - "/11"
+  #  - "/12"
+  #  - "/13"
+  # - "/14"
+  #  - "/15"
+  #  - "/16"
+  #  - "/17"
+  #  - "/18"
+  #  - "/19"
+  #  - "/20"
+  #  - "/21"
+  #  - "/22"
+  #  - "/23"
+  #  - "/24"
+  #  - "/25"
+  #  - "/26"
+  #  - "/27"
+  #  - "/28"
+  #  - "/29"
+  #  - "/30"
+  #  - "/31"
+  #  - "/32"
+  #  - "/33"
+  #  - "/34"
+  #  - "/35"
+  #  - "/36"
+  #  - "/37"
+  #  - "/38"
+  #  - "/39"
+  #  - "/40"
+  #  - "/41"
+  #  - "/42"
+  #  - "/43"
+  #  - "/44"
+  #  - "/45"
+  #  - "/46"
+  #  - "/47"
+  #  - "/48"
+  #  - "/49"
+  #  - "/50"
+  #  - "/51"
+  #  - "/52"
+  #  - "/53"
+  #  - "/54"
+  #  - "/55"
+
+
+
+
+
+
+
+
+
+ 

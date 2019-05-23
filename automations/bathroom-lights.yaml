@@ -1,0 +1,562 @@
+
+- alias: 'Motion for MasterBath light on'
+  initial_state: False
+  trigger:
+    - platform: state
+      entity_id:  sensor.multimasterhall_burglar
+      from: '0'
+      to: '8'
+  condition:
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'off'  
+    - condition: state
+      entity_id: switch.masterbathlight
+      state: 'off'
+  action:
+    - service: switch.turn_on
+      entity_id:
+        -  switch.masterbathlight
+    - service: timer.start
+      data_template:
+        entity_id: "timer.master_bath_motion"
+        duration: '{{ states.input_number.master_bath_motion_time_on.state | multiply(60) |int}}'
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.motionactivated_master_bath
+#Restart the timer when motion detected.  On time is set in the GUI
+
+- alias: 'Motion for MasterBath light timer restart'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id:  sensor.multimasterhall_burglar
+      from: '0'
+      to: '8'
+  condition:
+    condition: state
+    entity_id: timer.master_bath_motion
+    state: 'active'     
+  action:
+    - service: timer.start
+      data_template:
+        entity_id: "timer.master_bath_motion"
+        duration: '{{ states.input_number.master_bath_motion_time_on.state | multiply(60) |int}}'
+
+#-If timer ends motion has not been detected turn light off. On time is set in the GUI
+
+- alias: 'Motion for MasterBath light time ends'
+  initial_state: True
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.master_bath_motion
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.motionactivated_master_bath
+    - service: switch.turn_off
+      entity_id:
+        -  switch.masterbathlight
+
+
+#- alias: 'Motion for MasterBath light off'
+#  initial_state: True
+#  trigger:
+#    - platform: state
+#      entity_id:  sensor.multimasterhall_burglar
+#      from: '0'
+#      to: '8'
+#  condition:
+#    condition: state
+#    entity_id: timer.master_bath_motion
+#    state: 'active'      
+#  action:
+#    - service: homeassistant.turn_off
+#      entity_id: input_boolean.motionactivated_master_bath
+#    - service: timer.finish
+#      entity_id: timer.master_bath_motion  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#####------------------------------------------------------------------------------------#####
+##### This is all about the WC light                                                     #####
+##### Turn on when dash button is pressed                                                #####
+##### Since the outlet is switched we have to use automations to get the colors set      #####
+##### Using Good Night autotomation triggers/conditions to set light to red              #####
+##### if the switch is used in the morning will set it to white when we can talk to it   #####
+##### melodie's night stand light in the morning set To white when we can talk to it     #####
+#####------------------------------------------------------------------------------------#####
+
+#-autodoc
+#-autodoc        name: WC light on with motion
+#-autodoc description: Turn on the WC light based on motion. Timer length set in GUI. Will not act if light is already on This automation is enabled in nightmode (goodnight.yaml) and disabled in day mode (nite-day-mode.yaml)
+#-autodoc        file: bathroom-lights.yaml
+#-autodoc
+
+- alias: 'WC light on with motion'
+  initial_state: False
+  trigger:
+    - platform: state
+      entity_id: sensor.multibedmike_burglar
+      from: '0'
+      to: '8'
+    - platform: state
+      entity_id: sensor.multibedmelodie_burglar 
+      from: '0'
+      to: '8'
+  condition:
+    condition: state
+    entity_id: switch.wc_light_switch
+    state: 'off'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: switch.wc_light_switch
+    - service: timer.start
+      data_template:
+        entity_id: "timer.br_night_motion"
+        duration: '{{ states.input_number.wc_motion_time_on.state | multiply(60) |int}}'
+    # - service: homeassistant.turn_off
+    #   entity_id: automation.wc_light_on_with_motion
+
+#-autodoc
+#-autodoc        name: Motion WC light time ends
+#-autodoc description: Turn off WC light when the timer ends
+#-autodoc        file: bathroom-lights.yaml
+#-autodoc
+ 
+- alias: 'Motion WC light time ends'
+  initial_state: True
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.br_night_motion
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.wc_light_switch
+    # - service: homeassistant.turn_on
+    #   entity_id: automation.wc_light_on_with_motion
+
+
+
+
+#-autodoc
+#-autodoc        name: WC Light on color dash
+#-autodoc description: When WC dash buttons are pressed turn on WC light for 2 munutes and 30 seconds.
+#-autodoc        file: bathroom-lights.yaml
+#-autodoc
+
+- alias: 'WC Light on color dash'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: sensor.wclightdash
+    from: '0'
+    to: '1'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.wc_light_switch
+    - wait_template: "{{ states.switch.wc_light_switch.state == 'on' }}"
+    # - service: light.lifx_set_state
+    #   data:
+    #     entity_id: light.masterwclight
+    #     # rgb_color: [0,100,0]
+    #     color_name: green
+    #     brightness: 255
+    - service: light.turn_on
+      data:
+        entity_id: light.masterwclight
+    - delay: 00:02:30
+    - service: light.turn_off
+      data:
+        entity_id: light.masterwclight
+    - service: switch.turn_off
+      entity_id: switch.wc_light_switch
+
+
+#####---------------------------------------------Change bulbs to green when night mode on    BEGIN---------#####
+#-autodoc
+#-autodoc        name: WC set green
+#-autodoc description: House goes into night mode set the light in the WC to green, light is turned off 30 seconds after color is set.
+#-autodoc        file: bathroom-lights.yaml
+#-autodoc
+
+- alias: 'WC set green'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: input_boolean.night_mode
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: input_boolean.bulb_wc_green
+      from: 'off'
+      to: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.wc_light_switch
+    - wait_template: "{{ states.light.masterwclight.state == 'on' }}"
+#    - delay: 00:02:30
+    - service: light.lifx_set_state
+      data:
+        entity_id: light.masterwclight
+        color_name: green
+        #rgb_color: [0,100,0]
+        brightness: 80
+    - delay: 00:00:30
+    - service: light.turn_off
+      data:
+        entity_id: light.masterwclight
+    - service: switch.turn_off
+      entity_id: switch.wc_light_switch
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.bulb_wc_green
+
+
+#-autodoc
+#-autodoc        name: Shower set green
+#-autodoc description: House goes into night mode set the light in the Master Shower to green, light is turned off 30 seconds after color is set.
+#-autodoc        file: bathroom-lights.yaml
+#-autodoc
+
+- alias: 'Shower set green'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: input_boolean.night_mode
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: input_boolean.bulb_br_shower_green
+      from: 'off'
+      to: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.br_shower
+#    - delay: 00:02:30
+    - wait_template: "{{ states.light.master_br_shower.state == 'on' }}"
+    - service: light.lifx_set_state
+      data:
+        entity_id: light.master_br_shower
+        color_name: green
+        #rgb_color: [0,100,0]
+        brightness: 80
+    - delay: 00:00:30
+    - service: light.turn_off
+      data:
+        entity_id: light.master_br_shower
+    - service: switch.turn_off
+      entity_id: switch.br_shower
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.bulb_br_shower_green
+
+- alias: 'Hall Shower set green'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: input_boolean.night_mode
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: input_boolean.bulb_hall_shower_green
+      from: 'off'
+      to: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id:  switch.hallshower
+#    - delay: 00:02:30
+    - wait_template: "{{ states.light.hallshower.state == 'on' }}"
+    - service: light.lifx_set_state
+      data:
+        entity_id: light.hallshower
+        color_name: green
+        #rgb_color: [0,100,0]
+        brightness: 80
+    - delay: 00:00:30
+    - service: light.turn_off
+      data:
+        entity_id: light.hallshower
+    - service: switch.turn_off
+      entity_id: switch.hallshower
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.bulb_hall_shower_green       
+
+#
+
+  
+  
+#####---------------------------------------------Change bulbs to green when night mode on    END ---------#####
+  
+    
+
+###------------------------------------------------Set bulbs to white when night mode goes off    BEGIN
+
+#-autodoc
+#-autodoc        name: WC set white
+#-autodoc description: House goes into day mode set the light in the WC to white, light is turned off 30 seconds after color is set.
+#-autodoc        file: bathroom-lights.yaml
+#-autodoc
+
+- alias: 'WC set to white'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: input_boolean.night_mode
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: input_boolean.bulb_wc_green
+      from: 'on'
+      to: 'off'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.wc_light_switch
+    - wait_template: "{{ states.light.masterwclight.state == 'on' }}"
+#    - delay: 00:02:30
+    - service: light.lifx_set_state
+      data:
+        entity_id: light.masterwclight
+        color_name: white
+        #rgb_color: [0,100,0]
+        brightness: 180
+    - delay: 00:00:30
+    - service: light.turn_off
+      data:
+        entity_id: light.masterwclight
+    - service: switch.turn_off
+      entity_id: switch.wc_light_switch
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.bulb_wc_green
+
+
+#-autodoc
+#-autodoc        name: Shower set to white
+#-autodoc description: When House goes into day mode set the light in the Master Shower to white, light is turned off 30 seconds after color is set.
+#-autodoc        file: bathroom-lights.yaml
+#-autodoc
+
+- alias: 'Shower set to white'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: input_boolean.night_mode
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: input_boolean.bulb_br_shower_green
+      from: 'on'
+      to: 'off'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.br_shower
+#    - delay: 00:02:30
+    - wait_template: "{{ states.light.master_br_shower.state == 'on' }}"
+    - service: light.lifx_set_state
+      data:
+        entity_id: light.master_br_shower
+        color_name: white
+        #rgb_color: [0,100,0]
+        brightness: 180
+    - delay: 00:00:30
+    - service: light.turn_off
+      data:
+        entity_id: light.master_br_shower
+    - service: switch.turn_off
+      entity_id: switch.br_shower
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.bulb_br_shower_green
+
+
+
+- alias: 'Hall Shower set white'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: input_boolean.night_mode
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: input_boolean.bulb_hall_shower_green
+      from: 'on'
+      to: 'off'
+  action:
+    - service: switch.turn_on
+      entity_id:  switch.hallshower
+#    - delay: 00:02:30
+    - wait_template: "{{ states.light.hallshower.state == 'on' }}"
+    - service: light.lifx_set_state
+      data:
+        entity_id: light.hallshower
+        color_name: white
+        #rgb_color: [0,100,0]
+        brightness: 255
+    - delay: 00:00:30
+    - service: light.turn_off
+      data:
+        entity_id: light.hallshower
+    - service: switch.turn_off
+      entity_id: switch.hallshower  
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.bulb_hall_shower_green          
+
+###------------------------------------------------Set bulbs to white when night mode goes off    END
+
+#-autodoc
+#-autodoc        name: WC Light reset to white - script
+#-autodoc description: Set both WC & Master Shower to white, this is called by stripts also present on the GUI.
+#-autodoc        file: bathroom-lights.yaml
+#-autodoc
+
+
+# this automation is called by script
+- alias: 'WC Light reset to white script'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: input_boolean.always_on
+    from: 'on'
+    to: 'off'          #this should never happen ..
+  action:
+    - service: switch.turn_on
+      entity_id: switch.wc_light_switch
+    - service: switch.turn_on
+      entity_id: switch.br_shower
+    - service: switch.turn_on
+      entity_id: switch.hall_shower      
+    - wait_template: "{{ states.light.masterwclight.state == 'on' }}"
+    - service: light.lifx_set_state
+      data:
+        entity_id: light.masterwclight
+        color_name: white
+        brightness: 180
+    - service: light.turn_on
+      data:
+        entity_id: light.masterwclight
+    - wait_template: "{{ states.light.master_br_shower.state == 'on' }}"
+    - service: light.lifx_set_state
+      data:
+        entity_id: light.master_br_shower
+        color_name: white
+        brightness: 180
+    - service: light.turn_on
+      data:
+        entity_id: light.master_br_shower
+#
+    - wait_template: "{{ states.light.hallshower.state == 'on' }}"
+    - service: light.lifx_set_state
+      data:
+        entity_id: light.hallshower
+        color_name: white
+        brightness: 180
+    - service: light.turn_on
+      data:
+        entity_id: light.hallshower
+#        
+    - delay: 00:00:02
+    - service: switch.turn_off
+      entity_id: switch.wc_light_switch
+    - service: switch.turn_off
+      entity_id: switch.br_shower
+    - service: switch.turn_off
+      entity_id: switch.hallshower      
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.bulb_wc_green
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.bulb_br_shower_green
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.hallshower_green
+ 
+ 
+- alias: 'WC light on door open'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: binary_sensor.opening_wcdoor
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: switch.wc_light_switch
+    state: 'off'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: switch.wc_light_switch
+      
+- alias: 'WC light off door close'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: binary_sensor.opening_wcdoor
+    from: 'on'
+    to: 'off'
+  condition:
+    condition: state
+    entity_id: switch.wc_light_switch
+    state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.wc_light_switch
+ 
+ 
+  
+
+ 
+#- alias: 'Night Mode WC door light control off'
+#  initial_state: True
+#  trigger:
+#    platform: state
+#    entity_id: input_boolean.night_mode
+#    from: 'off'
+#    to: 'on'
+#  action:
+#    - service: homeassistant.turn_off
+#      entity_id: automation.wc_light_off_door_close
+#    - service: homeassistant.turn_off
+#      entity_id: automation.wc_light_on_door_open
+
+
+#- alias: 'Night Mode off WC door light control on'
+#  initial_state: True
+#  trigger:
+#    platform: state
+#    entity_id: input_boolean.night_mode
+#    from: 'on'
+#    to: 'off'
+#  action:
+#    - service: homeassistant.turn_on
+#     entity_id: automation.wc_light_off_door_close
+#    - service: homeassistant.turn_on
+#      entity_id: automation.wc_light_on_door_open
+
+- alias: "WC Light dash"
+  trigger:
+    platform: event
+    event_type: wc_light_button
+  action:
+    service: switch.toggle
+    entity_id: switch.wc_light_switch
+
+
+- alias: 'wc fan off'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: switch.wcfan
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 5
+  action:
+    - service: switch.turn_off
+      entity_id: switch.wcfan        

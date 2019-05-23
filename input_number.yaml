@@ -1,0 +1,91 @@
+  alarm_clock_hour:
+    min: 0
+    max: 23
+    step: 1
+
+  alarm_clock_minute:
+    min: 0
+    max: 58
+    step: 2
+
+  wind_speed_threshold:
+    initial: 13
+    min: -1
+    max: 17
+    step: 1
+
+  mclight_animation_speed:
+    name: McLight Animation Speed
+    initial: 200
+    min: 1
+    max: 255
+    step: 1
+
+  mclight_brightness:
+    name: McLight Brightness
+    initial: 200
+    min: 1
+    max: 255
+    step: 1
+
+  wc_motion_time_on:
+    name: WC duration
+    initial: 3
+    min: 1
+    max: 60
+    step: 1
+
+  hallshower_motion_time_on:
+    name: Hall Shower duration
+    initial: 3
+    min: 1
+    max: 60
+    step: 1
+
+  den_motion_time_on:
+    name: Den duration
+    initial: 10
+    min: 1
+    max: 60
+    step: 1
+
+  entry_motion_time_on:
+    name: Entry duration
+    initial: 3
+    min: 1
+    max: 60
+    step: 1
+    
+  kitchen_motion_time_on:
+    name: Kitchen duration
+    initial: 3
+    min: 1
+    max: 60
+    step: 1
+
+  master_motion_time_on:
+    name: Master duration
+    initial: 5
+    min: 1
+    max: 60
+    step: 1
+
+  master_bath_motion_time_on:
+    name: Master bath duration
+    initial: 15
+    min: 1
+    max: 60
+    step: 1
+
+  occupancy_delay:
+    name: Occupancy delay
+    initial: 10
+    min: 1
+    max: 60
+    step: 1    
+
+  entry_night_brightness:
+    name: Entry night Brightness
+    min: 1
+    max: 100
+    step: 1    

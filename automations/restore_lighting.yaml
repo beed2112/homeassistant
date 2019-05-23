@@ -1,0 +1,18 @@
+- alias: 'Restore Lighting'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id:  input_boolean.fix_lights
+      to: 'on'
+  action:
+    - service: switch.turn_on
+      data_template:
+        entity_id: >-
+          {{ states.sensor.active_switches.state }}
+    - service: light.turn_on
+      data_template:
+        entity_id: >-
+          {{ states.sensor.active_lights.state }}
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.fix_lights          
+          

@@ -1,0 +1,152 @@
+#        name: Raise Shade any wind  GE set threshold mph
+
+- alias: 'Raise Shade any wind over threshold mph'
+  initial_state: True
+  trigger:
+    - platform: template
+      value_template: '{{ states.sensor.dark_sky_wind_speed.state | int >= states.sensor.wind_speed_threshold.state | int }}'
+    - platform: template
+      value_template: '{{ states.sensor.dark_sky_wind_gust.state | int >= states.sensor.wind_speed_threshold.state | int }}'
+  condition:
+    condition: state
+    entity_id: switch.somfy
+    # entity_id: switch.router_fan
+    state: 'on'
+  action:
+    - service: switch.turn_off
+      entity_id:
+      - switch.somfy
+      # entity_id:
+      # - switch.router_fan
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.shade_raised   
+    - service: counter.increment 
+      entity_id: counter.shade_raised_counter     
+    - service: timer.start
+      entity_id: timer.somfy_raised_wind  
+    - service: persistent_notification.create
+      data:
+        message: ' {{states.sensor.date_time.state}} Sun Shade Raised WS={{ states.sensor.dark_sky_wind_speed.state}} GUST={{ states.sensor.dark_sky_wind_gust.state}} TH={{ states.sensor.wind_speed_threshold.state}}'
+        title: "Sun Shade Raised"
+
+
+- alias: 'reset shade timer is wind above threshold'
+  initial_state: True
+  trigger:
+    - platform: template
+      value_template: '{{ states.sensor.dark_sky_wind_speed.state | int >= states.sensor.wind_speed_threshold.state | int }}'
+    - platform: template
+      value_template: '{{ states.sensor.dark_sky_wind_gust.state | int >= states.sensor.wind_speed_threshold.state | int }}'
+  condition:
+    condition: state
+    entity_id: timer.somfy_raised_wind
+    state: 'active'
+  action:
+    - service: timer.start
+      entity_id: timer.somfy_raised_wind 
+
+
+- alias: 'Lower shade after wind raised'
+  initial_state: True
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.somfy_raised_wind
+  condition:
+#    - condition: state
+#      entity_id: switch.somfy
+#      state: 'off'
+#    - condition: template
+#      value_template: '{{ states.sensor.dark_sky_wind_speed.state | int >= states.sensor.wind_speed_threshold.state | int }}'
+    - condition: numeric_state
+      entity_id: counter.shade_raised_counter
+      below: 4
+    - condition: template
+      value_template: '{{ states.sensor.dark_sky_wind_gust.state | int >= states.sensor.wind_speed_threshold.state | int }}'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.somfy
+    - service: notify.alexa_media
+      data:
+        target: 
+          #- media_player.den_2
+          - media_player.main
+          #- media_player.bedroom_2
+        #title: "My title for Echo show"
+        data:
+          type: announce
+          #method: all
+        message: "Pardon me, the wind has calmed so I have lowered the Patio Shade.  Once again, I thought you might want to know that the Sun Shade was just lowered."
+
+     
+
+- alias: 'Announce shade raised do to wind'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: input_boolean.shade_raised  
+    to: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.shade_raised  
+    - service: homeassistant.update_entity
+      entity_id: sensor.volume_main
+#    - service: media_player.volume_set
+#      data_template: 
+#        entity_id: media_player.main
+#        volume_level: 0.8
+        
+    - service: notify.alexa_media
+      data:
+        target: 
+          #- media_player.den_2
+          - media_player.main
+          #- media_player.bedroom_2
+        #title: "My title for Echo show"
+        data:
+          type: announce
+          #method: all
+        message: "Pardon me, but I thought you might want to know the Patio Shade was just raised due to high wind.  Once again, I thought you might want to know that the Patio Shade was just Raised."
+#    - delay: 0:20      
+#    - service: media_player.volume_set
+#      data_template: 
+#        entity_id: media_player.main
+#        volume_level: >
+#          {{ states.sensor.volume_main.state}}       
+
+- alias: 'Vacation mode activated raise Patio Shade'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: input_boolean.on_vaca
+    from: 'off'
+    to: 'on'
+  action:
+    - service: switch.turn_off
+      entity_id:
+      - switch.somfy
+      
+
+- alias: 'zzzzz OCC sim'
+  initial_state: False
+  trigger:
+    - platform: template
+      value_template: '{{ states.sensor.time.state   == states.sensor.random_late_nite_time.state | replace(" ", "") }}' #works
+    - platform: template
+      value_template: '{{ states.sensor.time.state    == states.sensor.random_evening_time.state  | replace(" ", "") }}'
+    - platform: template
+      value_template: '{{ states.sensor.time.state    == states.sensor.random_afternoon_time.state  | replace(" ", "") }}'  # works
+    - platform: template
+      value_template: '{{ states.sensor.time.state   == states.sensor.random_morning_time.state  | replace(" ", "") }}'  # works
+    - platform: template
+      value_template: '{{ states.sensor.time.state   == states.sensor.random_early_morning_time.state  | replace(" ", "") }}' # works
+  action:
+    - service: homeassistant.update_entity
+      entity_id: sensor.occupancy_simulation_entities
+    - service: homeassistant.update_entity
+      entity_id: sensor.occupancy_simulation_entity 
+    - service: persistent_notification.create
+      data:
+        message: ' {{states.sensor.date__time.state}} Occupancy entitiesS={{ states.sensor.occupancy_simulation_entities.state}} entity={{ states.sensor.occupancy_simulation_entity.state}} TH={{ states.sensor.wind_speed_threshold.state}}'
+        title: "Occupnacy info"      

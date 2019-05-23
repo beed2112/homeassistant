@@ -1,0 +1,215 @@
+
+#----    Good night set status begin
+#
+- alias: 'Good Night set status'
+  initial_state: True
+  trigger:
+#    platform: state
+#    entity_id: sensor.lr_tv_status      #this is the lr room tv uses command_line -lr tv status
+#    from: '1'
+#    to: '0'
+    platform: state
+    entity_id: binary_sensor.samsung_tv      #sense monitor 
+    to: 'off'    
+  condition:
+    condition: time
+    after: '21:30:00'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.night_mode
+
+#----    Good night set status begin
+#
+- alias: 'Not Good Night unset status'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: sensor.lr_tv_status      #this is the lr room tv uses command_line -lr tv status
+    from: '0'
+    to: '1'
+  condition:
+    condition: time
+    after: '21:30:00'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.night_mode
+
+#Night mode on -- close patio shade
+
+- alias: 'Night mode activated'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: input_boolean.night_mode
+    from: 'off'
+    to: 'on'
+  action:
+    # - service: switch.turn_on
+    #   entity_id:
+    #   # - switch.br_overhead
+    #   - switch.melodie_nightstand_
+    - service: switch.turn_off
+      entity_id:
+      - switch.somfy
+    - service: counter.reset
+      entity_id: counter.shade_raised_counter    
+    - service: notify.ios_michaels_iphone
+      data:
+        message: "Good Night!"
+        data:
+          push:
+            sound: "US-EN-Alexa-Good-Night.wav"
+
+#Night mode on for 2 minutes turn lights off
+      
+- alias: 'night mode activated Mike'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: input_boolean.night_mode
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 5
+  action:
+    #- service: switch.turn_off
+    #   entity_id:
+    #   - switch.lr_ceiling_fan
+    #   - switch.lrlight
+    #   - switch.lr_switch
+    #   - switch.dendresser
+    # - service: light.turn_off
+    #   entity_id:
+    #   - light.lr_oh
+    - service: switch.turn_off
+      data_template:
+        entity_id: >-
+         {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "switch.dummy" -}}
+          {%- if is_state("input_boolean.guest_mode", "off")  -%}
+            {%- for x in states.switch if x.state == 'on' if x.attributes.occupancy_controlled == 'on' if x.attributes.location != 'master' if x.attributes.location != 'wc'   if x.attributes.location != 'masterbath'  -%}
+            {{- comma() -}}
+            {{- x.entity_id -}}
+            {%- endfor -%}
+          {%- else -%}
+            {%- for x in states.switch if x.state == 'on' if x.attributes.occupancy_controlled == 'on' if x.attributes.location != 'master' if x.attributes.location != 'wc'   if x.attributes.location != 'masterbath'  if x.attributes.location != 'den' -%}
+            {{- comma() -}}
+            {{- x.entity_id -}}
+            {%- endfor %}
+          {%- endif -%}
+    - service: light.turn_off
+      data_template:
+        entity_id: >-
+         {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "light.dummy" -}}
+          {%- if is_state("input_boolean.guest_mode", "off")  -%}
+            {%- for x in states.light if x.state == 'on' if x.attributes.occupancy_controlled == 'on' if x.attributes.location != 'master' if x.attributes.location != 'wc'   if x.attributes.location != 'masterbath'  -%}
+            {{- comma() -}}
+            {{- x.entity_id -}}
+            {%- endfor -%}
+          {%- else -%}
+            {%- for x in states.light if x.state == 'on' if x.attributes.occupancy_controlled == 'on' if x.attributes.location != 'master' if x.attributes.location != 'wc'   if x.attributes.location != 'masterbath'  if x.attributes.location != 'den' -%}
+            {{- comma() -}}
+            {{- x.entity_id -}}
+            {%- endfor %}
+            {%- endif -%}
+ 
+ 
+ #Night mode on for 30  minutes transition watchdog turned on
+- alias: 'enable morning transition watchdog'
+  initial_state: False
+  trigger:
+    platform: state
+    entity_id: input_boolean.night_mode
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 30
+  action:
+    - service: homeassistant.turn_on
+      entity_id: automation.switch_off_night_mode_br_oh_trigger
+      
+      
+#Turn on WC motion based lighting for night mode
+
+- alias: 'Night Mode WC motion on'
+  initial_state: False
+  trigger:
+    platform: state
+    entity_id: input_boolean.night_mode
+    from: 'off'
+    to: 'on'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: automation.wc_light_on_with_motion
+
+- alias: 'turn off wax warmers'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: input_boolean.night_mode
+    from: 'off'
+    to: 'on'
+  action:
+    - service: switch.turn_off
+      data_template:
+        entity_id: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "switch.dummy" -}}
+          {%- for x in states.switch if x.attributes.wax_warmer == 'on' if x.state == 'on' -%}
+            {{- comma() -}}
+            {{- x.entity_id -}}
+          {%- endfor -%}
+      
+
+- alias: 'Night mode activated Melodie'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: input_boolean.night_mode
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: device_tracker.michaels_iphone
+    state: 'not_home'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.masterbathtub     
+        brightness_pct: 30
+    - service: switch.turn_on
+      entity_id:
+      - switch.lrlight   
+
+
+
+- alias: 'Night mode activated announce'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: input_boolean.night_mode
+    from: 'off'
+    to: 'on'          
+  action:
+    - service: notify.alexa_media
+      data:
+        target: 
+          #- media_player.den_2
+          - media_player.main
+          #- media_player.bedroom_2
+        #title: "My title for Echo show"
+        data:
+          type: announce
+          #method: all
+        message: "I see that it is bedtime, I will shut off the lights for you in a few minutes. Good night!"
+
+
+
+
+
+   
+              

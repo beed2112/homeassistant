@@ -1,0 +1,324 @@
+- alias: 'Vacation Mode off'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: input_boolean.on_vaca
+      to: 'off'
+    - platform: homeassistant
+      event: start    
+  condition:
+    condition: state
+    entity_id: input_boolean.on_vaca
+    state: 'off'      
+  action:
+    - service: automation.turn_off
+      data_template:
+        entity_id: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "automation.dummy" -}}          
+          {%- for x in states.automation if x.attributes.mode_vac == 'on' if x.state == 'on' -%}
+          {{- comma() -}}
+          {{- x.entity_id -}}
+          {%- endfor -%}
+    - service: automation.turn_on
+      data_template:
+        entity_id: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "automation.dummy" -}} 
+          {%- for x in states.automation if x.attributes.mode_vac == 'off'  if x.state == 'off' -%}
+          {{- comma() -}}
+          {{- x.entity_id -}}
+          {%- endfor -%}
+         
+         
+         
+- alias: "Vacation Mode on"
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: input_boolean.on_vaca
+      to: 'on'
+    - platform: homeassistant
+      event: start    
+  condition:
+    condition: state
+    entity_id: input_boolean.on_vaca
+    state: 'on'       
+  action:
+    - service: automation.turn_on
+      entity_id:
+      - automation.just_unocc_turn_off_occ_controlled_stuff
+    - service: automation.turn_off
+      data_template:
+        entity_id: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "automation.dummy" -}} 
+          {%- for x in states.automation if x.attributes.mode_vac == 'off' if x.state == 'on' -%}
+          {{- comma() -}}
+          {{- x.entity_id -}}
+          {%- endfor -%}
+    - service: automation.turn_on
+      data_template:
+        entity_id: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "automation.dummy" -}} 
+          {%- for x in states.automation if x.attributes.mode_vac == 'on' if x.state == 'off' -%}
+          {{- comma() -}}
+          {{- x.entity_id -}}
+          {%- endfor -%}
+          
+          
+
+         
+         
+         
+- alias: "Night Mode on"
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: input_boolean.night_mode
+      to: 'on'
+    - platform: homeassistant
+      event: start    
+  condition:
+    condition: state
+    entity_id: input_boolean.night_mode
+    state: 'on'      
+  action:
+    - service: logbook.log
+      data_template:
+        name: "Night Mode turn off automations  ==> "
+        message: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "automation.dummy" -}} 
+          {%- for x in states.automation if x.attributes.mode_night == 'off'   if x.state ==  'on'   -%}
+          {{- comma() -}}
+          {{- x.entity_id -}}
+          {%- endfor -%}    
+    - service: automation.turn_off
+      data_template:
+        entity_id: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "automation.dummy" -}} 
+          {%- for x in states.automation if x.attributes.mode_night == 'off'  if x.state ==  'on'   -%}
+          {{- comma() -}}
+          {{- x.entity_id -}}
+          {%- endfor -%}
+    - service: logbook.log
+      data_template:
+        name: "Night Mode turn on automations  ==> "
+        message: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "automation.dummy" -}} 
+          {%- for x in states.automation if x.attributes.mode_night == 'on'   if x.state ==  'off'   -%}
+          {{- comma() -}}
+          {{- x.entity_id -}}
+          {%- endfor -%}            
+    - service: automation.turn_on
+      data_template:
+        entity_id: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "automation.dummy" -}} 
+          {%- for x in states.automation if x.attributes.mode_night == 'on'  if x.state ==  'off'  -%}
+          {{- comma() -}}
+          {{- x.entity_id -}}
+          {%- endfor -%}
+
+
+- alias: 'Night Mode off'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: input_boolean.night_mode
+      to: 'off'
+    - platform: homeassistant
+      event: start    
+  condition:
+    condition: state
+    entity_id: input_boolean.night_mode
+    state: 'off'     
+  action:
+    - service: logbook.log
+      data_template:
+        name: "Day Mode turn off automations  ==> "
+        message: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "automation.dummy" -}} 
+          {%- for x in states.automation if x.attributes.mode_day == 'off'   if x.state ==  'on'   -%}
+          {{- comma() -}}
+          {{- x.entity_id -}}
+           {%- endfor -%}   
+    - service: automation.turn_off
+      data_template:
+        entity_id: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "automation.dummy" -}} 
+          {%- for x in states.automation if x.attributes.mode_day == 'off'   if x.state ==  'on'   -%}
+          {{- comma() -}}
+          {{- x.entity_id -}}
+          {%- endfor -%}
+    - service: logbook.log
+      data_template:
+        name: "Day Mode turn on automations ==> "
+        message: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "automation.dummy" -}} 
+          {%- for x in states.automation if x.attributes.mode_day == 'on'   if x.state ==  'off'   -%}
+          {{- comma() -}}
+          {{- x.entity_id -}}
+          {%- endfor -%}            
+    - service: automation.turn_on
+      data_template:
+        entity_id: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "automation.dummy" -}} 
+          {%- for x in states.automation if x.attributes.mode_day == 'on'  if x.state ==  'off'  -%}
+          {{- comma() -}}
+          {{- x.entity_id -}}
+          {%- endfor -%}         
+ 
+
+- alias: 'Guest Mode off'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: input_boolean.guest_mode
+      to: 'off'
+    - platform: homeassistant
+      event: start    
+  condition:
+    condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'     
+  action:
+    - service: logbook.log
+      data_template:
+        name: "Guest Mode turn off automations  ==> "
+        message: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "automation.dummy" -}} 
+          {%- for x in states.automation if x.attributes.mode_guest == 'off'   if x.state ==  'on'   -%}
+          {{- comma() -}}
+          {{- x.entity_id -}}
+           {%- endfor -%}   
+    - service: automation.turn_off
+      data_template:
+        entity_id: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "automation.dummy" -}} 
+          {%- for x in states.automation if x.attributes.mode_guest == 'off'   if x.state ==  'on'   -%}
+          {{- comma() -}}
+          {{- x.entity_id -}}
+          {%- endfor -%}
+    - service: logbook.log
+      data_template:
+        name: "Guest Mode turn on automations ==> "
+        message: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "automation.dummy" -}} 
+          {%- for x in states.automation if x.attributes.mode_guest == 'on'   if x.state ==  'off'   -%}
+          {{- comma() -}}
+          {{- x.entity_id -}}
+          {%- endfor -%}            
+    - service: automation.turn_on
+      data_template:
+        entity_id: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "automation.dummy" -}} 
+          {%- for x in states.automation if x.attributes.mode_guest == 'on'  if x.state ==  'off'  -%}
+          {{- comma() -}}
+          {{- x.entity_id -}}
+          {%- endfor -%}       
+
+
+
+
+
+- alias: 'Occupancy Simulation Event Begins'
+  initial_state: False
+  trigger:
+    - platform: template
+      value_template: '{{ states.sensor.time.state   == states.sensor.random_late_nite_time.state | replace(" ", "") }}' #works
+    - platform: template
+      value_template: '{{ states.sensor.time.state    == states.sensor.random_evening_time.state  | replace(" ", "") }}'
+    - platform: template
+      value_template: '{{ states.sensor.time.state    == states.sensor.random_afternoon_time.state  | replace(" ", "") }}'  # works
+    - platform: template
+      value_template: '{{ states.sensor.time.state   == states.sensor.random_morning_time.state  | replace(" ", "") }}'  # works
+    - platform: template
+      value_template: '{{ states.sensor.time.state   == states.sensor.random_early_morning_time.state  | replace(" ", "") }}' # works
+  action:
+    - service: timer.finish
+      entity_id: timer.occupancy_sim
+    - delay: 00:00:10
+    - service: timer.start
+      data_template:
+        entity_id: "timer.occupancy_sim"
+        #duration: '{{ states.sensor.random_early_morning_duration.state | multiply(60)  |int}}'
+        duration: >-
+          {% if states.sensor.time_current_hour.state |int ==  states.sensor.random_early_morning_hh.state  | int %}{{states.sensor.random_early_morning_duration.state | multiply(60) |int}}
+             {% elif states.sensor.time_current_hour.state |int ==  states.sensor.random_morning_hh.state  | int %}{{states.sensor.random_morning_duration.state | multiply(60) |int}}
+                 {% elif states.sensor.time_current_hour.state |int ==  states.sensor.random_afternoon_hh.state  | int %}{{states.sensor.random_afternoon_duration.state | multiply(60) |int}}
+                     {% elif states.sensor.time_current_hour.state |int ==  states.sensor.random_evening_hh.state | int %}{{states.sensor.random_evening_duration.state | multiply(60) |int}}{%else%}
+                           {{states.sensor.random_late_nite_duration.state | multiply(60)|int}}{%endif%}
+#
+    - service: homeassistant.update_entity
+      entity_id: sensor.occupancy_simulation_entities
+    - service: homeassistant.update_entity
+      entity_id: sensor.occupancy_simulation_entity 
+    - service: homeassistant.turn_on
+      data_template:
+        entity_id: "{{ states.sensor.occupancy_simulation_entity.state}}"
+        #entity_id: "{{ states.sensor.occupancy_sim_active_entity.state}}"
+
+
+##
+         # {{- comma() -}}
+         # {{- "light.dummy" -}}
+
+- alias: 'Occupancy Simulation event Ends'
+  initial_state: True
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.occupancy_sim
+  action:
+    - service: switch.turn_off
+      data_template:
+        entity_id: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "switch.dummy" -}}
+          {%- for x in states.switch  if x.attributes.occupancy_simulation == 'on' if x.state == 'on' -%}
+            {{- comma() -}}
+            {{- x.entity_id -}}
+          {%- endfor -%}
+    - service: light.turn_off
+      data_template:
+        entity_id: >-
+          {%- set comma = joiner(', ') -%}
+           {{- comma() -}}
+           {{- "light.dummy" -}}
+          {%- for x in states.light if x.attributes.occupancy_simulation == 'on' if x.state == 'on' -%}
+            {{- comma() -}}
+            {{- x.entity_id -}}
+          {%- endfor -%}
+        
+        

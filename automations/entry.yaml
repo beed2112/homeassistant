@@ -1,0 +1,136 @@
+- alias: 'Motion Entry light on'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.multientryhalldoor_burglar
+      from: '0'
+      to: '8'
+    - platform: state
+      entity_id: sensor.multientryhallkitchen_burglar 
+      from: '0'
+      to: '8'
+  condition:
+    condition: state
+    entity_id: light.entryhall
+    state: 'off'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: light.entryhall  
+      data_template:
+        brightness: >
+            {%- if is_state("input_boolean.night_mode", "off")  -%}
+             200
+            {%- else -%}
+            {{ states.input_number.entry_night_brightness.state | int}}
+            {%- endif %}
+    - service: timer.start
+      data_template:
+        entity_id: "timer.entry_motion"
+        duration: '{{ states.input_number.entry_motion_time_on.state | multiply(60) |int}}'
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.motionactivated_entry
+
+#Restart the timer when motion detected.  On time is set in the GUI
+
+- alias: 'Motion Entry light timer restart'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.multientryhalldoor_burglar
+      from: '0'
+      to: '8'
+    - platform: state
+      entity_id: sensor.multientryhallkitchen_burglar
+      from: '0'
+      to: '8'
+  condition:
+    condition: state
+    entity_id: input_boolean.motionactivated_entry
+    state: 'on'
+  action:
+    - service: timer.start
+      data_template:
+        entity_id: "timer.entry_motion"
+        duration: '{{ states.input_number.entry_motion_time_on.state | multiply(60) |int}}'
+
+#-If timer ends motion has not been detected turn light off. On time is set in the GUI
+
+- alias: 'Motion Entry light time ends'
+  initial_state: True
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.entry_motion
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.motionactivated_entry
+    - service: homeassistant.turn_off
+      entity_id:
+        - light.entryhall
+
+- alias: 'Entry Open Hall Light on with timer'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id:  sensor.entrydoor_access_control
+    from: '23'
+    to: '22'
+  action:
+   - service: timer.start
+     data_template:
+       entity_id: "timer.entry_motion"
+       duration: '{{ states.input_number.entry_motion_time_on.state | multiply(60) |int}}'
+
+- alias: 'Motion Hall shower light on'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.multientryhallkitchen_burglar
+      from: '0'
+      to: '8'
+    - platform: state
+      entity_id: sensor.multientryhalldoor_burglar 
+      from: '0'
+      to: '8'
+    - platform: state
+      entity_id: sensor.dendoor_access_control 
+      from: '23'
+      to: '22'      
+  condition:
+    condition: state
+    entity_id: input_boolean.night_mode
+    state: 'on'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: switch.hallshower
+    - service: timer.start
+      data_template:
+        entity_id: "timer.hallshower"
+        duration: '{{ states.input_number.hallshower_motion_time_on.state | multiply(60) |int}}'
+
+- alias: 'Motion Hall shower light time ends'
+  initial_state: True
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.hallshower
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.hallshower
+
+
+- alias: 'hall bathroom fan off'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: switch.hallbathroomfan
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 5
+  action:
+    - service: switch.turn_off
+      entity_id: switch.hallbathroomfan
+      

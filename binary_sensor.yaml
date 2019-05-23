@@ -1,0 +1,170 @@
+ 
+    
+#----  workday sensors
+  - platform: workday
+    country: US
+    name: today_work_day
+
+  - platform: workday
+    country: US
+    name: tomorrow_work_day
+    days_offset: +1
+
+  - platform: workday
+    country: US
+    name: yesterday_work_day
+    days_offset: -1
+    
+    
+  - platform:  template
+    sensors:
+      occupancy_simulation_active:
+        friendly_name: "Occupancy Simulation"
+        value_template: "{{states.timer.occupancy_sim.state == 'active'}}"
+      test_this:
+        friendly_name: "binary sensor test"
+        value_template: "{{states.switch.den_oh.state == 'on'}}"
+      sun_up:
+        friendly_name: "Sun down"
+        value_template: "{{ states.sun.sun.attributes.elevation|float < 0 }}"
+  #    den_on_with_motion:
+  #      friendly_name: "Den Motion On"
+  #      value_template: "{{states.timer.den_motion.state == 'active' and states.group.den_motion.state == 'on' }}"
+      hold_open:
+        friendly_name: "Hold Open"
+        value_template: "{{ states.alert.holdopen.state == 'on'  }}"
+      coffee_on:
+        friendly_name: "CoffeePot Alert"
+        value_template: "{{ states. alert.coffeeon.state == 'on'  }}"
+      emptycondo:
+        friendly_name: "Empty Condo Alert"
+        value_template: "{{ states.alert.coffeeon.state == 'on'  }}"
+      opening_entrydoor:
+        friendly_name: "Entry"
+        device_class: "door"
+        value_template: "{{states.sensor.entrydoor_access_control.state == '22' }}"  
+      opening_patiodoor:
+        friendly_name: "Patio"
+        device_class: "door"
+        value_template: "{{states.sensor.patiodoor_access_control.state == '22' }}"          
+      opening_lrn_window:
+        friendly_name: "Living Room North"
+        device_class: "window"
+        value_template: "{{states.sensor.lrn_window_access_control.state == '22' }}"          
+      opening_lre_window:
+        friendly_name: "Living Room East"
+        device_class: "window"
+        value_template: "{{states.sensor.lre_window_access_control.state == '22' }}"    
+      opening_den_window:
+        friendly_name: "Den "
+        device_class: "window"
+        value_template: "{{states.sensor.den_window_access_control.state == '22' }}"          
+      opening_master_window:
+        friendly_name: "Master"
+        device_class: "window"
+        value_template: "{{states.sensor.master_window_access_control.state == '22' }}" 
+      opening_dining_window:
+        friendly_name: "Dining Room"
+        device_class: "window"        
+        value_template: "{{states.sensor.diningroom_window_access_control.state == '22' }}"   
+      opening_kitchen_window:
+        friendly_name: "Kitchen"
+        device_class: "window"        
+        value_template: "{{states.sensor.kitchen_window_access_control_2.state == '22' }}"                         
+      opening_patio_shade:
+        friendly_name: "Patio Shade"
+        device_class: "opening"
+        value_template: "{{states.sensor.patio_shade_access_control.state == '22' }}" 
+      opening_dendoor:
+        friendly_name: "Den Door"
+        device_class: "door"
+        value_template: "{{states.sensor.dendoor_access_control.state == '22' }}"   
+      opening_wcdoor:
+        friendly_name: "WC Door"
+        device_class: "door"
+        value_template: "{{states.sensor.wcdoor_access_control.state == '22' }}"              
+      occupied_entry:
+        friendly_name: "Entry"
+        device_class: occupancy
+        value_template: "{{states.timer.occupied_entry_motion.state == 'active'}}"
+      occupied_den:
+        friendly_name: "Den"
+        device_class: occupancy
+        value_template: "{{states.timer.occupied_den_motion.state == 'active'}}"    
+      occupied_kitchen:
+        friendly_name: "Kitchen"
+        device_class: occupancy
+        value_template: "{{states.timer.occupied_kitchen_motion.state == 'active'}}" 
+      occupied_master:
+        friendly_name: "Master"
+        device_class: occupancy
+        value_template: "{{states.timer.occupied_master_motion.state == 'active'}}"   
+      occupied_bath:
+        friendly_name: "Master Bath"
+        device_class: occupancy
+        value_template: "{{states.timer.occupied_master_bath_motion.state == 'active'}}" 
+      occupied_living_room:
+        friendly_name: "Living Room"
+        device_class: occupancy
+        value_template: "{{states.timer.occupied_living_room_motion.state == 'active'}}"   
+      occupied_dining_room:
+        friendly_name: "Dining Room"
+        device_class: occupancy
+        value_template: "{{states.timer.occupied_dining_room_motion.state == 'active'}}"  
+      tamper_entrydoor:
+        friendly_name: "Entry"
+        device_class: "problem"
+        value_template: "{{states.sensor.entrydoor_burglar.state == '3' }}"  
+      tamper_patiodoor:
+        friendly_name: "Patio"
+        device_class: "problem"
+        value_template: "{{states.sensor.patiodoor_burglar.state == '3' }}"          
+      tamper_lrn_window:
+        friendly_name: "Living Room North"
+        device_class: "problem"
+        value_template: "{{states.sensor.lrn_window_burglar.state == '3' }}"          
+      tamper_lre_window:
+        friendly_name: "Living Room East"
+        device_class: "problem"
+        value_template: "{{states.sensor.lre_window_burglar.state == '3' }}"    
+      tamper_den_window:
+        friendly_name: "Den "
+        device_class: "problem"
+        value_template: "{{states.sensor.den_window_burglar.state == '3' }}"          
+      tamper_master_window:
+        friendly_name: "Master"
+        device_class: "problem"
+        value_template: "{{states.sensor.master_window_burglar.state == '3' }}" 
+      tamper_dining_window:
+        friendly_name: "Dining Room"
+        device_class: "problem"        
+        value_template: "{{states.sensor.diningroom_window_burglar.state == '3' }}"   
+      tamper_kitchen_window:
+        friendly_name: "Kitchen"
+        device_class: "problem"        
+        value_template: "{{states.sensor.kitchen_window_burglar_2.state == '3' }}"                         
+      tamper_patio_shade:
+        friendly_name: "Patio Shade"
+        device_class: "problem"
+        value_template: "{{states.sensor.patio_shade_burglar.state == '3' }}" 
+      tamper_dendoor:
+        friendly_name: "Den Door"
+        device_class: "problem"
+        value_template: "{{states.sensor.dendoor_burglar.state == '3' }}"   
+      tamper_wcdoor:
+        friendly_name: "WC Door"
+        device_class: "problem"
+        value_template: "{{states.sensor.wcdoor_burglar.state == '3' }}"  
+                         
+                          
+
+
+
+
+
+
+
+
+
+
+

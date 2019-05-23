@@ -1,0 +1,54 @@
+# Coffee maker alerts every 30 minutes it is on
+#
+  # coffeepot:
+  #   name: 'Coffee Pot is on test'
+  #   entity_id: switch.coffee
+  #   state: 'on'   # Optional, 'on' is the default value
+  #   repeat:
+  #     - 30
+  #   can_acknowledge: True  # Optional, default is True
+  #   skip_first: True  # if false alert sent when coffee pot turned on then every 30
+  #   notifiers:
+  #     - ios_michaels_iphone
+#Testing sending an alert via syslog notify
+  coffeeon:
+    name: 'coffeeon'
+    entity_id: switch.coffee
+    state: 'on'   # Optional, 'on' is the default value
+    repeat:
+      - 30
+    can_acknowledge: True  # Optional, default is True
+    skip_first: True  # if false alert sent when coffee pot turned on then every 30
+    notifiers:
+      - syslog
+  holdopen:
+    name: 'o5150'
+    done_message: 'c5150'
+    entity_id: group.hvac_watchlist_g
+    state: 'on'   # Optional, 'on' is the default value
+    repeat:
+      - 5
+    can_acknowledge: True  # Optional, default is True
+    skip_first: False  # if false alert sent when coffee pot turned on then every 30
+    notifiers:
+      - syslog
+      
+  emptycondo:
+    name: 'emptycondo'
+    done_message: 'occupiedcondo'
+    entity_id: group.condo_motion_g
+    state: 'off'
+    repeat:
+      - 15
+      - 1440
+      # - 15
+      # - 30
+      # - 45
+      # - 60
+      # - 120
+      # - 180
+      # - 300
+    can_acknowledge: True  # Optional, default is True
+    skip_first: True
+    notifiers:
+      - syslog

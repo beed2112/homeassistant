@@ -1,0 +1,85 @@
+# the overhead light switch  and hall switch will always turn night mode off
+
+- alias: 'switch off night mode br oh trigger'
+  initial_state: False
+  trigger:
+    - platform: state
+      entity_id: switch.br_oh
+      # entity_id: group.br_mode_triggers
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: switch.br_hall
+      from: 'off'
+      to: 'on'
+  condition:
+    condition: state
+    entity_id: input_boolean.night_mode
+    state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.night_mode
+    - service: homeassistant.turn_off
+      entity_id: automation.switch_off_night_mode_br_oh_trigger
+    - service: timer.cancel
+      entity_id: timer.br_night_motion 
+      
+      
+#entity_id: "timer.br_night_motion"
+      
+#- alias: 'Day Mode WC motion off'
+#  initial_state: True
+#  trigger:
+#    platform: state
+#    entity_id: input_boolean.night_mode
+#    from: 'on'
+#    to: 'off'
+#  action:
+#    - service: homeassistant.turn_off
+#      entity_id: automation.wc_light_on_with_motion
+      
+      
+- alias: 'turn on wax warmers'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: input_boolean.night_mode
+    from: 'on'
+    to: 'off'
+  action:
+    - service: switch.turn_on
+      data_template:
+        entity_id: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "switch.dummy" -}}
+          {%- for x in states.switch if x.attributes.wax_warmer == 'on' if x.state == 'off' -%}
+            {{- comma() -}}
+            {{- x.entity_id -}}
+          {%- endfor -%}
+
+- alias: 'morning turn on undercabinet'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: input_boolean.night_mode
+    from: 'on'
+    to: 'off'
+  action:
+    - service: light.turn_on
+      entity_id:
+      - light.undercabinet
+      
+- alias: 'Morning HVAC temp increase'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: input_boolean.night_mode
+    from: 'on'
+    to: 'off'
+  action:
+    - service: climate.set_temperature
+      data_template:
+        entity_id: climate.arizona_arizona
+        temperature: '{{ states.climate.arizona_arizona.attributes.temperature + 1 }}'
+        #temperature: 72

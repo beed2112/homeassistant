@@ -1,0 +1,158 @@
+#If the den light is not on turn it on when motion is detected.  On time is set in the GUI
+
+- alias: 'Motion Den light on'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.multiden_burglar 
+      from: '0'
+      to: '8'
+    - platform: state
+      entity_id: sensor.multientryhalldoor_burglar
+      from: '0'
+      to: '8'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'  
+      - condition: state
+        entity_id: switch.dendresser
+        state: 'off'
+  action:
+    - service: homeassistant.turn_on
+      entity_id:
+        - switch.dendresser
+    - service: timer.start
+      data_template:
+        entity_id: "timer.den_motion"
+        duration: '{{ states.input_number.den_motion_time_on.state | multiply(60) |int}}'
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.motionactivated_den
+
+#Restart the timer when motion detected.  On time is set in the GUI
+
+- alias: 'Motion Den light timer restart'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.multiden_burglar
+      from: '0'
+      to: '8'
+  condition:
+    condition: state
+    entity_id: input_boolean.motionactivated_den
+    state: 'on'
+  action:
+    - service: timer.start
+      data_template:
+        entity_id: "timer.den_motion"
+        duration: '{{ states.input_number.den_motion_time_on.state | multiply(60) |int}}'
+
+#-If timer ends motion has not been detected turn light off. On time is set in the GUI
+
+- alias: 'Motion Den light time ends'
+  initial_state: True
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.den_motion
+  condition:
+    condition: state
+    entity_id: input_boolean.motionactivated_den
+    state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.motionactivated_den
+    - service: homeassistant.turn_off
+      entity_id:
+        - switch.dendresser
+
+
+#----     Night time den ceiling fan coordinated with Air conditioning
+#When House goes is in night mode and the HVAC is cooling turn on the den ceiling fan when the HVAC fan stops. (The HVAC Fan dance)
+
+- alias: 'Den Fan ON when air off'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: binary_sensor.arizona_thermostat_arizona_fan
+    from: 'on'
+    to: 'off'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'on'    
+      - condition: state
+        entity_id: input_boolean.night_mode
+        state: 'on'
+      - condition: state
+        entity_id: sensor.arizona_thermostat_arizona_operation_mode
+        state: 'cool'
+  action:
+    - service: switch.turn_on
+      entity_id:
+      - switch.den_oh
+      
+#--    turn fan off when air turned on
+
+- alias: 'Den Fan OFF when air on'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: binary_sensor.arizona_thermostat_arizona_fan
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'on'    
+      - condition: state
+        entity_id: input_boolean.night_mode
+        state: 'on'
+      - condition: state
+        entity_id: sensor.arizona_thermostat_arizona_operation_mode
+        state: 'cool'
+  action:
+    - service: switch.turn_off
+      entity_id:
+      - switch.den_oh
+
+
+
+#-When House goes into night mode, HVAC is in cool mode, and HVAC fan is off turn on the deb ceiling fan.
+
+- alias: 'Den start ceiling fan if hvac not running night'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: input_boolean.night_mode
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'on'    
+      - condition: state
+        entity_id: binary_sensor.arizona_thermostat_arizona_fan
+        state: 'off'
+      - condition: state
+        entity_id: sensor.arizona_thermostat_arizona_operation_mode
+        state: 'cool'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.den_oh
+
+
+
+
+
+      

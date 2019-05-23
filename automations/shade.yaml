@@ -1,0 +1,29 @@
+- alias: 'watchdog shade did not go down try again'
+  trigger:
+    platform: state
+    entity_id: switch.somfy
+    to: 'on'
+    for:
+      minutes: 3
+  condition:
+    condition: state
+    entity_id: binary_sensor.opening_patio_shade
+    state: 'off' 
+  action:
+    - service: switch.turn_on
+      entity_id: switch.somfy
+
+- alias: 'watchdog shade did not go up try again'
+  trigger:
+    platform: state
+    entity_id: switch.somfy
+    to: 'off'
+    for:
+      minutes: 3
+  condition:
+    condition: state
+    entity_id: binary_sensor.opening_patio_shade
+    state: 'on' 
+  action:
+    - service: switch.turn_off
+      entity_id: switch.somfy

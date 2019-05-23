@@ -1,0 +1,51 @@
+  include:
+    domains:
+      - automation
+      - light
+      - switch
+    #      - input_boolean
+    entities:
+      - binary_sensor.opening_entrydoor
+      - binary_sensor.opening_patiodoor
+      - binary_sensor.opening_lrn_window
+      - binary_sensor.opening_lre_window
+      - binary_sensor.opening_den_window  
+  #    - binary_sensor.entry
+  #    - binary_sensor.patio
+  #    - binary_sensor.screen
+  #    - binary_sensor.lr_n
+  #    - binary_sensor.lr_e
+  #    - binary_sensor.dr
+  #    - binary_sensor.kitchen
+  #    - binary_sensor.br
+  #    - binary_sensor.den
+  exclude:
+    entities:
+      - automation.motion_for_den_light_timer_restart
+      - automation.test1_sensor_off_timer
+      - automation.test2_sensor_off_time
+      - automation.motion_den_light_time_ends
+      - automation.kitchen_sensor_off_timer
+      - automation.melodie_br_sensor_off_timer
+      - automation.zzz_den_sensor_to_on
+      - automation.zzz_den_sensor_to_off
+      - automation.entry_sensor_off_timer
+      - automation.kitchen_cabinet_off_timer
+      - automation.lr_sensor_off_timer
+      - automation.br_upper_sensor_off_timer
+      - automation.motion_for_den_light_on
+      - automation.motion_for_master_light_timer_restart
+      - automation.motion_den_timer_start_occupancy_only
+      - automation.motion_den_timer_start_occupancy_only
+      - automation.motion_dining_room_timer_start_occupancy_only
+      - automation.motion_entry_timer_start_occupancy_only
+      - automation.motion_kitchen_timer_start_occupancy_only
+      - automation.motion_living_room_timer_start_occupancy_only
+      - automation.motion_occupied_master_bath_timer_start_occupancy_only
+      - automation.motion_occupied_master_timer_start_occupancy_only
+ 
+      
+
+
+ 
+

@@ -1,0 +1,363 @@
+
+#-Send message that something is open.  This acts on the syslog message sent by alert when someting in the group is opened.  "In" was lazy look into regex
+
+- alias: 'Alert on opening'
+  initial_state: False
+  trigger:
+    platform: event
+    event_type: call_service
+    event_data:
+      domain: notify
+      service: syslog
+  condition:
+    condition: template
+    value_template: '{{ "o5150" in trigger.event.data.service_data["message"]}}'
+  action:
+      service: notify.ios_michaels_iphone
+      data_template:
+        message: >
+         Here is what is open:
+         {%- for entity_id in states.group.hvac_watchlist_g.attributes.entity_id -%}
+          {% set parts = entity_id.split('.') -%}
+          {%- if states(entity_id) == 'on' %}
+          {%- if loop.first %} {% elif loop.last %} {% else %} - {% endif -%}{{ states[parts[0]][parts[1]].name }}  for {{relative_time(states[parts[0]][parts[1]].last_updated)}}  {% endif -%}
+          {%- endfor %}
+
+- alias: 'Alert on opening light 2'
+  initial_state: False
+  trigger:
+    platform: event
+    event_type: call_service
+    event_data:
+      domain: notify
+      service: syslog
+  condition:
+    condition: template
+    value_template: '{{ "o5150" in trigger.event.data.service_data["message"]}}'
+  action:
+    - service: mqtt.publish
+      data:
+        topic: 'home/LimeLight03_ha/state/in'
+        payload: '{"state":"ON","color":{"r":100,"g":0,"b":0},"brightness":50,"effect":"Larson Scanner"}'
+    - delay: 00:00:10
+    - service: mqtt.publish
+      data:
+        topic: 'home/LimeLight03_ha/state/in'
+        payload: '{"state":"ON","color":{"r":0,"g":1000,"b":0},"brightness":50,"effect":"Static"}'
+    - delay: 00:00:05
+    - service: mqtt.publish
+      data:
+        topic: 'home/LimeLight03_ha/state/in'
+        payload: '{"state":"OFF"}'
+
+
+
+
+
+
+#Send message when all closed.  This acts on the syslog message sent by alert when all openings in group are closed.  "In" was lazy look into regex
+
+- alias: 'Alert when all closed'
+  initial_state: False
+  trigger:
+    platform: event
+    event_type: call_service
+    event_data:
+      domain: notify
+      service: syslog
+  condition:
+    condition: template
+    value_template: '{{ "c5150" in trigger.event.data.service_data["message"]}}'
+  action:
+      service: notify.ios_michaels_iphone
+      data_template:
+        message: "all closed now"
+
+
+
+- alias: 'Alert when all closed light'
+  initial_state: False
+  trigger:
+    platform: event
+    event_type: call_service
+    event_data:
+      domain: notify
+      service: syslog
+  condition:
+    condition: template
+    value_template: '{{ "c5150" in trigger.event.data.service_data["message"]}}'
+  action:
+    - service: mqtt.publish
+      data:
+        topic: 'home/LimeLight03_ha/state/in'
+        payload: '{"state":"ON","color":{"r":0,"g":1000,"b":0},"brightness":50,"effect":"Static"}'
+    - delay: 00:00:10
+    - service: mqtt.publish
+      data:
+        topic: 'home/LimeLight03_ha/state/in'
+        payload: '{"state":"OFF"}'
+    # - service: mqtt.publish
+    #   data:
+    #     topic: 'LIMELIGHT_01/in'
+    #     payload: '*00FF00'
+    # - delay: 00:00:05
+    # - service: mqtt.publish
+    #   data:
+    #     topic: 'LIMELIGHT_01/in'
+    #     payload: '*OFF00FF00'
+      
+- alias: 'Occpancy monitoring Box opened'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id:  sensor.entrydoor_access_control
+      from: '22'
+      to: '23'
+  action:
+#      - service: automation.turn_on
+#        entity_id:
+#        - automation.alert_emptycondo
+#        - automation.alert_occuppied_condo
+      - service: timer.start
+        data_template:
+          entity_id: "timer.occupancy_check"
+          duration: '{{ states.input_number.occupancy_delay.state | multiply(60) |int}}'        
+  condition:
+    condition: state
+    entity_id: input_boolean.night_mode
+    state: 'off'                           # to account for someone leaving the house while the other still sleeps (normal routine would not turn off night mode)
+ 
+
+- alias: 'occupancy check time ends'
+  initial_state: True
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.occupancy_check
+  condition:
+    condition: state
+    entity_id: binary_sensor.samsung_tv               # if tv is on someone might be in living room... 
+    state: 'off'        
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.emptycondo
+
+#{{ trigger.to_state.attributes.friendly_name }}
+
+- alias: 'occupancy check time cancel'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_den
+      to: 'on'     
+    - platform: state
+      entity_id: binary_sensor.motion_dining
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.motion_entrydoor
+      to: 'on'
+    - platform: state
+      entity_id:  binary_sensor.motion_entrykitchen
+      to: 'on'
+    - platform: state
+      entity_id:  binary_sensor.motion_kitchen
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.motion_lr1
+      to: 'on'      
+    - platform: state
+      entity_id:  binary_sensor.motion_masterbr1
+      to: 'on'     
+    - platform: state
+      entity_id: binary_sensor.motion_masterhall
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.motion_melodiebed
+      to: 'on'
+    - platform: state
+      entity_id:   binary_sensor.motion_mikebed
+      to: 'on'
+    - platform: state
+      entity_id:   binary_sensor.opening_patiodoor
+      to: 'on'      
+#    - platform: event
+#      event_type: timer.cancelled
+#      event_data:
+#        entity_id: timer.occupancy_check
+#    - platform: state
+#      entity_id: group.condo_motion_g
+#      from: 'off'
+#      to: 'on'   
+  condition:
+    condition: state
+    entity_id: timer.occupancy_check
+    state: 'active'      
+  action:
+    - service: logbook.log
+      data_template:
+        name: "Occupancy Check stopped:"
+        message: >
+          '{{trigger.to_state.attributes.friendly_name}}'  
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.emptycondo
+    - service: timer.cancel
+      entity_id: timer.occupancy_check  
+
+
+
+- alias: 'alert emptycondo'
+  initial_state: off
+  trigger:
+    platform: event
+    event_type: call_service
+    event_data:
+      domain: notify
+      service: syslog
+  condition:
+    condition: template
+    value_template: '{{ "emptycondo" in trigger.event.data.service_data["message"]}}'
+  action:
+      - service: notify.ios_michaels_iphone
+        data_template:
+          message: >
+           The condo is considered empty;
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.emptycondo
+
+#           The condo is considered empty: {{relative_time(states.input_boolean.emptycondo.last_updated)}}
+
+
+- alias: 'alert occuppied condo'
+  initial_state: off
+  trigger:
+    platform: event
+    event_type: call_service
+    event_data:
+      domain: notify
+      service: syslog
+  condition:
+    condition: template
+    value_template: '{{ "occupiedcondo" in trigger.event.data.service_data["message"]}}'
+  action:
+      - service: notify.ios_michaels_iphone
+        data_template:
+          message: >
+           The condo is considered occupied:
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.emptycondo
+      - service: automation.turn_off
+        entity_id:
+        - automation.alert_emptycondo
+        - automation.alert_occuppied_condo
+        
+- alias: 'turn off occpancy monitoring when patio opened'
+  initial_state: on
+  trigger:
+    platform: state
+    entity_id: sensor.patiodoor_access_control 
+    to: '22'
+    from: '23'  
+  action:
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.emptycondo
+      - service: automation.turn_off
+        entity_id:
+        - automation.alert_emptycondo
+        - automation.alert_occuppied_condo
+             
+
+
+        
+        
+#- alias: Sensor Change
+#  trigger:
+#    platform: state
+#    entity_id: input_select.opening_list
+#  condition:
+#    condition: template
+#    value_template: '{{ states.input_select.opening_list !=  "None" }}'
+#  action:
+#    - service: homeassistant.turn_off
+#      entity_id: automation.sensor_change
+#    - service: mqtt.publish
+#      data_template:
+#        topic: 'home/433toMQTT'
+#        #retain: 'true'
+#        payload: >-
+#         {% set name = states('input_select.opening_list') %}
+#         {% set group = 'group.radiosensors_g' %}
+#         {% for entity_id in state_attr(group, 'entity_id') if states[entity_id.split('.', 1)[0]][entity_id.split('.', 1)[1]].name == name %}
+#         {% set parts = entity_id.split('.', 1) %}
+#         {% set entity = states[parts[0]][parts[1]] %}
+#              {% if states('input_select.opening_list_action') == 'On' -%}
+#                 {{ entity.attributes.payload_on }}
+#              {%- else -%}
+#                 {{ entity.attributes.payload_off }}
+#              {%- endif %}
+#          {% endfor %}
+#    - service: input_select.select_option
+#      data:
+#        entity_id: input_select.opening_list
+#        option: 'Nothing'
+#    - service: homeassistant.turn_on
+#      entity_id: automation.sensor_change
+      
+
+#- alias: 'reset motion sensors'
+#  initial_state: on
+#  trigger:
+#    - platform: state
+##      entity_id: binary_sensor.entry
+#      from: 'off'
+#      to: 'on'
+#    - platform: homeassistant
+#      event: start
+#  action:
+#    - delay: 00:00:30
+#    - service: mqtt.publish
+#      data:
+#        topic: 'home/433toMQTT'
+#        payload: '1051530off'
+#    - service: mqtt.publish
+#      data:
+#        topic: 'home/433toMQTT'
+#        payload: '4551562off'
+#    - service: mqtt.publish
+#      data:
+#        topic: 'home/433toMQTT'
+#        payload: '3747914off'
+#    - service: mqtt.publish
+#      data:
+#        topic: 'home/433toMQTT'
+#        payload: '2330698off'
+#    - service: mqtt.publish
+#      data:
+#        topic: 'home/433toMQTT'
+#        payload: '831562off'
+#    - service: mqtt.publish
+#      data:
+#        topic: 'home/433toMQTT'
+#        payload: '6881354off'
+      
+
+
+         
+      
+# - alias: Sensor ON
+#   trigger:
+#     platform: state
+#     entity_id: input_select.opening_list_on
+#   action:
+#     service: mqtt.publish
+#     data_template:
+#       topic: 'home/433toMQTT'
+#       retain: 'true'
+#       payload: >-
+#       {% set name = states('input_select.opening_list_on') %}
+#       {% set group = 'group.hvac_watchlist_g' %}
+#       {% for entity_id in state_attr(group, 'entity_id') if states[entity_id.split('.', 1)[0]][entity_id.split('.', 1)[1]].name == name %}
+#       {% set parts = entity_id.split('.', 1) %}
+#       {% set entity = states[parts[0]][parts[1]] %}
+#       {{ entity.attributes.payload_on }}
+#       {% endfor %}

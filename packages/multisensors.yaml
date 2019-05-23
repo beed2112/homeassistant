@@ -1,0 +1,312 @@
+################################################
+## Customize
+################################################
+
+homeassistant:
+#  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+#    package.node_anchors:
+#      customize: &customize
+#        package: 'multiSensors'
+
+#      expose: &expose
+#        <<: *customize
+        
+
+
+    ################################################
+    ## Group
+    ################################################
+
+#    group.multibrightness:
+#      <<: *customize
+#      friendly_name: "Light"
+#      icon: mdi:script
+
+#   group.multitemp:
+#      <<: *customize
+#      friendly_name: "Temperatures"
+#      icon: mdi:script
+
+#    group.multihumid:
+#      <<: *customize
+#      friendly_name: "Humidity"
+#      icon: mdi:script
+      
+#    group.multimotion:
+#      <<: *customize
+#      friendly_name: "Motion"
+#      icon: mdi:script      
+
+
+
+    
+
+
+binary_sensor:
+  - platform:  template
+    sensors:
+      motion_den:
+        friendly_name: "Den"
+        device_class: "motion"
+        value_template: "{{states.sensor.multiden_alarm_level.state == '255' and states. sensor.multiden_burglar.state == '8' }}"
+      motion_entrydoor:
+        friendly_name: "Entry Door"
+        device_class: "motion"
+        value_template: "{{states.sensor.multientryhalldoor_alarm_level.state == '255' and states. sensor.multientryhalldoor_burglar.state == '8' }}"
+      motion_entrykitchen:
+        friendly_name: "Entry Kitchen"
+        device_class: "motion"
+        value_template: "{{states.sensor.multientryhallkitchen_alarm_level.state == '255' and states. sensor.multientryhallkitchen_burglar.state == '8' }}"
+      motion_kitchen:
+        friendly_name: "Kitchen"
+        device_class: "motion"
+        value_template: "{{states.sensor.multikitchen_alarm_level.state == '255' and states. sensor.multikitchen_burglar.state == '8' }}"
+      motion_lr1:
+        friendly_name: "Living Room 1"
+        device_class: "motion"
+        value_template: "{{states.sensor.multilr1_alarm_level.state == '255' and states. sensor.multilr1_burglar.state == '8' }}"
+      motion_mikebed:
+        friendly_name: "Mike"
+        device_class: "motion"
+        value_template: "{{states.sensor.multibedmike_alarm_level.state == '255' and states. sensor.multibedmike_burglar.state == '8' }}"
+      motion_melodiebed:
+        friendly_name: "Melodie"
+        device_class: "motion"
+        value_template: "{{states.sensor.multibedmelodie_alarm_level.state == '255' and states. sensor.multibedmelodie_burglar.state == '8' }}"       
+      motion_masterbr1:
+        friendly_name: "Master BR1"
+        device_class: "motion"
+        value_template: "{{states.sensor.multimasterbr1_alarm_level.state == '255' and states. sensor.multimasterbr1_burglar.state == '8' }}"        
+      motion_masterhall:
+        friendly_name: "Master Hall "
+        device_class: "motion"
+        value_template: "{{states.sensor.multimasterhall_alarm_level.state == '255' and states. sensor.multimasterhall_burglar.state == '8' }}"     
+      motion_dining:
+        friendly_name: "Dining"
+        device_class: "motion"
+        value_template: "{{states.sensor.multidining_alarm_level.state == '255' and states. sensor.multidining_burglar.state == '8' }}"
+sensor:  
+  - platform: template
+    sensors:
+      multiden_battlevel:
+        value_template: '{% if states.zwave.multiden is not none %}
+          {{ states.zwave.multiden.attributes.battery_level }}
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Den Sensor'     
+      multikitchen_battlevel:
+        value_template: '{% if states.zwave.multikitchen is not none %}
+          {{ states.zwave.multikitchen.attributes.battery_level }}
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Kitchen Sensor'  
+      multientryhalldoor_battlevel:
+        value_template: '{% if states.zwave.multientryhalldoor is not none %}
+          {{ states.zwave.multientryhalldoor.attributes.battery_level }}
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Entry door hall Sensor' 
+      multientryhallkitchen_battlevel:
+        value_template: '{% if states.zwave.multientryhallkitchen is not none %}
+          {{ states.zwave.multientryhallkitchen.attributes.battery_level }}
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Entry hall kitchen Sensor'  
+      multidining_battlevel:
+        value_template: '{% if states.zwave.multidining is not none %}
+          {{ states.zwave.multidining.attributes.battery_level }}
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Dining Room Sensor' 
+      multilr1_battlevel:
+        value_template: '{% if states.zwave.multilr1 is not none %}
+          {{ states.zwave.multilr1.attributes.battery_level }}
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Living Room Sensor'  
+      multibedmelodie_battlevel:
+        value_template: '{% if states.zwave.multibedmelodie is not none %}
+          {{ states.zwave.multibedmelodie.attributes.battery_level }}
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Melodie Bed Sensor' 
+      multibedmike_battlevel:                                                             #typo when node set up 
+        value_template: '{% if states.zwave.mutlibedmike is not none %}        
+          {{ states.zwave.mutlibedmike.attributes.battery_level }}                 
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Mike Bed Sensor'  
+      multimasterbr1_battlevel:
+        value_template: '{% if states.zwave.multimasterbr1 is not none %}
+          {{ states.zwave.multimasterbr1.attributes.battery_level }}
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Bedroom Sensor' 
+      multimasterhall_battlevel:
+        value_template: '{% if states.zwave.multimasterhall is not none %}
+          {{ states.zwave.multimasterhall.attributes.battery_level }}
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Bedroom Hall Sensor' 
+      patio_shade_battlevel:
+        value_template: '{% if states.zwave.patio_shade is not none %}
+          {{ states.zwave.patio_shade.attributes.battery_level }}
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Patio Shade Sensor' 
+      patiodoor_battlevel:
+        value_template: '{% if states.zwave.patiodoor is not none %}
+          {{ states.zwave.patiodoor.attributes.battery_level }}
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Patio Door Sensor'  
+      master_window_battlevel:
+        value_template: '{% if states.zwave.master_window is not none %}
+          {{ states.zwave.master_window.attributes.battery_level }}
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Bed Room Window Sensor' 
+      lrn_window_battlevel:
+        value_template: '{% if states.zwave.lrn_window is not none %}
+          {{ states.zwave.lrn_window.attributes.battery_level }}
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Living Room North Window Sensor'  
+      lre_window_battlevel:
+        value_template: '{% if states.zwave.lre_window is not none %}
+          {{ states.zwave.lre_window.attributes.battery_level }}
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Living Room East Window Sensor'  
+      diningroom_window_battlevel:
+        value_template: '{% if states.zwave.diningroom_window is not none %}
+          {{ states.zwave.diningroom_window.attributes.battery_level }}
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Dining Room Window Sensor' 
+      kitchen_window_battlevel:
+        value_template: '{% if states.zwave.kitchen_window is not none %}
+          {{ states.zwave.kitchen_window.attributes.battery_level }}
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Kitchen Window Sensor'  
+      den_window_battlevel:
+        value_template: '{% if states.zwave.den_window is not none %}
+          {{ states.zwave.den_window.attributes.battery_level }}
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Den Window Sensor' 
+      entrydoor_battlevel:
+        value_template: '{% if states.zwave.entrydoor.attributes.battery_level is not none %}
+          {{ states.zwave.entrydoor.attributes.battery_level }}
+          {% else %}
+            n/a
+          {% endif %}'
+        unit_of_measurement: '%'
+        friendly_name: 'Entry Door Sensor' 
+        
+        
+          
+ 
+          
+          
+group:
+
+      
+      
+  multibrightness:
+    control: hidden
+    entities:      
+      - sensor.multientryhalldoor_luminance
+      - sensor.multientryhallkitchen_luminance
+      - sensor.multiden_luminance
+      - sensor.multikitchen_luminance
+      - sensor.multidining_luminance
+      - sensor.multilr1_luminance
+      - sensor.multimasterbr1_luminance
+      - sensor.multimasterhall_luminance
+      - sensor.multibedmike_luminance
+      - sensor.multibedmelodie_luminance
+
+  multitemp:
+    control: hidden
+    entities:
+      - sensor.multientryhalldoor_temperature
+      - sensor.multientryhallkitchen_temperature
+      - sensor.multiden_temperature
+      - sensor.multikitchen_temperature
+      - sensor.multidining_temperature
+      - sensor.multilr1_temperature
+      - sensor.multimasterbr1_temperature
+      - sensor.multimasterhall_temperature
+      - sensor.multibedmike_temperature
+      - sensor.multibedmelodie_temperature
+
+  multihumid:
+    control: hidden
+    entities:
+      - sensor.multientryhalldoor_relative_humidity
+      - sensor.multientryhallkitchen_relative_humidity
+      - sensor.multiden_relative_humidity
+      - sensor.multikitchen_relative_humidity
+      - sensor.multidining_relative_humidity
+      - sensor.multilr1_relative_humidity
+      - sensor.multimasterbr1_relative_humidity
+      - sensor.multimasterhall_relative_humidity
+      - sensor.multibedmike_relative_humidity
+      - sensor.multibedmelodie_relative_humidity
+
+  tamperalerts:
+    control: hidden
+    entities:
+      - binary_sensor.tamper_entrydoor
+      - binary_sensor.tamper_patiodoor
+      - binary_sensor.tamper_lrn_window
+      - binary_sensor.tamper_lre_window
+      - binary_sensor.tamper_den_window
+      - binary_sensor.tamper_master_window
+      - binary_sensor.tamper_dining_window
+      - binary_sensor.tamper_kitchen_window
+      - binary_sensor.tamper_patio_shade
+      - binary_sensor.tamper_dendoor
+      - binary_sensor.tamper_wcdoor      
