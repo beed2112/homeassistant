@@ -126,9 +126,10 @@
     from: 'off'
     to: 'on'          
   action:
-    - service: notify.alexa_media
+    - service: logbook.log
       data_template:
-        target: >- 
+        name: "Send annoncement to   ==> "
+        message: >-
           {% if is_state("binary_sensor.occupied_den", "on") -%}
           {% set player = 'media_player.den' %}
           {% set found = 'on'%}
@@ -142,11 +143,8 @@
           {% else %}
           {% set player = "media_player.main" %}
           {%- endif %}
-          {{player}}
-        data:
-          type: announce
-          #method: all
-        message: "This is a test message"
+          {{- player -}}     
+
 
 
 
