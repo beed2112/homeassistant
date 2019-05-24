@@ -130,6 +130,7 @@
       data_template:
         name: "Send annoncement to   ==> "
         message: >-
+          {% set found = 'off'%}
           {% if is_state("binary_sensor.occupied_den", "on") -%}
           {% set player = 'media_player.den' %}
           {% set found = 'on'%}
@@ -141,9 +142,11 @@
           {% set player = "media_player.bedroom" %}
           {%- endif %}
           {% else %}
+          {%- if found == 'off' -%}  
           {% set player = "media_player.main" %}
+          {% endif %}
           {%- endif %}
-          {{- player -}}     
+          {{- player -}}    
 
 
 
