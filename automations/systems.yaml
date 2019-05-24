@@ -146,7 +146,31 @@
           {% set player = "media_player.main" %}
           {% endif %}
           {%- endif %}
-          {{- player -}}    
+          {{- player -}} 
+    - service: notify.alexa_media
+      data_template:
+        target: > 
+          {% set found = 'off'%}
+          {% if is_state("binary_sensor.occupied_den", "on") -%}
+          {% set player = 'media_player.den' %}
+          {% set found = 'on'%}
+          {%- endif %}
+          {%- if is_state("binary_sensor.occupied_master", "on") -%}
+          {%- if found == 'on' -%}  
+          {% set player = (player ~ ", media_player.bedroom") %}
+          {% else %}
+          {% set player = "media_player.bedroom" %}
+          {%- endif %}
+          {% else %}
+          {%- if found == 'off' -%}  
+          {% set player = "media_player.main" %}
+          {% endif %}
+          {%- endif %}
+          {{- player -}} 
+        data:
+          type: announce
+          #method: all
+        message: "This is a test"             
 
 
 
