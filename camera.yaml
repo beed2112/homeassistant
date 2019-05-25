@@ -28,4 +28,7 @@
     still_image_url: !secret lrnstill
     stream_source: !secret lrnlive
     verify_ssl: false
-    scan_interval: 5   
+    scan_interval: 5  
+  - platform: mqtt
+    name: DenCamera Motion
+    topic: myhome/cameraden/motion     
