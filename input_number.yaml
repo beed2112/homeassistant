@@ -89,3 +89,8 @@
     min: 1
     max: 100
     step: 1    
+  shade_delay:
+    name: Minutes of low wind
+    min: 20
+    max: 180
+    step: 1        
