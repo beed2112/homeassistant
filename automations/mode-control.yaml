@@ -205,7 +205,7 @@
   action:
     - service: logbook.log
       data_template:
-        name: "Guest Mode turn off automations  ==> "
+        name: "Guest Mode OFF turn off automations  ==> "
         message: >-
           {%- set comma = joiner(', ') -%}
           {{- comma() -}}
@@ -224,9 +224,23 @@
           {{- comma() -}}
           {{- x.entity_id -}}
           {%- endfor -%}
+
+- alias: 'Guest Mode on'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: input_boolean.guest_mode
+      to: 'on'
+    - platform: homeassistant
+      event: start    
+  condition:
+    condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'  
+  action:             
     - service: logbook.log
       data_template:
-        name: "Guest Mode turn on automations ==> "
+        name: "Guest Mode ON turn on automations ==> "
         message: >-
           {%- set comma = joiner(', ') -%}
           {{- comma() -}}
