@@ -93,4 +93,10 @@
     name: Minutes of low wind
     min: 20
     max: 180
-    step: 1        
+    step: 1    
+  limelight01_animation_speed:
+    name: Limelight01 Animation Speed
+    initial: 200
+    min: 0
+    max: 255
+    step: 5        
