@@ -503,12 +503,7 @@
      mode_night: 'xx'
      mode_day: 'xx' 
      
-   automation.night_mode_off_wc_door_light_control_on:
-     autodoc_description: 'When night mode turned off turn on door open close automation probably not needed automation.wc_light_off_door_close automation.wc_light_on_door_open'
-     autodoc_file: 'bathroom-lights.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
+
 
    automation.night_mode_on:
      autodoc_description: 'Night mode is on turn on night time only automations'
@@ -517,19 +512,6 @@
      mode_night: 'xx'
      mode_day: 'xx' 
      
-   automation.night_mode_wc_door_light_control_off:
-     autodoc_description: 'When night mode turned on turn off door open close automation probably not needed automation.wc_light_off_door_close automation.wc_light_on_door_open'
-     autodoc_file: 'bathroom-lights.yaml'
-     mode_vac: 'xx'
-     mode_night: 'off'
-     mode_day: 'on' 
-     
-   automation.night_mode_wc_motion_on:
-     autodoc_description: 'When night mode turned on turm on wc motion automations probably not needed  automation.wc_light_on_with_motion '
-     autodoc_file: 'goodnight.yaml'
-     mode_vac: 'xx'
-     mode_night: 'on'
-     mode_day: 'off' 
 
    automation.not_good_night_unset_status:
      autodoc_description: 'TV deteced as on turn off night mode'

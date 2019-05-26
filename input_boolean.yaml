@@ -1,6 +1,8 @@
   emptycondo:
     name: Empty Condo
 
+  white_light:
+    name: White Lights
 
 
   hvac_cool_off_watchdog:
