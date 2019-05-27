@@ -492,7 +492,20 @@
           {% set player = "media_player.main" %}
           {% endif %}
           {%- endif %}
-          {{- player -}}     
+          {{- player -}}  
+      shade_raised_times_word:
+        friendly_name: 'Share raised count'
+        value_template: >-          
+          {% if states.counter.shade_raised_counter.state  == '1' -%}
+          first
+          {%- elif states.counter.shade_raised_counter.state  == '2' -%}
+          second
+          {%- elif states.counter.shade_raised_counter.state  == '3' -%}
+          third  
+          {%- elif states.counter.shade_raised_counter.state  == '3' -%}
+          fourth
+          {%- endif %}
+
         
         
         

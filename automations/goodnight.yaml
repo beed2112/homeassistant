@@ -196,12 +196,8 @@
     to: 'on'          
   action:
     - service: notify.alexa_media
-      data:
-        target: 
-          #- media_player.den_2
-          - media_player.main
-          #- media_player.bedroom_2
-        #title: "My title for Echo show"
+      data_template:
+        target: "{{states.sensor.alexadestinations.state}}"
         data:
           type: announce
           #method: all
