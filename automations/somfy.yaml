@@ -78,7 +78,7 @@
         data:
           type: announce
           #method: all
-        message: "Pardon me, the wind has calmed so I have lowered the Patio Shade for the {{states.shade_raised_times_word.state}} time today.  Once again, I thought you might want to know that the Sun Shade was just lowered for the {{states.shade_raised_times_word.state}} time today."
+        message: "Pardon me, the wind has calmed so I have lowered the Patio Shade for the {{states.sensor.shade_raised_times_word.state}} time today.  Once again, I thought you might want to know that the Sun Shade was just lowered for the {{states.sensor.shade_raised_times_word.state}} time today."
 
      
 
@@ -99,7 +99,7 @@
         data:
           type: announce
           #method: all
-        message: "Pardon me, but I thought you might want to know the Patio Shade was just raised due to high wind for the {{states.shade_raised_times_word.state}} time today.  Once again, I thought you might want to know that the Patio Shade was just Raised for the {{states.shade_raised_times_word.state}} time today."
+        message: "Pardon me, but I thought you might want to know the Patio Shade was just raised due to high wind for the {{states.sensor.shade_raised_times_word.state}} time today.  Once again, I thought you might want to know that the Patio Shade was just Raised for the {{states.sensor.shade_raised_times_word.state}} time today."
 #    - delay: 0:20      
 #    - service: media_player.volume_set
 #      data_template: 
