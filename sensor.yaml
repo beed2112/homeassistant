@@ -492,11 +492,14 @@
           {% set player = "media_player.main" %}
           {% endif %}
           {%- endif %}
-          {{- player -}}  
+          {{- player -}} 
+# turn the couhnter into a word for alexa to speak... 0 should never happen but covering it for completeness           
       shade_raised_times_word:
         friendly_name: 'Share raised count'
-        value_template: >-          
-          {% if states.counter.shade_raised_counter.state  == '1' -%}
+        value_template: >-      
+          {% if states.counter.shade_raised_counter.state  == '0' -%}
+          zero            
+          {% elif states.counter.shade_raised_counter.state  == '1' -%}
           first
           {%- elif states.counter.shade_raised_counter.state  == '2' -%}
           second
