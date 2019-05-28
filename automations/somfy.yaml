@@ -47,6 +47,7 @@
     - service: timer.start
       entity_id: timer.somfy_raised_wind 
 
+##
 
 - alias: 'Lower shade after wind raised'
   initial_state: True
@@ -100,12 +101,7 @@
           type: announce
           #method: all
         message: "Pardon me, but I thought you might want to know the Patio Shade was just raised due to high wind for the {{states.sensor.shade_raised_times_word.state}} time today.  Once again, I thought you might want to know that the Patio Shade was just Raised for the {{states.sensor.shade_raised_times_word.state}} time today."
-#    - delay: 0:20      
-#    - service: media_player.volume_set
-#      data_template: 
-#        entity_id: media_player.main
-#        volume_level: >
-#          {{ states.sensor.volume_main.state}}       
+      
 
 - alias: 'Vacation mode activated raise Patio Shade'
   initial_state: True
