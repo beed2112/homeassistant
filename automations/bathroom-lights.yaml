@@ -1,6 +1,6 @@
 
 - alias: 'Motion for MasterBath light on'
-  initial_state: False
+  initial_state: True
   trigger:
     - platform: state
       entity_id:  sensor.multimasterhall_burglar
