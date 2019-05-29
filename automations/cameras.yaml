@@ -4,10 +4,14 @@
     platform: mqtt
     topic: myhome/cameraden/motion  
     # Optional
-    payload: 'on'
-    encoding: ' '
+#    payload: 'on'
+    encoding: ''
   action:
     service: camera.snapshot
     data:
       entity_id: camera.cameraden_motion_snapshot
-      filename: 'config/www/den_{{ now().strftime("%Y%m%d-%H%M%S") }}.jpg'
+      filename: '/config/www/Photos/den_{{ now().strftime("%Y%m%d-%H%M%S") }}.jpg'
+
+#
+#
+#

@@ -150,8 +150,7 @@ automation:
           volume_level: 0.7
       - service: notify.alexa_media
         data_template:
-          target: 
-            - media_player.den
+          target: "{{states.sensor.alexadestinations.state}}"
           data:
             type: announce 
           message: >
@@ -171,8 +170,7 @@ automation:
       - delay: '00:00:15'
       - service: notify.alexa_media
         data_template:
-          target: 
-            - media_player.den
+          target: "{{states.sensor.alexadestinations.state}}"
           data:
             type: announce 
           message: >
@@ -205,20 +203,19 @@ automation:
           value_template: "{{ 'Tornado' in states.sensor.nws_alerts_2.attributes.title and 'Warning' in states.sensor.nws_alerts_2.attributes.title }}"
     action:
       - service: media_player.volume_set
-        data:
-          entity_id:
-            - media_player.den
+        data_template:
+          target: "{{states.sensor.alexadestinations.state}}"
           volume_level: 0.7
       - service: notify.alexa_media
-        data:
-          target: media_player.den
+        data_template:
+          target: "{{states.sensor.alexadestinations.state}}"
           data:
             type: announce 
           message: "Attention!,,,Attention!,,,The National Weather Service Has issued a Tornado Warning for our area."
       - delay: '00:00:15'
       - service: notify.alexa_media
-        data:
-          target: media_player.den
+        data_template:
+          target: "{{states.sensor.alexadestinations.state}}"
           data:
             type: announce 
           message: "Attention!,,,Attention!,,,The National Weather Service Has issued a Tornado Warning for our area."

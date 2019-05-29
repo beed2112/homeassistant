@@ -9,8 +9,8 @@ homeassistant:
   longitude: !secret config_longitude
   elevation: 377
   unit_system: imperial
-  whitelist_external_dirs:
-    - /tmp
+#  whitelist_external_dirs:
+#    - www
   
   time_zone: America/Phoenix
 
@@ -21,7 +21,7 @@ homeassistant:
 
   packages: !include_dir_named packages
 
-#
+
 # new auth section
 
   auth_providers:
