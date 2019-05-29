@@ -10,4 +10,4 @@
     service: camera.snapshot
     data:
       entity_id: camera.cameraden_motion_snapshot
-      filename: '/www/den_{{ now().strftime("%Y%m%d-%H%M%S") }}.jpg'
+      filename: 'www/den_{{ now().strftime("%Y%m%d-%H%M%S") }}.jpg'
