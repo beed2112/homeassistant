@@ -9,6 +9,8 @@ homeassistant:
   longitude: !secret config_longitude
   elevation: 377
   unit_system: imperial
+  whitelist_external_dirs:
+    - /tmp
   
   time_zone: America/Phoenix
 
@@ -19,7 +21,7 @@ homeassistant:
 
   packages: !include_dir_named packages
 
-
+#
 # new auth section
 
   auth_providers:
@@ -27,6 +29,7 @@ homeassistant:
      api_password: !secret api_pass
 
 
+#
 
 #
 #influx "telemetry database - using different host"
