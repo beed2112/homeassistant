@@ -1,0 +1,13 @@
+- alias: 'Den save motion snapshot'
+  initial_state: True
+  trigger:
+    platform: mqtt
+    topic: myhome/cameraden/motion  
+    # Optional
+    payload: 'on'
+    encoding: ' '
+  action:
+    service: camera.snapshot
+    data:
+      entity_id: camera.cameraden_motion_snapshot
+      filename: '/www/den_{{ now().strftime("%Y%m%d-%H%M%S") }}.jpg'
