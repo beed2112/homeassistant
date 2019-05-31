@@ -1,24 +1,75 @@
-  #- platform: fail2ban
-  #  jails:
-  #    - sshd
-  #    - hass-iptables
-  #      #file path: /var/log/fail2ban.log
-  #  scan_interval: 60
-  #  file path: /var/log/fail2ban.log
+#{"uptime":" 15:08:34 up 3 days, 12 min, 0 users, load average: 2.33, 2.58, 2.65", "ssid":"SpiritOfTheRadio-g", "bitrate":"72.2 Mb/s", "signal_level":"100%", "link_quality":"85%", "noise_level":"0%" }
+# topic : myhome/cameraden, messageId : , length : 220
+#parse the message into the various fields  and place  into sensors.   Full message is also placed in a sensor
 
- # - platform: speedtest
- #   minute: 30
- #   hour:
- #     - 0
- #     - 4
- #     - 8
- #     - 12
- #     - 16
- #     - 20
- #   monitored_conditions:
- #     - ping
- #     - download
- #     - upload
+
+  - platform: mqtt
+    name: "camera_den_fullinfo"
+    friendly_name: "cameraDen full info"
+    state_topic: "myhome/cameraden"
+#    unit_of_measurement: 'dBm'
+    value_template: "{{ value_json.uptime }}"
+
+  - platform: mqtt
+    name: "camera_den_uptime"
+    friendly_name: "cameraDen Uptime"
+    state_topic: "myhome/cameraden"
+#    unit_of_measurement: 'dBm'
+    value_template: "{{ states.sensor.camera_den_uptime.state.split(',')[0] ~ states.sensor.camera_den_uptime.state.split(',')[1]}}"
+
+  - platform: mqtt
+    name: "camera_den_users"
+    friendly_name: "cameraDen Users"
+    state_topic: "myhome/cameraden"
+#    unit_of_measurement: 'dBm'
+    value_template: "{{ states.sensor.camera_den_uptime.state.split(',')[2] }}"
+
+  - platform: mqtt
+    name: "camera_den_load"
+    friendly_name: "cameraDen Load"
+    state_topic: "myhome/cameraden"
+#    unit_of_measurement: 'dBm'
+    value_template: "{{ states.sensor.camera_den_uptime.state.split(',')[3] ~ states.sensor.camera_den_uptime.state.split(',')[4]}}"
+
+
+  - platform: mqtt
+    name: "camera_den_ssid"
+    friendly_name: "cameraDen SSID"
+    state_topic: "myhome/cameraden"
+    value_template: "{{ value_json.ssid }}"
+
+
+  - platform: mqtt
+    name: "camera_den_signal_level"
+    friendly_name: "cameraDen SignalLevel"
+    state_topic: "myhome/cameraden"
+    unit_of_measurement: '%'
+    value_template: "{{ value_json.signal_level }}"
+
+  - platform: mqtt
+    name: "camera_den_link_quality"
+    friendly_name: "cameraDen LinkQuality"
+    state_topic: "myhome/cameraden"
+    unit_of_measurement: '%'
+    value_template: "{{ value_json.link_quality}}"
+
+
+  - platform: mqtt
+    name: "camera_den_bitrate"
+    friendly_name: "cameraDen BitRate"
+    state_topic: "myhome/cameraden"
+    unit_of_measurement: 'Mb\s'
+    value_template: "{{ value_json.bitrate }}"
+
+
+  - platform: mqtt
+    name: "camera_den_noise_level"
+    friendly_name: "cameraDen NoiseLevel"
+    state_topic: "myhome/cameraden"
+    unit_of_measurement: '%'
+    value_template: "{{ value_json.noise_level }}"
+
+
 ###------------------------------------Open MQTT GW --------------------------------------
 
  
