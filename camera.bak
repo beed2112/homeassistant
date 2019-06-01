@@ -1,0 +1,34 @@
+  - platform: generic
+    name: Atlantic Hurricane
+    still_image_url: https://www.nhc.noaa.gov/xgtwo/two_atl_0d0.png?072333
+    content_type: 'image/png'
+  - platform: generic
+    name: Den
+    username: !secret camuser
+    password: !secret campass
+    authentication: basic
+    still_image_url: !secret denstill
+    stream_source: !secret denlive
+    verify_ssl: false
+    scan_interval: 5 
+  - platform: generic
+    name: Livingroom East
+    username: !secret camuser
+    password: !secret campass
+    authentication: basic
+    still_image_url: !secret lrestill
+    stream_source: !secret lrelive
+    verify_ssl: false
+    scan_interval: 5   
+  - platform: generic
+    name: Livingroom North
+    username: !secret camuser
+    password: !secret campass
+    authentication: basic
+    still_image_url: !secret lrnstill
+    stream_source: !secret lrnlive
+    verify_ssl: false
+    scan_interval: 5  
+  - platform: mqtt
+    name: DenCamera Motion
+    topic: myhome/cameraden/motion     

@@ -1,70 +1,3 @@
-#{"uptime":" 15:08:34 up 3 days, 12 min, 0 users, load average: 2.33, 2.58, 2.65", "ssid":"SpiritOfTheRadio-g", "bitrate":"72.2 Mb/s", "signal_level":"100%", "link_quality":"85%", "noise_level":"0%" }
-# topic : myhome/cameraden, messageId : , length : 220
-#parse the message into the various fields  and place  into sensors.   Full message is also placed in a sensor
-
-
-  - platform: mqtt
-    name: "camera_den_fullinfo"
-    state_topic: "myhome/cameraden"
-#    unit_of_measurement: 'dBm'
-    value_template: "{{ value_json.uptime }}"
-
-  - platform: mqtt
-    name: "camera_den_uptime"
-    friendly_name: "cameraDen Uptime"
-    state_topic: "myhome/cameraden"
-#    unit_of_measurement: 'dBm'
-    value_template: >
-      {% if 'users' in states.sensor.camera_den_fullinfo.state.split(',')[1]  %}
-      {{ states.sensor.camera_den_fullinfo.state.split(',')[0]}}
-      {% else %}
-      {{ states.sensor.camera_den_fullinfo.state.split(',')[0] ~ states.sensor.camera_den_fullinfo.state.split(',')[1]}}
-      {% endif %}
-
-  - platform: mqtt
-    name: "camera_den_users"
-    state_topic: "myhome/cameraden"
-#    unit_of_measurement: 'dBm'
-    value_template: "{{ states.sensor.camera_den_fullinfo.state.split(',')[1] }}"
-
-  - platform: mqtt
-    name: "camera_den_load"
-    state_topic: "myhome/cameraden"
-#    unit_of_measurement: 'dBm'
-    value_template: "{{ states.sensor.camera_den_fullinfo.state.split(',')[2] ~ states.sensor.camera_den_fullinfo.state.split(',')[3] ~ states.sensor.camera_den_fullinfo.state.split(',')[4] }}"
-
-
-  - platform: mqtt
-    name: "camera_den_ssid"
-    state_topic: "myhome/cameraden"
-    value_template: "{{ value_json.ssid }}"
-
-
-  - platform: mqtt
-    name: "camera_den_signal_level"
-    state_topic: "myhome/cameraden"
-    unit_of_measurement: '%'
-    value_template: "{{ value_json.signal_level }}"
-
-  - platform: mqtt
-    name: "camera_den_link_quality"
-    state_topic: "myhome/cameraden"
-    unit_of_measurement: '%'
-    value_template: "{{ value_json.link_quality}}"
-
-
-  - platform: mqtt
-    name: "camera_den_bitrate"
-    state_topic: "myhome/cameraden"
-    unit_of_measurement: 'Mb\s'
-    value_template: "{{ value_json.bitrate }}"
-
-
-  - platform: mqtt
-    name: "camera_den_noise_level"
-    state_topic: "myhome/cameraden"
-    unit_of_measurement: '%'
-    value_template: "{{ value_json.noise_level }}"
 
 
 ###------------------------------------Open MQTT GW --------------------------------------
@@ -250,28 +183,11 @@
     name: dendash
     scan_interval: 5
     command: "cat /config/cmds/dash-den.sensor"
-##-- homeassistant process information#
-#  - platform: command_line
-#    name: ha_stat_percent_cpu
-#    scan_interval: 300
-#    unit_of_measurement: percent
-#    command: "cat /config/cmds/ha-cpu.sensor"
-#  - platform: command_line
-#    name: ha_stat_percent_memory
-#    scan_interval: 300
-#    unit_of_measurement: percent
-#    command: "cat /config/cmds/ha-mem.sensor"
-#  - platform: command_line
-#    name: ha_stat_virtual_mem
-#    scan_interval: 300
-#    unit_of_measurement: KB
-#    command: "cat /config/cmds/ha-vsz.sensor"
+
     
 #
 ###------------------------------------command_line end --------------------------------------
 
-  #- platform: nws_alerts
-  #  zone_id: 'AZZ546'
 
 
 ###------------------------------------------------------time_date  ---------------
@@ -541,7 +457,7 @@
           {% endif %}
           {%- endif %}
           {{- player -}} 
-# turn the couhnter into a word for alexa to speak... 0 should never happen but covering it for completeness           
+# turn the counter into a word for alexa to speak... 0 should never happen but covering it for completeness           
       shade_raised_times_word:
         friendly_name: 'Share raised count'
         value_template: >-      

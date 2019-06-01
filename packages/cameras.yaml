@@ -1,0 +1,163 @@
+################################################################
+## Packages / Cameras
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'cameras.yaml'
+
+counter:
+  motion_pics_den:
+    initial: 0
+    step: 1
+
+
+automation:
+
+- alias: 'Den save motion snapshot'
+  initial_state: True
+  trigger:
+    platform: mqtt
+    topic: myhome/cameraden/motion  
+    # Optional
+#    payload: 'on'
+    encoding: ''
+  action:
+    - service: camera.snapshot
+      data:
+        entity_id: camera.cameraden_motion_snapshot
+        filename: '/config/www/Photos/den_{{ now().strftime("%Y%m%d-%H%M%S") }}.jpg'
+    - service: counter.increment 
+      entity_id: counter.shade_raised_counter       
+
+
+- alias: 'reset motion capture counter'
+  initial_state: True
+  trigger:
+    platform: time
+    at: '23:59:59'
+  action:
+    - service: counter.reset
+      entity_id: counter.shade_raised_counter  
+
+
+
+
+
+camera:
+
+#---Hurricane
+  - platform: generic
+    name: Atlantic Hurricane
+    still_image_url: https://www.nhc.noaa.gov/xgtwo/two_atl_0d0.png?072333
+    content_type: 'image/png'
+#--- wyze cams    
+  - platform: generic
+    name: Den
+    username: !secret camuser
+    password: !secret campass
+    authentication: basic
+    still_image_url: !secret denstill
+    stream_source: !secret denlive
+    verify_ssl: false
+    scan_interval: 5 
+  - platform: generic
+    name: Livingroom East
+    username: !secret camuser
+    password: !secret campass
+    authentication: basic
+    still_image_url: !secret lrestill
+    stream_source: !secret lrelive
+    verify_ssl: false
+    scan_interval: 5   
+  - platform: generic
+    name: Livingroom North
+    username: !secret camuser
+    password: !secret campass
+    authentication: basic
+    still_image_url: !secret lrnstill
+    stream_source: !secret lrnlive
+    verify_ssl: false
+    scan_interval: 5  
+  - platform: mqtt
+    name: DenCamera Motion
+    topic: myhome/cameraden/motion 
+
+
+#-- Sensors
+
+#{"uptime":" 15:08:34 up 3 days, 12 min, 0 users, load average: 2.33, 2.58, 2.65", "ssid":"SpiritOfTheRadio-g", "bitrate":"72.2 Mb/s", "signal_level":"100%", "link_quality":"85%", "noise_level":"0%" }
+# topic : myhome/cameraden, messageId : , length : 220
+#parse the message into the various fields  and place  into sensors.   Full message is also placed in a sensor
+
+sensor:
+  - platform: mqtt
+    name: "camera_den_fullinfo"
+    state_topic: "myhome/cameraden"
+    value_template: "{{ value_json.uptime }}"
+
+  - platform: mqtt
+    name: "camera_den_uptime"
+    friendly_name: "cameraDen Uptime"
+    state_topic: "myhome/cameraden"
+    value_template: >
+      {% if 'users' in states.sensor.camera_den_fullinfo.state.split(',')[1]  %}
+      {{ states.sensor.camera_den_fullinfo.state.split(',')[0]}}
+      {% else %}
+      {{ states.sensor.camera_den_fullinfo.state.split(',')[0] ~ states.sensor.camera_den_fullinfo.state.split(',')[1]}}
+      {% endif %}
+
+  - platform: mqtt
+    name: "camera_den_users"
+    state_topic: "myhome/cameraden"
+    value_template: "{{ states.sensor.camera_den_fullinfo.state.split(',')[1] }}"
+
+  - platform: mqtt
+    name: "camera_den_load"
+    state_topic: "myhome/cameraden"
+    value_template: "{{ states.sensor.camera_den_fullinfo.state.split(',')[2] ~ states.sensor.camera_den_fullinfo.state.split(',')[3] ~ states.sensor.camera_den_fullinfo.state.split(',')[4] }}"
+
+
+  - platform: mqtt
+    name: "camera_den_ssid"
+    state_topic: "myhome/cameraden"
+    value_template: "{{ value_json.ssid }}"
+
+
+  - platform: mqtt
+    name: "camera_den_signal_level"
+    state_topic: "myhome/cameraden"
+    unit_of_measurement: '%'
+    value_template: "{{ value_json.signal_level }}"
+
+  - platform: mqtt
+    name: "camera_den_link_quality"
+    state_topic: "myhome/cameraden"
+    unit_of_measurement: '%'
+    value_template: "{{ value_json.link_quality}}"
+
+
+  - platform: mqtt
+    name: "camera_den_bitrate"
+    state_topic: "myhome/cameraden"
+    unit_of_measurement: 'Mb\s'
+    value_template: "{{ value_json.bitrate }}"
+
+
+  - platform: mqtt
+    name: "camera_den_noise_level"
+    state_topic: "myhome/cameraden"
+    unit_of_measurement: '%'
+    value_template: "{{ value_json.noise_level }}"
+
+
