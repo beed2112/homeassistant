@@ -14,19 +14,24 @@
     friendly_name: "cameraDen Uptime"
     state_topic: "myhome/cameraden"
 #    unit_of_measurement: 'dBm'
-    value_template: "{{ states.sensor.camera_den_uptime.state.split(',')[0] ~ states.sensor.camera_den_uptime.state.split(',')[1]}}"
+    value_template: >
+      {% if 'users' in states.sensor.camera_den_fullinfo.state.split(',')[1]  %}
+      {{ states.sensor.camera_den_fullinfo.state.split(',')[0]}}
+      {% else %}
+      {{ states.sensor.camera_den_fullinfo.state.split(',')[0] ~ states.sensor.camera_den_fullinfo.state.split(',')[1]}}
+      {% endif %}
 
   - platform: mqtt
     name: "camera_den_users"
     state_topic: "myhome/cameraden"
 #    unit_of_measurement: 'dBm'
-    value_template: "{{ states.sensor.camera_den_uptime.state.split(',')[2] }}"
+    value_template: "{{ states.sensor.camera_den_fullinfo.state.split(',')[1] }}"
 
   - platform: mqtt
     name: "camera_den_load"
     state_topic: "myhome/cameraden"
 #    unit_of_measurement: 'dBm'
-    value_template: "{{ states.sensor.camera_den_uptime.state.split(',')[3] ~ states.sensor.camera_den_uptime.state.split(',')[4]}}"
+    value_template: "{{ states.sensor.camera_den_fullinfo.state.split(',')[2] ~ states.sensor.camera_den_fullinfo.state.split(',')[3] ~ states.sensor.camera_den_fullinfo.state.split(',')[4] }}"
 
 
   - platform: mqtt
