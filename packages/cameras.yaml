@@ -132,9 +132,9 @@ sensor:
     state_topic: "myhome/cameraden"
     value_template:  >
       {% if 'load' in states.sensor.camera_den_fullinfo.state.split(',')[2]  %}
-      {{ states.sensor.camera_den_fullinfo.state.split(',')[2] ~ states.sensor.camera_den_fullinfo.state.split(',')[3] ~ states.sensor.camera_den_fullinfo.state.split(',')[4]}}
+      {{ states.sensor.camera_den_fullinfo.state.split(',')[2] ~ states.sensor.camera_den_fullinfo.state.split(',')[3] ~ states.sensor.camera_den_fullinfo.state.split(',')[4] | replace("load_average:","",)}}
       {% else %}
-      {{ states.sensor.camera_den_fullinfo.state.split(',')[3] ~ states.sensor.camera_den_fullinfo.state.split(',')[4] ~ states.sensor.camera_den_fullinfo.state.split(',')[5]}}
+      {{ states.sensor.camera_den_fullinfo.state.split(',')[3] ~ states.sensor.camera_den_fullinfo.state.split(',')[4] ~ states.sensor.camera_den_fullinfo.state.split(',')[5]  | replace("load_average:","",)}}
       {% endif %}
 
 
