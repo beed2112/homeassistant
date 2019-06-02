@@ -114,7 +114,16 @@
     - service: switch.turn_off
       entity_id:
       - switch.somfy
-      
+
+
+- alias: 'reset motion shade counter'
+  initial_state: True
+  trigger:
+    platform: time
+    at: '23:59:59'
+  action:
+    - service: counter.reset
+      entity_id: counter.shade_raised_counter      
 
 - alias: 'zzzzz OCC sim'
   initial_state: False
