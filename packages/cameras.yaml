@@ -38,7 +38,7 @@ automation:
         entity_id: camera.cameraden_motion_snapshot
         filename: '/config/www/Photos/den_{{ now().strftime("%Y%m%d-%H%M%S") }}.jpg'
     - service: counter.increment 
-      entity_id: counter.shade_raised_counter       
+      entity_id: counter.motion_pics_den     
 
 
 - alias: 'reset motion capture counter'
@@ -48,7 +48,7 @@ automation:
     at: '23:59:59'
   action:
     - service: counter.reset
-      entity_id: counter.shade_raised_counter  
+      entity_id: counter.motion_pics_den  
 
 
 

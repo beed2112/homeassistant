@@ -10,14 +10,11 @@
   condition:
     condition: state
     entity_id: switch.somfy
-    # entity_id: switch.router_fan
     state: 'on'
   action:
     - service: switch.turn_off
       entity_id:
       - switch.somfy
-      # entity_id:
-      # - switch.router_fan
     - service: homeassistant.turn_on
       entity_id: input_boolean.shade_raised   
     - service: counter.increment 
