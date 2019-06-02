@@ -120,7 +120,12 @@ sensor:
   - platform: mqtt
     name: "camera_den_users"
     state_topic: "myhome/cameraden"
-    value_template: "{{ states.sensor.camera_den_fullinfo.state.split(',')[1] }}"
+    value_template: >
+      {% if 'users' in states.sensor.camera_den_fullinfo.state.split(',')[1]  %}
+      {{ states.sensor.camera_den_fullinfo.state.split(',')[1]}}
+      {% else %}
+      {{ states.sensor.camera_den_fullinfo.state.split(',')[2]}}
+      {% endif %}
 
   - platform: mqtt
     name: "camera_den_load"
@@ -137,27 +142,23 @@ sensor:
   - platform: mqtt
     name: "camera_den_signal_level"
     state_topic: "myhome/cameraden"
-    unit_of_measurement: '%'
     value_template: "{{ value_json.signal_level }}"
 
   - platform: mqtt
     name: "camera_den_link_quality"
     state_topic: "myhome/cameraden"
-    unit_of_measurement: '%'
     value_template: "{{ value_json.link_quality}}"
 
 
   - platform: mqtt
     name: "camera_den_bitrate"
     state_topic: "myhome/cameraden"
-    unit_of_measurement: 'Mb\s'
     value_template: "{{ value_json.bitrate }}"
 
 
   - platform: mqtt
     name: "camera_den_noise_level"
     state_topic: "myhome/cameraden"
-    unit_of_measurement: '%'
     value_template: "{{ value_json.noise_level }}"
 
 
