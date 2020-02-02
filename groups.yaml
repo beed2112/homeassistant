@@ -2,14 +2,14 @@
 
   default_view:
    name: DEFAULT
-   view: true
+   #view: true
    icon: mdi:home
    entities:
      - group.basic
 
   basic:
     name: "Main "
-    control: hidden
+    ##control: hidden
     entities:
       - climate.arizona_arizona
       - binary_sensor.arizona_thermostat_arizona_fan
@@ -42,14 +42,14 @@
 
   livingroom_g:
     name: "Living Room "
-    control: hidden
+    ##control: hidden
     entities:
       - light.entryhall
       - light.kitchenoh
  
   bedroom_g:
     name: "Bedroom"
-    control: hidden
+    ##control: hidden
     entities:
       - switch.br_overhead
       - switch.br_switch  
@@ -58,7 +58,7 @@
 ###----------------------default view end----------------------------------------------###
   home2_view:
     name: "Other"
-    view: yes
+    #view: yes
     icon: mdi:home-plus
     entities:
       - group.home2_g
@@ -66,7 +66,7 @@
       
   home2_g:
     name: " "
-    control: hidden
+    ##control: hidden
     #icon: mdi:white-balance-sunny
     entities:
       - switch.hallbathroom
@@ -89,7 +89,7 @@
 
   weather_view:
     name: Weather
-    view: yes
+    #view: yes
     icon: mdi:white-balance-sunny
     entities:
       - group.dark_sky_g
@@ -128,9 +128,9 @@
 ###----------------------------control panel begin----------------------------------------###
   control_v:
     name: 'Control Panel'
-    view: yes
+    #view: yes
     icon: mdi:tune
-    control: hidden
+    ##control: hidden
     entities:
       - group.control_g
       - group.actions_g
@@ -140,7 +140,7 @@
   control_g:
     name: 'Controls'
     icon: mdi:tune
-    control: hidden
+    ##control: hidden
     entities:
       - input_boolean.emptycondo
       - input_boolean.night_mode
@@ -164,7 +164,7 @@
   actions_g:
     name: 'Actions'
     icon: mdi:tune
-    control: hidden
+    ##control: hidden
     entities:
       - script.white
       - script.green
@@ -173,7 +173,7 @@
   condo_temperatures_g:
     name: 'Inside Temp'
     icon: mdi:tune
-    control: hidden
+    ##control: hidden
     entities:
       - sensor.nest_temperature
       - sensor.multientryhalldoor_temperature
@@ -190,7 +190,7 @@
   condo_humids_g:
     name: 'Inside Humidity'
     icon: mdi:tune
-    control: hidden
+    ##control: hidden
     entities:
       - sensor.multientryhalldoor_relative_humidity
       - sensor.multientryhallkitchen_relative_humidity
@@ -206,7 +206,7 @@
 
   inside_views:
     name: Radio Stuff
-    view: yes
+    #view: yes
     icon: mdi:radar
     entities:
       - group.occupied_sensors_g
@@ -224,7 +224,7 @@
   condo_motion_g:
     name: 'Motion'
     icon: mdi:tune
-    control: hidden
+    ##control: hidden
     entities:
       - binary_sensor.motion_entrydoor 
       - binary_sensor.motion_entrykitchen
@@ -241,7 +241,7 @@
   doors_windows_g:
     name: 'Doors & Windows'
     icon: mdi:tune
-    control: hidden
+    ##control: hidden
     entities:
       - binary_sensor.opening_entrydoor
       - binary_sensor.opening_patiodoor
@@ -256,7 +256,7 @@
       
   
   multimotion:
-    control: hidden
+    ##control: hidden
     entities:
       - binary_sensor.motion_entrydoor 
       - binary_sensor.motion_entrykitchen
@@ -270,7 +270,7 @@
       - binary_sensor.motion_melodiebed
 
   multibrightness:
-    control: hidden
+    ##control: hidden
     entities:      
       - sensor.multientryhalldoor_luminance
       - sensor.multientryhallkitchen_luminance
@@ -283,7 +283,7 @@
       - sensor.multibedmike_luminance
       - sensor.multibedmelodie_luminance
   multitemp:
-    control: hidden
+    ##control: hidden
     entities:
       - sensor.multientryhalldoor_temperature
       - sensor.multientryhallkitchen_temperature
@@ -297,7 +297,7 @@
       - sensor.multibedmelodie_temperature
 
   multihumid:
-    control: hidden
+    ##control: hidden
     entities:
       - sensor.multientryhalldoor_relative_humidity
       - sensor.multientryhallkitchen_relative_humidity
@@ -313,7 +313,7 @@
   batteries_g:
     name: 'Bettery Levels'
     icon: mdi:car-battery
-    control: hidden
+    ##control: hidden
     entities:
       - sensor.multikitchen_battlevel
       - sensor.multientryhalldoor_battlevel
@@ -337,7 +337,7 @@
   occupied_sensors_g:
     name: 'Occupied'
     icon: mdi:tune
-    control: hidden
+    ##control: hidden
     entities:
       - binary_sensor.occupied_den
       - binary_sensor.occupied_entry
@@ -350,7 +350,7 @@
   sense_sensors_g:
     name: 'Sense'
     icon: mdi:battery-charging-100
-    control: hidden
+    ##control: hidden
     entities:
       - binary_sensor.samsung_tv
       - binary_sensor.ac
@@ -371,7 +371,7 @@
   hvac_watchlist_g:
     name: 'HVAC Watchlist'
     icon: mdi:tune
-    control: hidden
+    ##control: hidden
     entities:
       - binary_sensor.opening_entrydoor
       - binary_sensor.opening_patiodoor
@@ -390,7 +390,7 @@
 ###----------------------------timedate begin----------------------------------------###
   timedate_views:
     name: Time~Dates
-    view: yes
+    #view: yes
     icon: mdi:clock
     entities:
       - group.timedates
@@ -400,7 +400,7 @@
       
   timedates:
     name: Time Date
-    control: hidden
+    ##control: hidden
     entities:
       - sensor.time
       - sensor.date
@@ -410,14 +410,14 @@
 
   den_motion:
     name: den motion stuff
-    control: hidden
+   # #control: hidden
     entities:
       - switch.router_fan
       - switch.den_oh
 
   timedates2:
     name: Sun info
-    control: hidden
+    ##control: hidden
     entities:
       - sun.sun
       - sensor.sun_sunset_time
@@ -429,7 +429,7 @@
 
   timedates3:
     name: Random Times
-    control: hidden
+    ##control: hidden
     entities:
       - binary_sensor.occupancy_simulation_active
       - sensor.random_late_nite_time
@@ -453,7 +453,7 @@
 
   stats_view:
     name: Stats
-    view: yes
+    #view: yes
     icon: mdi:percent
     entities:
       - group.iosstats
@@ -469,7 +469,7 @@
 
   iosstats:
     name: iosNotify Stats
-    control: hidden
+    ##control: hidden
     entities:
     - sensor.mikeiossent
     - sensor.mikeioslimit
@@ -480,7 +480,7 @@
  
   cam_view:
     name: Camera
-    view: yes
+    #view: yes
     icon: mdi:weather-hurricane
     entities:
       - group.cam_group
@@ -497,7 +497,7 @@
   
   geek_views:
     name: System
-    view: yes
+    #view: yes
     icon: mdi:pier-crane
     entities:
       - group.geekview1
@@ -509,7 +509,7 @@
       
   geekview:
     name: ' '
-    control: hidden
+   # #control: hidden
     entities:
       - sensor.lr_tv_status
       - light.masterwclight
@@ -523,7 +523,7 @@
       
   geekview1:
     name: ' '
-    control: hidden
+    ##control: hidden
     entities:
       - binary_sensor.coffee_on
       - binary_sensor.hold_open
@@ -539,7 +539,7 @@
 
   geekview3:
     name: 'Mike'
-    control: hidden
+    ##control: hidden
     entities:
       - device_tracker.michaels_iphone
       # - device_tracker.mike_ipad
@@ -548,7 +548,7 @@
 
   geekview31:
     name: 'Melodie'
-    control: hidden
+    ##control: hidden
     entities:
       - device_tracker.iphone_melodie_personal
       - device_tracker.melodies_ipad2
@@ -561,7 +561,7 @@
 ###----------------------------alarm begin----------------------------------------###
   alarm_clock:
     name: 'Alarm Clock'
-    view: yes
+    #view: yes
     icon: mdi:alarm
     entities:
       - group.alarm_clock1
@@ -571,7 +571,7 @@
   alarm_clock1:
     name: 'Controls'
     icon: mdi:alarm
-    control: hidden
+   # #control: hidden
     entities:
       - sensor.alarm_clock_time
       - input_number.alarm_clock_hour
@@ -580,26 +580,26 @@
   alarm_clock2:
     name: 'Off/On '
     icon: mdi:switch
-    control: hidden
+    ##control: hidden
     entities:
       - input_boolean.alarm_clock_status
   
   morning:
     name: Morning on
-    control: hidden
+    ##control: hidden
     entities:
  #     - switch.br_switch
       - switch.coffee
  #     - switch.br_shower
  #     - switch.wc_light_switch
  #     - switch.br_overhead
-      - switch.patio_outlet
+      - switch.dresser
  #     - switch.melodie_nightstand_
       
   
 # automations_to_toggle_g:
 #    name: Automations to toggle
-#    #control: hidden
+#    ##control: hidden
 #    entities:
 #      - automation.br_fan_off_when_air_on
 #      - automation.br_fan_on_when_air_off
@@ -623,32 +623,25 @@
       
 #  hvac_automations_g:
 #    name: HVAC Automations to toggle
-#    #control: hidden
+#    ##control: hidden
 #    entities:
 #      - automation.br_fan_off_when_air_on
 #      - automation.br_fan_on_when_air_off
 #      - automation.stop_the_hvac_fan_dance
       
-      
-  all_view:
-    name: all stuff
-    view: yes
-    entities:
-      - group.all_lights
-      - group.all_switches
-      
+
 ###--------------------------------------------------------------------###
 
   br_mode_triggers:
     name: " "
-    control: hidden
+    #control: hidden
     entities:
       - switch.br_overhead
       - switch.br_hall
 
   people_status:
     name: Occupancy Status
-    control: hidden
+    #control: hidden
     entities:
       - sensor.mike_status
       - sensor.melodie_status

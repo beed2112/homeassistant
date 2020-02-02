@@ -75,7 +75,8 @@
     #- service: switch.turn_off
     #   entity_id:
     #   - switch.lr_ceiling_fan
-    #   - switch.lrlight
+    #   - switch.lrlight_switch
+  
     #   - switch.lr_switch
     #   - switch.dendresser
     # - service: light.turn_off
@@ -119,7 +120,7 @@
  
  #Night mode on for 30  minutes transition watchdog turned on
 - alias: 'enable morning transition watchdog'
-  initial_state: False
+  initial_state: True
   trigger:
     platform: state
     entity_id: input_boolean.night_mode
@@ -183,7 +184,7 @@
         brightness_pct: 30
     - service: switch.turn_on
       entity_id:
-      - switch.lrlight   
+      - switch.lrlight_switch  
 
 
 
@@ -195,6 +196,8 @@
     from: 'off'
     to: 'on'          
   action:
+    - service: homeassistant.update_entity
+      entity_id: sensor.alexadestinations   
     - service: notify.alexa_media
       data_template:
         target: "{{states.sensor.alexadestinations.state}}"

@@ -14,12 +14,15 @@ homeassistant:
   
   time_zone: America/Phoenix
 
-# a directory of automaions
-  customize: !include_dir_merge_named customize/
 
-#  customize: !include customize.yaml
+
+# a directory of automaions
+  #customize: !include_dir_merge_named customize/
+
+  customize: !include customize.yaml
 
   packages: !include_dir_named packages
+
 
 
 # new auth section
@@ -30,7 +33,7 @@ homeassistant:
 
 
 #
-
+default_config:
 #
 #influx "telemetry database - using different host"
 influxdb:
@@ -52,6 +55,7 @@ cloud:
         - light
 #        - group
         - input_boolean
+        - climate
       include_entities:
         - zwave.mudroom_receptacle
         - zwave.lrwarmer
@@ -85,7 +89,7 @@ automation: !include_dir_merge_list automations/
 # for testing to specific a specific file only
 #automation: !include automations/alarm.yaml
 
-
+ 
 
 #iOS notification
 notify:
@@ -98,8 +102,9 @@ notify:
       - target: !secret iosapp_target_mikepad
   - name: syslog
     platform: syslog
-  - name: alexa_media  
-    platform: alexa_media
+  - platform: alexa_media
+    name: alexa_media  
+    #platform: alexa_media
        
 
 
@@ -121,10 +126,13 @@ updater:
 
 #Discover some devices automatically
 discovery:
-  ignore:
-    - apple_tv
-    - samsung_tv
-
+  #ignore:
+   # - apple_tv
+   # - samsung_tv
+ 
+ssdp:
+zeroconf:
+  
 
 
 # Allows you to issue voice commands from the frontend in enabled browsers
@@ -210,6 +218,7 @@ nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
 
+mobile_app:
 
 device_tracker:
   - platform: ddwrt
@@ -290,6 +299,9 @@ counter:
   shade_raised_counter:
     initial: 0
     step: 1
+  wind_reset_counter:
+    initial: 0
+    step: 1    
 
 input_datetime:
   vacation_return_date:

@@ -8,7 +8,7 @@
 #-autodoc        file: hvac-ceiling-fan.yaml
 #-autodoc
 - alias: 'Cooling Outside timer begin'
-  initial_state: True
+  initial_state: False
   trigger:
     platform: state
     entity_id: group.hvac_watchlist_g
@@ -24,7 +24,7 @@
         entity_id: "timer.hvac_watchdog"
 
 - alias: 'HVAC Watchdog ends'
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: event
       event_type: timer.finished
@@ -37,7 +37,7 @@
       entity_id: input_boolean.hvac_cool_off_watchdog
         
 - alias: 'Windows close maybe turn hvac on'
-  initial_state: True
+  initial_state: False
   trigger:
     platform: state
     entity_id: group.hvac_watchlist_g

@@ -7,10 +7,9 @@
 # Alarm Clock
 - alias: 'Morning alarm'
   initial_state: True
-  hide_entity: False
   trigger:
-      platform: template
-      value_template: '{{ states.sensor.time.state == states.sensor.alarm_clock_time_long.state }}'
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.alarm_clock_time_long.state }}'
   condition:
     condition: state
     entity_id: input_boolean.alarm_clock_status

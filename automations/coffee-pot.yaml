@@ -1,7 +1,6 @@
 ###----     coffee pot notifications
 - alias: 'xx Coffee Pot is ON Send'
   initial_state: True
-  hide_entity: False
   trigger:
     platform: event
     event_type: call_service
@@ -66,7 +65,6 @@
 ###----     coffee pot notifications    end
 - alias: 'xx Coffee Pot is ON Send'
   initial_state: True
-  hide_entity: False
   trigger:
     platform: event
     event_type: call_service

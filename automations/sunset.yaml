@@ -10,7 +10,7 @@
     - service: switch.turn_on
       entity_id:
       - switch.lr_switch
-      - switch.lrlight
+      - switch.lrlight_switch
 
 
 - alias: 'LR switch Sunset(+3) off'
@@ -23,14 +23,14 @@
     - service: switch.turn_off
       entity_id:
       - switch.lr_switch
-      - switch.lrlight
+      - switch.lrlight_switch
 
 
 - alias: 'Patio CF Light on'
   initial_state: True
   trigger:
     platform: time
-    at: '23:00:00'
+    at: '22:59:00'
   action:
    - service: switch.turn_on
      entity_id:
@@ -56,4 +56,4 @@
   action:
     - service: switch.turn_on
       entity_id:
-      - switch.entryhalltable      
+      - switch.entryhalltable_switch      

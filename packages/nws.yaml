@@ -6,6 +6,9 @@
 
 
 ########################  SENSOR  ###############################################
+# statements to code for.... 
+#  Special Weather Statement
+
 
 sensor:
 #  - platform: nws_alerts
@@ -140,14 +143,10 @@ automation:
         - condition: template
           value_template: '{{ trigger.to_state.state|float > trigger.from_state.state|float }}'
         - condition: template
-          value_template: "{{ (('Severe' in states.sensor.nws_alerts_2.attributes.title) or ('Tornado' in states.sensor.nws_alerts_2.attributes.title)) and 'Warning' in states.sensor.nws_alerts_2.attributes.title }}"
+          value_template: "{{ (('Severe' in states.sensor.nws_alerts_2.attributes.title) or ('Heat' in states.sensor.nws_alerts_2.attributes.title) or ('Special' in states.sensor.nws_alerts_2.attributes.title)) and (('Warning' in states.sensor.nws_alerts_2.attributes.title) or ('Statement' in states.sensor.nws_alerts_2.attributes.title)) }}" 
     action:
-      - service: media_player.volume_set
-        data:
-          entity_id:
-            - media_player.den
-
-          volume_level: 0.7
+      - service: homeassistant.update_entity
+        entity_id: sensor.alexadestinations 
       - service: notify.alexa_media
         data_template:
           target: "{{states.sensor.alexadestinations.state}}"

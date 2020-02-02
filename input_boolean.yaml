@@ -1,6 +1,9 @@
   emptycondo:
     name: Empty Condo
 
+  iheart:
+    name: iheart
+
   white_light:
     name: White Lights
 
@@ -81,7 +84,8 @@
   shade_raised:  
     name: Shade Raised
 
-
+  shade_was_down:  
+    name: Shade Was Down
 
 #
 # use these these when i need a place holder in an automation trigger  see bathroom-lights.yaml

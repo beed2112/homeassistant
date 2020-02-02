@@ -15,7 +15,37 @@ homeassistant:
     package.node_anchors:
       customize: &customize
         package: 'cameras.yaml'
-
+   
+    sensor.camera_den_bitrate:
+      friendly_name: 'DenCam link bitrate'
+      icon: mdi:rocket   
+    sensor.camera_den_link_quality:
+      friendly_name: 'DenCam link qaulity'
+      icon: mdi:thumb-up-outline    
+    sensor.camera_den_load:  
+      friendly_name: 'DenCam CPU load'
+      icon: mdi:run
+    sensor.camera_den_noise_level:   
+      friendly_name: 'DenCam link noise'
+      icon: mdi:thumb-down-outline
+    sensor.camera_den_signal_level:
+      friendly_name: 'DenCam Signal'
+      icon: mdi:signal-cellular-outline
+    sensor.camera_den_ssid:
+      friendly_name: 'DenCam link'
+      icon: mdi:access-point-network
+    sensor.camera_den_uptime:
+      friendly_name: 'DenCam uptime'
+      icon: mdi:clock
+    sensor.camera_den_users:
+      friendly_name: 'DenCam users'
+      icon: mdi:human-male-female
+    counter.motion_pics_den:
+      friendly_name: 'DenCam captures'
+      icon: mdi:sort-numeric
+    binary_sensor.cameraden_motion_sensor:
+      friendly_name: 'DenCam motion'
+  
 counter:
   motion_pics_den:
     initial: 0
@@ -51,8 +81,44 @@ automation:
       entity_id: counter.motion_pics_den  
 
 
-
-
+- alias: 'master cam snapshot'
+  initial_state: False
+  trigger:
+    platform: time
+    at: '08:15:00'
+  action:
+    - service: homeassistant.update_entity
+      entity_id: binary_sensor.shade_was_down 
+    - delay: '00:00:02'    
+    - service: switch.turn_off
+      data_template:
+        entity_id: >- 
+         {%- if is_state("switch.somfy", "on")  -%}
+          {{- "switch.somfy" -}}
+          {%- else -%}
+          {{- "switch.dummy" -}}
+          {%- endif -%} 
+    #- wait_template: "{{ states.binary_sensor.opening_patio_shade.state == 'off' }}"    
+    - delay: '00:00:30'        
+    - service: camera.snapshot
+      data:
+        entity_id: camera.master
+        filename: '/config/www/Photos/master_{{ now().strftime("%Y%m%d-%H%M%S") }}.jpg'
+    #- wait_template: "{{ states.binary_sensor.opening_patio_shade.state == 'off' }}"        
+    - service: switch.turn_on
+      data_template:
+        entity_id: >- 
+         {%- if is_state("binary_sensor.shade_was_down", "on")  -%}
+          {{- "switch.somfy" -}}
+          {%- else -%}
+          {{- "switch.dummy" -}}
+          {%- endif -%} 
+    - service: counter.increment 
+      entity_id: counter.motion_pics_den  
+    - service: camera.snapshot
+      data:
+        entity_id: camera.livingroom_east
+        filename: '/config/www/Photos/livingroom_east_{{ now().strftime("%Y%m%d-%H%M%S") }}.jpg'
 
 camera:
 
@@ -89,6 +155,15 @@ camera:
     stream_source: !secret lrnlive
     verify_ssl: false
     scan_interval: 5  
+  - platform: generic
+    name: Master
+    username: !secret camuser
+    password: !secret campass
+    authentication: basic
+    still_image_url: !secret masterstill
+    stream_source: !secret masterlive
+    verify_ssl: false
+    scan_interval: 5    
   - platform: mqtt
     name: DenCamera Motion
     topic: myhome/cameraden/motion 
@@ -108,13 +183,12 @@ sensor:
 
   - platform: mqtt
     name: "camera_den_uptime"
-    friendly_name: "cameraDen Uptime"
     state_topic: "myhome/cameraden"
     value_template: >
       {% if 'users' in states.sensor.camera_den_fullinfo.state.split(',')[1]  %}
-      {{ states.sensor.camera_den_fullinfo.state.split(',')[0]}}
+      {{ states.sensor.camera_den_fullinfo.state.split(',')[0] | regex_replace(find='[0-9][0-9]:[0-9][0-9]:[0-9][0-9] up', replace='', ignorecase=False)}}
       {% else %}
-      {{ states.sensor.camera_den_fullinfo.state.split(',')[0] ~ states.sensor.camera_den_fullinfo.state.split(',')[1]}}
+      {{ states.sensor.camera_den_fullinfo.state.split(',')[0] | regex_replace(find='[0-9][0-9]:[0-9][0-9]:[0-9][0-9] up', replace='', ignorecase=False)~ states.sensor.camera_den_fullinfo.state.split(',')[1]}}
       {% endif %}
 
   - platform: mqtt
@@ -122,9 +196,9 @@ sensor:
     state_topic: "myhome/cameraden"
     value_template: >
       {% if 'users' in states.sensor.camera_den_fullinfo.state.split(',')[1]  %}
-      {{ states.sensor.camera_den_fullinfo.state.split(',')[1]}}
+      {{ states.sensor.camera_den_fullinfo.state.split(',')[1] | replace("users","",) }}
       {% else %}
-      {{ states.sensor.camera_den_fullinfo.state.split(',')[2]}}
+      {{ states.sensor.camera_den_fullinfo.state.split(',')[2] | replace("users","",) }}
       {% endif %}
 
   - platform: mqtt
@@ -132,11 +206,10 @@ sensor:
     state_topic: "myhome/cameraden"
     value_template:  >
       {% if 'load' in states.sensor.camera_den_fullinfo.state.split(',')[2]  %}
-      {{ states.sensor.camera_den_fullinfo.state.split(',')[2] ~ states.sensor.camera_den_fullinfo.state.split(',')[3] ~ states.sensor.camera_den_fullinfo.state.split(',')[4] | replace("load_average:","",)}}
+      {{ states.sensor.camera_den_fullinfo.state.split(',')[2] | replace("load average:","",) ~ states.sensor.camera_den_fullinfo.state.split(',')[3] ~ states.sensor.camera_den_fullinfo.state.split(',')[4] }}
       {% else %}
-      {{ states.sensor.camera_den_fullinfo.state.split(',')[3] ~ states.sensor.camera_den_fullinfo.state.split(',')[4] ~ states.sensor.camera_den_fullinfo.state.split(',')[5]  | replace("load_average:","",)}}
+      {{ states.sensor.camera_den_fullinfo.state.split(',')[3] | replace("load average:","",) ~ states.sensor.camera_den_fullinfo.state.split(',')[4] ~ states.sensor.camera_den_fullinfo.state.split(',')[5]  }}
       {% endif %}
-
 
   - platform: mqtt
     name: "camera_den_ssid"

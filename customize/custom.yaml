@@ -21,7 +21,11 @@
       occupancy_simulation: 'on'
       occupancy_controlled: 'on'
       location: 'master'
-
+   
+    switch.patiooutlet:
+      friendly_name: Christmas
+      location: 'patio'
+      
     light.kitchenoh:
       friendly_name: Kitchen
       occupancy_simulation: 'on'
@@ -48,7 +52,7 @@
       occupancy_controlled: 'on'
       location: 'entry'
 
-    switch.entryhalltable:
+    switch.entryhalltable_switch:
       friendly_name: Entry Hall Table
       occupancy_simulation: 'on'
       occupancy_controlled: 'on'
@@ -76,7 +80,7 @@
       occupancy_controlled: 'on'
       location: 'livingroom'
     
-    switch.lrlight:
+    switch.lrlight_switch:
       friendly_name: Living Room Lamp
       occupancy_simulation: 'on'
       occupancy_controlled: 'on'
@@ -127,13 +131,16 @@
       friendly_name: Den Ceiling Fan
       location: 'den'
          
-      
+    switch.lrsensorpower:
+      occupancy_controlled: 'on'
+      friendly_name: Dresser
+      location: 'master'    
     
     switch.dendresser:
       occupancy_simulation: 'on'
       occupancy_controlled: 'on'
       location: 'den'
-      friendly_name: Den Dresser
+      friendly_name: Den Table 
       
 
     switch.br_ceiling_fan:
@@ -159,13 +166,13 @@
       location: 'masterbath'
       occupancy_controlled: 'on'
 
-    switch.vanity_left:
+    switch.vanity_left_switch:
       occupancy_controlled: 'on'
       wax_warmer: 'on'
       friendly_name: Vanity Left
       icon: mdi:fire  
 
-    switch.vanity_Right:
+    switch.vanity_right_switch:
       occupancy_controlled: 'on'
       wax_warmer: 'on'
       friendly_name: Vanity Right      
@@ -214,13 +221,13 @@
       occupancy_controlled: 'on'
       friendly_name: Water Closet Fan
 
-    switch.mudroom:
+    switch.mudroom_switch:
       occupancy_controlled: 'on'
       wax_warmer: 'on'
       friendly_name: Mudroom Wax
       icon: mdi:fire
       
-    switch.lrwarmer:
+    switch.lrwarmer_switch:
       occupancy_controlled: 'on'
       wax_warmer: 'on'
       friendly_name: LR Wax

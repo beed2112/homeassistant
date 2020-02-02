@@ -39,6 +39,7 @@
       - automation.motion_den_light_timer_restart
       - automation.motion_entry_light_timer_restart
       - automation.motion_for_kitchen_light_timer_restart
+      - automation.den_save_motion_snapshot
       
 
 

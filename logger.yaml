@@ -23,13 +23,14 @@
     homeassistant.loader: info
     homeassistant.components.automation: warning
     homeassistant.helpers.script: warning
-    homeassistant.components.wemo: debug
-    homeassistant.components.sensor.sense: debug
-    homeassistant.components.binary_sensor.sense: debug
+    homeassistant.components.wemo: error
+    homeassistant.components.sensor.sense: error
+    homeassistant.components.binary_sensor.sense: error
     homeassistant.components.command_line.switch: warning
     homeassistant.components.command_line.sensor: warning
-    homeassistant.components.alexa: debug
+    homeassistant.components.alexa: error
     homeassistant.components.ddwrt.device_tracker: error
+    #custom_components.alexa_media: debug 
     
 
 

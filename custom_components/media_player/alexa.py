@@ -18,7 +18,7 @@ from homeassistant.components.media_player import (
     SUPPORT_PAUSE, SUPPORT_PLAY, SUPPORT_PREVIOUS_TRACK,
     SUPPORT_STOP, SUPPORT_TURN_OFF, SUPPORT_VOLUME_MUTE,
     SUPPORT_PLAY_MEDIA, SUPPORT_VOLUME_SET,
-    MediaPlayerDevice, DOMAIN, MEDIA_PLAYER_SCHEMA,
+    MediaPlayerDevice, DOMAIN, PLATFORM_SCHEMA,
     SUPPORT_SELECT_SOURCE)
 from homeassistant.const import (
     CONF_EMAIL, CONF_PASSWORD, CONF_URL,
@@ -49,7 +49,7 @@ ALEXA_DATA = "alexa_media"
 SERVICE_ALEXA_TTS = 'alexa_tts'
 
 ATTR_MESSAGE = 'message'
-ALEXA_TTS_SCHEMA = MEDIA_PLAYER_SCHEMA.extend({
+ALEXA_TTS_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(ATTR_MESSAGE): cv.string,
 })
 

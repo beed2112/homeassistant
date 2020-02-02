@@ -18,9 +18,16 @@
     
   - platform:  template
     sensors:
+      shade_was_down:
+        friendly_name: "Shade was down"
+        value_template: "{{states.switch.somfy.state == 'on'}}" 
+        entity_id: input_boolean.always_off   
       occupancy_simulation_active:
         friendly_name: "Occupancy Simulation"
         value_template: "{{states.timer.occupancy_sim.state == 'active'}}"
+      patio_shade_wind_timer:
+        friendly_name: "Waiting to lower shade"
+        value_template: "{{states.timer.somfy_raised_wind.state == 'active'}}"        
       test_this:
         friendly_name: "binary sensor test"
         value_template: "{{states.switch.den_oh.state == 'on'}}"
@@ -70,7 +77,7 @@
       opening_kitchen_window:
         friendly_name: "Kitchen"
         device_class: "window"        
-        value_template: "{{states.sensor.kitchen_window_access_control_2.state == '22' }}"                         
+        value_template: "{{states.sensor.kitchen_window_access_control.state == '22' }}"                         
       opening_patio_shade:
         friendly_name: "Patio Shade"
         device_class: "opening"
@@ -142,7 +149,7 @@
       tamper_kitchen_window:
         friendly_name: "Kitchen"
         device_class: "problem"        
-        value_template: "{{states.sensor.kitchen_window_burglar_2.state == '3' }}"                         
+        value_template: "{{states.sensor.kitchen_window_burglar.state == '3' }}"                         
       tamper_patio_shade:
         friendly_name: "Patio Shade"
         device_class: "problem"

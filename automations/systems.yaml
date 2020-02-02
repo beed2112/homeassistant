@@ -1,4 +1,41 @@
+- alias: Play sound
+  trigger:
+    platform: state
+    entity_id: input_select.soundboard
+  condition:
+    condition: template
+    value_template: '{{ states.input_select.soundboard.state !=  "none" }}'    
+  action:
+    - service: media_player.play_media
+      data_template:
+        entity_id: media_player.den
+        media_content_type: sound
+        media_content_id: '{{ states.input_select.soundboard.state}}'
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.soundboard
+        option: 'none'       
 
+
+ 
+
+- alias: iheart radio
+  trigger:
+    platform: state
+    entity_id: input_boolean.iheart
+    to: 'on'
+  action:
+   - service: media_player.play_media  
+     data: 
+       entity_id: 
+#         - media_player.everywhere
+         - media_player.bedroom
+         - media_player.main
+       media_content_id: five fifty KFYI
+       media_content_type: I_HEART_RADIO
+   - service: homeassistant.turn_off
+     entity_id: input_boolean.iheart    
+   
 - alias: "furnace filter date"
   trigger:
     platform: event
@@ -66,7 +103,7 @@
 
 - alias: 'zz Weatheralert hide on HA start if no active alert'
   initial_state: True
-  hide_entity: False
+  #hide_entity: False
   trigger:
       platform: homeassistant
       event: start

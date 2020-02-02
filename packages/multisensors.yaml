@@ -52,43 +52,43 @@ binary_sensor:
       motion_den:
         friendly_name: "Den"
         device_class: "motion"
-        value_template: "{{states.sensor.multiden_alarm_level.state == '255' and states. sensor.multiden_burglar.state == '8' }}"
+        value_template: "{{states.sensor.multiden_alarm_level.state == '255' and states.sensor.multiden_burglar.state == '8' }}"
       motion_entrydoor:
         friendly_name: "Entry Door"
         device_class: "motion"
-        value_template: "{{states.sensor.multientryhalldoor_alarm_level.state == '255' and states. sensor.multientryhalldoor_burglar.state == '8' }}"
+        value_template: "{{states.sensor.multientryhalldoor_alarm_level.state == '255' and states.sensor.multientryhalldoor_burglar.state == '8' }}"
       motion_entrykitchen:
         friendly_name: "Entry Kitchen"
         device_class: "motion"
-        value_template: "{{states.sensor.multientryhallkitchen_alarm_level.state == '255' and states. sensor.multientryhallkitchen_burglar.state == '8' }}"
+        value_template: "{{states.sensor.multientryhallkitchen_alarm_level.state == '255' and states.sensor.multientryhallkitchen_burglar.state == '8' }}"
       motion_kitchen:
         friendly_name: "Kitchen"
         device_class: "motion"
-        value_template: "{{states.sensor.multikitchen_alarm_level.state == '255' and states. sensor.multikitchen_burglar.state == '8' }}"
+        value_template: "{{states.sensor.multikitchen_alarm_level.state == '255' and states.sensor.multikitchen_burglar.state == '8' }}"
       motion_lr1:
         friendly_name: "Living Room 1"
         device_class: "motion"
-        value_template: "{{states.sensor.multilr1_alarm_level.state == '255' and states. sensor.multilr1_burglar.state == '8' }}"
+        value_template: "{{states.sensor.multilr1_alarm_level.state == '255' and states.sensor.multilr1_burglar.state == '8' }}"
       motion_mikebed:
         friendly_name: "Mike"
         device_class: "motion"
-        value_template: "{{states.sensor.multibedmike_alarm_level.state == '255' and states. sensor.multibedmike_burglar.state == '8' }}"
+        value_template: "{{states.sensor.multibedmike_alarm_level.state == '255' and states.sensor.multibedmike_burglar.state == '8' }}"
       motion_melodiebed:
         friendly_name: "Melodie"
         device_class: "motion"
-        value_template: "{{states.sensor.multibedmelodie_alarm_level.state == '255' and states. sensor.multibedmelodie_burglar.state == '8' }}"       
+        value_template: "{{states.sensor.multibedmelodie_alarm_level.state == '255' and states.sensor.multibedmelodie_burglar.state == '8' }}"       
       motion_masterbr1:
         friendly_name: "Master BR1"
         device_class: "motion"
-        value_template: "{{states.sensor.multimasterbr1_alarm_level.state == '255' and states. sensor.multimasterbr1_burglar.state == '8' }}"        
+        value_template: "{{states.sensor.multimasterbr1_alarm_level.state == '255' and states.sensor.multimasterbr1_burglar.state == '8' }}"        
       motion_masterhall:
         friendly_name: "Master Hall "
         device_class: "motion"
-        value_template: "{{states.sensor.multimasterhall_alarm_level.state == '255' and states. sensor.multimasterhall_burglar.state == '8' }}"     
+        value_template: "{{states.sensor.multimasterhall_alarm_level.state == '255' and states.sensor.multimasterhall_burglar.state == '8' }}"     
       motion_dining:
         friendly_name: "Dining"
         device_class: "motion"
-        value_template: "{{states.sensor.multidining_alarm_level.state == '255' and states. sensor.multidining_burglar.state == '8' }}"
+        value_template: "{{states.sensor.multidining_alarm_level.state == '255' and states.sensor.multidining_burglar.state == '8' }}"
 sensor:  
   - platform: template
     sensors:
@@ -255,7 +255,7 @@ group:
       
       
   multibrightness:
-    control: hidden
+   #control: hidden
     entities:      
       - sensor.multientryhalldoor_luminance
       - sensor.multientryhallkitchen_luminance
@@ -269,7 +269,7 @@ group:
       - sensor.multibedmelodie_luminance
 
   multitemp:
-    control: hidden
+   #control: hidden
     entities:
       - sensor.multientryhalldoor_temperature
       - sensor.multientryhallkitchen_temperature
@@ -283,7 +283,7 @@ group:
       - sensor.multibedmelodie_temperature
 
   multihumid:
-    control: hidden
+    #control: hidden
     entities:
       - sensor.multientryhalldoor_relative_humidity
       - sensor.multientryhallkitchen_relative_humidity
@@ -297,7 +297,7 @@ group:
       - sensor.multibedmelodie_relative_humidity
 
   tamperalerts:
-    control: hidden
+   #control: hidden
     entities:
       - binary_sensor.tamper_entrydoor
       - binary_sensor.tamper_patiodoor

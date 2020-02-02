@@ -1,5 +1,5 @@
 
-- alias: 'Motion for Master light on'
+- alias: 'Motion for Master light on' 
   initial_state: True
   trigger:
     - platform: state
@@ -66,3 +66,6 @@
     - service: switch.turn_off
       entity_id:
         -  switch.br_switch
+
+  
+

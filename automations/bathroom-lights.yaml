@@ -1,6 +1,6 @@
 
 - alias: 'Motion for MasterBath light on'
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id:  sensor.multimasterhall_burglar
@@ -61,6 +61,7 @@
 
 
 
+
 #####------------------------------------------------------------------------------------#####
 ##### This is all about the WC light                                                     #####
 ##### Turn on when dash button is pressed                                                #####
@@ -101,6 +102,47 @@
     # - service: homeassistant.turn_off
     #   entity_id: automation.wc_light_on_with_motion
 
+
+- alias: 'WC light on with motion in WC'
+  initial_state: False
+  trigger:
+    - platform: state
+      entity_id: sensor.multiwc_burglar
+      from: '0'
+      to: '8'
+  condition:
+    condition: state
+    entity_id: switch.wc_light_switch
+    state: 'on'
+  action:
+    - service: timer.start
+      data_template:
+        entity_id: "timer.br_night_motion"
+        duration: '{{ states.input_number.wc_motion_time_on.state | multiply(60) |int}}'
+
+
+- alias: 'Motion for wc light timer restart'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id:  sensor.multiwc_burglar
+      from: '0'
+      to: '8'
+  condition:
+    condition: state
+    entity_id: timer.br_night_motion
+    state: 'active'     
+  action:
+    - service: timer.start
+      data_template:
+        entity_id: "timer.br_night_motion"
+        duration: '{{ states.input_number.wc_motion_time_on.state | multiply(60) |int}}'
+
+
+
+
+
+
 #-autodoc
 #-autodoc        name: Motion WC light time ends
 #-autodoc description: Turn off WC light when the timer ends
@@ -140,7 +182,7 @@
     - service: switch.turn_on
       entity_id: switch.wc_light_switch
     - wait_template: "{{ states.switch.wc_light_switch.state == 'on' }}"
-    # - service: light.lifx_set_state
+    # - service: lifx.set_state
     #   data:
     #     entity_id: light.masterwclight
     #     # rgb_color: [0,100,0]
@@ -180,7 +222,7 @@
       entity_id: switch.wc_light_switch
     - wait_template: "{{ states.light.masterwclight.state == 'on' }}"
 #    - delay: 00:02:30
-    - service: light.lifx_set_state
+    - service: lifx.set_state
       data:
         entity_id: light.masterwclight
         color_name: green
@@ -218,7 +260,7 @@
       entity_id: switch.br_shower
 #    - delay: 00:02:30
     - wait_template: "{{ states.light.master_br_shower.state == 'on' }}"
-    - service: light.lifx_set_state
+    - service: lifx.set_state
       data:
         entity_id: light.master_br_shower
         color_name: green
@@ -249,7 +291,7 @@
       entity_id:  switch.hallshower
 #    - delay: 00:02:30
     - wait_template: "{{ states.light.hallshower.state == 'on' }}"
-    - service: light.lifx_set_state
+    - service: lifx.set_state
       data:
         entity_id: light.hallshower
         color_name: green
@@ -296,7 +338,7 @@
       entity_id: switch.wc_light_switch
     - wait_template: "{{ states.light.masterwclight.state == 'on' }}"
 #    - delay: 00:02:30
-    - service: light.lifx_set_state
+    - service: lifx.set_state
       data:
         entity_id: light.masterwclight
         color_name: white
@@ -334,7 +376,7 @@
       entity_id: switch.br_shower
 #    - delay: 00:02:30
     - wait_template: "{{ states.light.master_br_shower.state == 'on' }}"
-    - service: light.lifx_set_state
+    - service: lifx.set_state
       data:
         entity_id: light.master_br_shower
         color_name: white
@@ -367,7 +409,7 @@
       entity_id:  switch.hallshower
 #    - delay: 00:02:30
     - wait_template: "{{ states.light.hallshower.state == 'on' }}"
-    - service: light.lifx_set_state
+    - service: lifx.set_state
       data:
         entity_id: light.hallshower
         color_name: white
@@ -411,7 +453,7 @@
     - service: switch.turn_on
       entity_id: switch.hall_shower      
     - wait_template: "{{ states.light.masterwclight.state == 'on' }}"
-    - service: light.lifx_set_state
+    - service: lifx.set_state
       data:
         entity_id: light.masterwclight
         color_name: white
@@ -420,7 +462,7 @@
       data:
         entity_id: light.masterwclight
     - wait_template: "{{ states.light.master_br_shower.state == 'on' }}"
-    - service: light.lifx_set_state
+    - service: lifx.set_state
       data:
         entity_id: light.master_br_shower
         color_name: white
@@ -430,7 +472,7 @@
         entity_id: light.master_br_shower
 #
     - wait_template: "{{ states.light.hallshower.state == 'on' }}"
-    - service: light.lifx_set_state
+    - service: lifx.set_state
       data:
         entity_id: light.hallshower
         color_name: white

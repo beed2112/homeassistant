@@ -120,7 +120,7 @@ sensor:
 group:
   weather_card_forecast:
     name: Forecast
-    view: no
+    #view: no
     icon: mdi:sun
     entities:
       - sensor.forecast_0

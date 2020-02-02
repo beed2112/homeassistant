@@ -1,808 +1,1001 @@
-#
-   automation.alert_emptycondo:
-     autodoc_description: 'Process alert sent when no motion in condo is detected.  deviceless occupancy detection'
-     autodoc_file: 'openings.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.alert_occuppied_condo:
-     autodoc_description: 'Process alert sent when motion in condo is detected.  deviceless occupancy detection'
-     autodoc_file: 'openings.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.alert_on_opening:
-     autodoc_description: 'Process alert that something is opened and send iOS notify'
-     autodoc_file: 'openings.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.alert_on_opening_light_2:
-     autodoc_description: 'Process alert that something is opened and use LimeLight03 for visual alert'
-     autodoc_file: 'openings.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.alert_when_all_closed:
-     autodoc_description: 'Process alert that all is closed and send iOS notify'
-     autodoc_file: 'openings.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.alert_when_all_closed_light:
-     autodoc_description: 'Process alert that something is opened and use LimeLight03 for visual alert'
-     autodoc_file: 'openings.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.announce_shade_raised_do_to_wind:
-     autodoc_description: 'Play announcement on Alexa if shade raised due to high wind'
-     autodoc_file: 'somfy.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.br_fan_off_when_air_on:
-     autodoc_description: 'When House goes is in night mode and the HVAC is cooling turn on the bedroom ceiling fan when the HVAC fan stops. (The HVAC Fan dance)'
-     autodoc_file: 'hvac-ceiling-fan.yaml'
-     mode_vac: 'off'
-     mode_night: 'on'
-     mode_day: 'off'
-   automation.br_fan_on_when_air_off:
-     autodoc_description: 'When House goes is in night mode  and the HVAC is cooling turn off the bedroom ceiling fan when the HVAC fan starts. (The HVAC Fan dance)'
-     autodoc_file: 'hvac-ceiling-fan.yaml'
-     mode_vac: 'off'
-     mode_night: 'on'
-     mode_day: 'off'
-   automation.cooling_outside_timer_begin:
-     autodoc_description: 'Begin timer when a door or window is opened, if timer finished will trigger HVAC watchdog ends'
-     autodoc_file: 'hvac-ceiling-fan.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.hvac_watchdog_ends:
-     autodoc_description: 'Turn of HVAC since something is open'
-     autodoc_file: 'hvac-ceiling-fan.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.den_dresser_sunset_on:
-     autodoc_description: 'Turn on den dresser lamp at sunset'
-     autodoc_file: 'den.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.den_fan_off_when_air_on:
-     autodoc_description: 'When House goes is in night mode and the HVAC is cooling turn on the den ceiling fan when the HVAC fan stops. (The HVAC Fan dance)'
-     autodoc_file: 'den.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-     mode_guest: 'on'
-   automation.den_fan_on_when_air_off:
-     autodoc_description: 'When House goes is in night mode and the HVAC is cooling turn off the den ceiling fan when the HVAC fan starts. (The HVAC Fan dance)'
-     autodoc_file: 'den.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-     mode_guest: 'on'
-   automation.den_start_ceiling_fan_if_hvac_not_running_night:
-     autodoc_description: 'Turn on den ceiling fan if when switched into night mode if HVAC not running'
-     autodoc_file: 'den.yaml'
-     mode_vac: 'xx'
-     mode_night: 'on'
-     mode_guest: 'on'
-   automation.dummy:
-     autodoc_description: 'dummy automation used to ensure non empty lists for automation control activities'
-     autodoc_file: 'systems.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.enable_morning_transition_watchdog:
-     autodoc_description: 'Thirty minutes after Night mode entered turn on the night to day transition watchdog'
-     autodoc_file: 'goodnight.yaml'
-     mode_vac: 'off'
-     mode_night: 'xx'
-     mode_day: 'xx'
-
-   automation.entry_table_sunset_on:
-     autodoc_description: 'Turn entry hall table light at sunset'
-     autodoc_file: 'sunset.yaml'
-     mode_vac: 'off'
-     mode_night: 'on'
-     mode_day: 'on'
-
-   automation.entry_open_hall_light_on_with_timer:
-     autodoc_description: 'When House goes is in night mode  and the HVAC is cooling turn off the bedroom ceiling fan when the HVAC fan starts. (The HVAC Fan dance)'
-     autodoc_file: 'hvac-ceiling-fan.yaml'
-     mode_vac: 'off'
-     mode_night: 'on'
-     mode_day: 'on'
-   automation.just_occupied_turn_on_wax_warmers:
-     autodoc_description: 'Turn on wax warmers when condo is Just Occupied'
-     autodoc_file: 'presence-condo.yaml'
-     mode_vac: 'off'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.just_unocc_turn_off_occ_controlled_stuff:
-     autodoc_description: 'Turn off occupancy controlled lights when condo is Just Unoccupied'
-     autodoc_file: 'presence-condo.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.just_unoccupied_turn_off_wax_warmers:
-     autodoc_description: 'Turn off wax warmers when condo is Just Unoccupied'
-     autodoc_file: 'presence-condo.yaml'
-     mode_vac: 'off'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.lower_shade_after_wind_raised:
-     autodoc_description: 'If there have been no high winds and timner finsihed lower the sun shade.'
-     autodoc_file: 'somfy.yaml'
-     mode_vac: 'off'
-     mode_night: 'off'
-     mode_day: 'on'
-   automation.lr_switch_sunset_on:
-     autodoc_description: 'Turn on Living room table lamp 60 minutes before sunset'
-     autodoc_file: 'sunset.yaml'
-     mode_vac: 'on'
-     mode_night: 'on'
-     mode_day: 'on'
-   automation.lr_switch_sunset_3_off:
-     autodoc_description: 'Turn on Living room table lamp 3 hours after sunset'
-     autodoc_file: 'sunset.yaml'
-     mode_vac: 'on'
-     mode_night: 'xx'
-     mode_day: 'xx'
-
-   automation.just_occupied_turn_on_some_lights:
-     autodoc_description: 'When codo just occupied after sunset and before sunrise turn on entry hall table and living room switch'
-     autodoc_file: 'presence-condo.yaml'
-     mode_vac: 'on'
-     mode_night: 'xx'
-     mode_day: 'on'
-
-   automation.mark_condo_as_just_occupied:
-     autodoc_description: 'Condo status monitoring'
-     autodoc_file: 'presence-condo.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.mark_condo_as_just_unoccupied:
-     autodoc_description: 'Condo status monitoring'
-     autodoc_file: 'presence-condo.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.mark_condo_as_occupied:
-     autodoc_description: 'Condo status monitoring'
-     autodoc_file: 'presence-condo.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.mark_condo_as_unoccupied:
-     autodoc_description: 'Condo status monitoring'
-     autodoc_file: 'presence-condo.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.mark_condo_as_unoccupied_extended:
-     autodoc_description: 'Condo status monitoring'
-     autodoc_file: 'presence-condo.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day:
-   automation.mark_person_as_away:
-     autodoc_description: 'People status monitoring'
-     autodoc_file: 'presence.yaml'
-     mode_vac: 'xx'
-     mode_night:
-     mode_day:
-   automation.mark_person_as_extended_away:
-     autodoc_description: 'People status monitoring'
-     autodoc_file: 'presence.yaml'
-     mode_vac: 'xx'
-     mode_night:
-     mode_day:
-   automation.mark_person_as_home:
-     autodoc_description: 'People status monitoring'
-     autodoc_file: 'presence.yaml'
-     mode_vac: 'xx'
-     mode_night:
-     mode_day:
-   automation.mark_person_as_just_arrived:
-     autodoc_description: 'People status monitoring'
-     autodoc_file: 'presence.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.mark_person_as_just_left:
-     autodoc_description: 'People status monitoring'
-     autodoc_file: 'presence.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.melodie_nightstand:
-     autodoc_description: 'Melodie nightstand light toggled when dash pressed'
-     mode_vac: 'off'
-     mode_night: 'on'
-     mode_day: 'on'
-   automation.morning_alarm:
-     autodoc_description: 'Morning alarm turns on items in group.morning'
-     autodoc_file: 'alarm.yaml'
-     mode_vac: 'off'
-     mode_night: 'on'
-     mode_day: 'on'
-   automation.morning_hvac_temp_drop:
-     autodoc_description: 'Drop the temp in the morning'
-     autodoc_file: 'sunrise.yaml'
-     mode_vac: 'off'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.morning_hvac_temp_increase:
-     autodoc_description: 'When night mode turned off after sunrise turn off morning extra cool'
-     autodoc_file: 'night-day-mode.yaml'
-     mode_vac: 'off'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.morning_turn_on_undercabinet:
-     autodoc_description: 'When condo transitions from night mode turn on undercabinet in anticipation'
-     autodoc_file: 'night-day-mode.yaml'
-     mode_vac: 'off'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.motion_den_light_on:
-     autodoc_description: 'Den dresser on with motion'
-     autodoc_file: 'den.yaml'
-     mode_vac: 'off'
-     mode_night: 'xx'
-     mode_day: 'xx'
-     mode_guest: 'off'
-   automation.motion_den_light_time_ends:
-     autodoc_description: 'Turn off den light if no motion'
-     autodoc_file: 'den.yaml'
-     mode_vac: 'off'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.motion_den_light_timer_restart:
-     autodoc_description: 'Den timer motion restart'
-     autodoc_file: 'den.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.motion_den_timer_start_occupancy_only:
-     autodoc_description: 'Room occupancy'
-     autodoc_file: 'occupancy_monitoring.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.motion_dining_room_timer_start_occupancy_only:
-     autodoc_description: 'Room occupancy'
-     autodoc_file: 'occupancy_monitoring.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.motion_entry_light_on:
-     autodoc_description: 'Turn on entry light with motion or door'
-     autodoc_file: 'entry.yaml'
-     mode_vac: 'xx'
-     mode_night: 'on'
-     mode_day: 'on'
-   automation.motion_entry_light_time_ends:
-     autodoc_description: 'Entry light of after no motion'
-     autodoc_file: 'entry.yaml'
-     mode_vac: 'xx'
-     mode_night: 'on'
-     mode_day: 'on'
-   automation.motion_entry_light_timer_restart:
-     autodoc_description: 'Entry restart time with motion'
-     autodoc_file: 'entry.yaml'
-     mode_vac: 'xx'
-     mode_night: 'on'
-     mode_day: 'on'
-   automation.motion_entry_timer_start_occupancy_only:
-     autodoc_description: 'Room occupancy'
-     autodoc_file: 'occupancy_monitoring.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.motion_for_kitchen_light_on:
-     autodoc_description: 'Kitchen motion detection lighting,  Active in night mode'
-     autodoc_file: 'kitchen.yaml'
-     mode_vac: 'off'
-     mode_night: 'on'
-     mode_day: 'off'
-   automation.motion_for_kitchen_light_timer_restart:
-     autodoc_description: 'Kitchen timer restart for motion'
-     autodoc_file: 'kitchen.yaml'
-     mode_vac: 'off'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.motion_for_master_light_on:
-     autodoc_description: 'Motion turn on masterbedroom light'
-     autodoc_file: 'masterbr.yaml'
-     mode_vac: 'off'
-     mode_night: 'off'
-     mode_day: 'on'
-   automation.motion_for_master_light_timer_restart:
-     autodoc_description: 'Master timer restart for motion'
-     autodoc_file: 'masterbr.yaml'
-     mode_vac: 'off'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.motion_for_masterbath_light_on:
-     autodoc_description: 'Turn on Masterbath light by motion'
-     autodoc_file: 'bathroom-lights.yaml'
-     mode_vac: 'off'
-     mode_night: 'off'
-     mode_day: 'off'
-   automation.motion_for_masterbath_light_time_ends:
-     autodoc_description: 'Turn off Masterbath light when no motion'
-     autodoc_file: 'bathroom-lights.yaml'
-     mode_vac: 'off'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.motion_for_masterbath_light_timer_restart:
-     autodoc_description: 'Restart Masterbath timer due to motion'
-     autodoc_file: 'bathroom-lights.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.motion_hall_shower_light_on:
-     autodoc_description: 'Turn on hall shower with hall motion or Den door opening night mode'
-     autodoc_file: 'entry.yaml'
-     mode_vac: 'off'
-     mode_night: 'on'
-     mode_day: 'off'
-   automation.motion_hall_shower_light_time_ends:
-     autodoc_description: 'Turn off hall shower when timer ends'
-     autodoc_file: 'entry.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.motion_kitchen_light_time_ends:
-     autodoc_description: 'Turn off undercabinet light when no motion night mode'
-     autodoc_file: 'kitchen.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.motion_kitchen_timer_start_occupancy_only:
-     autodoc_description: 'Room occupancy'
-     autodoc_file: 'occupancy_monitoring.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-
-   automation.motion_occupied_master_bath_timer_start_occupancy_only:
-     autodoc_description: 'Room occupancy'
-     autodoc_file: 'occupancy_monitoring.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.motion_occupied_master_timer_start_occupancy_only:
-     autodoc_description: 'Room occupancy'
-     autodoc_file: 'occupancy_monitoring.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.motion_wc_light_time_ends:
-     autodoc_description: 'Turn off WC light when the timer ends'
-     autodoc_file: 'bathroom-lights.yaml'
-     mode_vac: 'off'
-     mode_night: 'on'
-     mode_day: 'off'
-   automation.night_mode_activated:
-     autodoc_description: 'When night mode has been acitvated raise the patio shade,turn light on in bedroom.'
-     autodoc_file: 'goodnight.yaml'
-     mode_vac: 'off'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.night_mode_activated_announce:
-     autodoc_description: 'Announce with Alexa that night mode has been activated'
-     autodoc_file: 'goodnight.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.night_mode_activated_melodie:
-     autodoc_description: 'When Melodie only one home turn on additional lights'
-     autodoc_file: 'goodnight.yaml'
-     mode_vac: 'off'
-     mode_night: 'on'
-     mode_day: 'on'
-   automation.motion_master_light_time_ends:
-     autodoc_description: 'Turn off light when no motion'
-     autodoc_file: 'masterbr.yaml'
-     mode_vac: 'off'
-     mode_night: 'off'
-     mode_day: 'on'
+<<<<<<< HEAD
+ #
+=======
+  #
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.alert_emptycondo:
+      autodoc_description: 'Process alert sent when no motion in condo is detected.  deviceless occupancy detection'
+      autodoc_file: 'openings.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.alert_occuppied_condo:
+      autodoc_description: 'Process alert sent when motion in condo is detected.  deviceless occupancy detection'
+      autodoc_file: 'openings.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.alert_on_opening:
+      autodoc_description: 'Process alert that something is opened and send iOS notify'
+      autodoc_file: 'openings.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.alert_on_opening_light_2:
+      autodoc_description: 'Process alert that something is opened and use LimeLight03 for visual alert'
+      autodoc_file: 'openings.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.alert_when_all_closed:
+      autodoc_description: 'Process alert that all is closed and send iOS notify'
+      autodoc_file: 'openings.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.alert_when_all_closed_light:
+      autodoc_description: 'Process alert that something is opened and use LimeLight03 for visual alert'
+      autodoc_file: 'openings.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.announce_shade_raised_do_to_wind:
+      autodoc_description: 'Play announcement on Alexa if shade raised due to high wind'
+      autodoc_file: 'somfy.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.br_fan_off_when_air_on:
+      autodoc_description: 'When House goes is in night mode and the HVAC is cooling turn on the bedroom ceiling fan when the HVAC fan stops. (The HVAC Fan dance)'
+      autodoc_file: 'hvac-ceiling-fan.yaml'
+      mode_vac: 'off'
+      mode_night: 'on'
+      mode_day: 'off'
+    automation.br_fan_on_when_air_off:
+      autodoc_description: 'When House goes is in night mode  and the HVAC is cooling turn off the bedroom ceiling fan when the HVAC fan starts. (The HVAC Fan dance)'
+      autodoc_file: 'hvac-ceiling-fan.yaml'
+      mode_vac: 'off'
+      mode_night: 'on'
+      mode_day: 'off'
+    automation.cooling_outside_timer_begin:
+      autodoc_description: 'Begin timer when a door or window is opened, if timer finished will trigger HVAC watchdog ends'
+      autodoc_file: 'hvac-ceiling-fan.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.hvac_watchdog_ends:
+      autodoc_description: 'Turn of HVAC since something is open'
+      autodoc_file: 'hvac-ceiling-fan.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.den_dresser_sunset_on:
+      autodoc_description: 'Turn on den dresser lamp at sunset'
+      autodoc_file: 'den.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.den_fan_off_when_air_on:
+      autodoc_description: 'When House goes is in night mode and the HVAC is cooling turn on the den ceiling fan when the HVAC fan stops. (The HVAC Fan dance)'
+      autodoc_file: 'den.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+      mode_guest: 'on'
+    automation.den_fan_on_when_air_off:
+      autodoc_description: 'When House goes is in night mode and the HVAC is cooling turn off the den ceiling fan when the HVAC fan starts. (The HVAC Fan dance)'
+      autodoc_file: 'den.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+      mode_guest: 'on'
+    automation.den_start_ceiling_fan_if_hvac_not_running_night:
+      autodoc_description: 'Turn on den ceiling fan if when switched into night mode if HVAC not running'
+      autodoc_file: 'den.yaml'
+      mode_vac: 'xx'
+      mode_night: 'on'
+      mode_guest: 'on'
+    automation.dummy:
+      autodoc_description: 'dummy automation used to ensure non empty lists for automation control activities'
+      autodoc_file: 'systems.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.enable_morning_transition_watchdog:
+      autodoc_description: 'Thirty minutes after Night mode entered turn on the night to day transition watchdog'
+      autodoc_file: 'goodnight.yaml'
+      mode_vac: 'off'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
  
+=======
 
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.entry_table_sunset_on:
+      autodoc_description: 'Turn entry hall table light at sunset'
+      autodoc_file: 'sunset.yaml'
+      mode_vac: 'off'
+      mode_night: 'on'
+      mode_day: 'on'
+<<<<<<< HEAD
  
-   automation.zz_weather_alert_0:
-     autodoc_description: 'When the weather alert becomes inactive hide the group containing the alert information'
-     autodoc_file: 'system.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.zz_weather_alert_1:
-     autodoc_description: 'When there is an active weather alert show the group containing the alert information'
-     autodoc_file: 'system.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.zz_weatheralert_hide_on_ha_start_if_no_active_alert:
-     autodoc_description: 'When HA restarts hide the group containing the alert information if no active alert'
-     autodoc_file: 'system.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.zzz_check_furnace_filter_change_date:
-     autodoc_description: 'Check to see if it is time to change the furnace filter based on a date set at the last change'
-     autodoc_file: 'sunrise.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.zzz_lr_sensor_power_reset:
-     autodoc_description: 'Bounce Power if LR sensor goes offline'
-     autodoc_file: 'system.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-   automation.zzzzz_occ_sim:
-     autodoc_description: 'Used for testing Occupancy simulation'
-     autodoc_file: 'system.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
+=======
 
-   automation.furnace_filter_date:
-     autodoc_description: 'Update the furnace filter change date when dash button pressed'
-     autodoc_file: 'system.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.entry_open_hall_light_on_with_timer:
+      autodoc_description: 'When House goes is in night mode  and the HVAC is cooling turn off the bedroom ceiling fan when the HVAC fan starts. (The HVAC Fan dance)'
+      autodoc_file: 'hvac-ceiling-fan.yaml'
+      mode_vac: 'off'
+      mode_night: 'on'
+      mode_day: 'on'
+    automation.just_occupied_turn_on_wax_warmers:
+      autodoc_description: 'Turn on wax warmers when condo is Just Occupied'
+      autodoc_file: 'presence-condo.yaml'
+      mode_vac: 'off'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.just_unocc_turn_off_occ_controlled_stuff:
+      autodoc_description: 'Turn off occupancy controlled lights when condo is Just Unoccupied'
+      autodoc_file: 'presence-condo.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.just_unoccupied_turn_off_wax_warmers:
+      autodoc_description: 'Turn off wax warmers when condo is Just Unoccupied'
+      autodoc_file: 'presence-condo.yaml'
+      mode_vac: 'off'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.lower_shade_after_wind_raised:
+      autodoc_description: 'If there have been no high winds and timner finsihed lower the sun shade.'
+      autodoc_file: 'somfy.yaml'
+      mode_vac: 'off'
+      mode_night: 'off'
+      mode_day: 'on'
+    automation.lr_switch_sunset_on:
+      autodoc_description: 'Turn on Living room table lamp 60 minutes before sunset'
+      autodoc_file: 'sunset.yaml'
+      mode_vac: 'on'
+      mode_night: 'on'
+      mode_day: 'on'
+    automation.lr_switch_sunset_3_off:
+      autodoc_description: 'Turn on Living room table lamp 3 hours after sunset'
+      autodoc_file: 'sunset.yaml'
+      mode_vac: 'on'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+ 
+=======
 
-   automation.good_night_set_status:
-     autodoc_description: 'Turn night mode on when the Sense detects the TV has been turned off after 21:30'
-     autodoc_file: 'goodnight.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx' 
-     
-   automation.hall_bathroom_fan_off:
-     autodoc_description: 'Turn of hall bathroom fan after on for 5 minutes'
-     autodoc_file: 'entry.yam;'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx' 
-     
-   automation.hall_shower_set_green:
-     autodoc_description: 'When night mode turned on set the hall bathroom light to green'
-     autodoc_file: 'bathroom-lights.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx' 
-     
-   automation.hall_shower_set_white:
-     autodoc_description: 'When night mode turned off set the hall bathroom light to white'
-     autodoc_file: 'bathroom-lights.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx' 
-     
-   automation.night_mode_activated_mike:
-     autodoc_description: 'When Mike is home and night mode turned on all lights other than master area will be shut off after delay'
-     autodoc_file: 'goodnight.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx' 
-     
-   automation.night_mode_off:
-     autodoc_description: 'Night mode is off turn off night time only automations'
-     autodoc_file: 'mode-control.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx' 
-     
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.just_occupied_turn_on_some_lights:
+      autodoc_description: 'When codo just occupied after sunset and before sunrise turn on entry hall table and living room switch'
+      autodoc_file: 'presence-condo.yaml'
+      mode_vac: 'on'
+      mode_night: 'xx'
+      mode_day: 'on'
+<<<<<<< HEAD
+ 
+=======
+
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.mark_condo_as_just_occupied:
+      autodoc_description: 'Condo status monitoring'
+      autodoc_file: 'presence-condo.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.mark_condo_as_just_unoccupied:
+      autodoc_description: 'Condo status monitoring'
+      autodoc_file: 'presence-condo.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.mark_condo_as_occupied:
+      autodoc_description: 'Condo status monitoring'
+      autodoc_file: 'presence-condo.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.mark_condo_as_unoccupied:
+      autodoc_description: 'Condo status monitoring'
+      autodoc_file: 'presence-condo.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.mark_condo_as_unoccupied_extended:
+      autodoc_description: 'Condo status monitoring'
+      autodoc_file: 'presence-condo.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day:
+    automation.mark_person_as_away:
+      autodoc_description: 'People status monitoring'
+      autodoc_file: 'presence.yaml'
+      mode_vac: 'xx'
+      mode_night:
+      mode_day:
+    automation.mark_person_as_extended_away:
+      autodoc_description: 'People status monitoring'
+      autodoc_file: 'presence.yaml'
+      mode_vac: 'xx'
+      mode_night:
+      mode_day:
+    automation.mark_person_as_home:
+      autodoc_description: 'People status monitoring'
+      autodoc_file: 'presence.yaml'
+      mode_vac: 'xx'
+      mode_night:
+      mode_day:
+    automation.mark_person_as_just_arrived:
+      autodoc_description: 'People status monitoring'
+      autodoc_file: 'presence.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.mark_person_as_just_left:
+      autodoc_description: 'People status monitoring'
+      autodoc_file: 'presence.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.melodie_nightstand:
+      autodoc_description: 'Melodie nightstand light toggled when dash pressed'
+      mode_vac: 'off'
+      mode_night: 'on'
+      mode_day: 'on'
+    automation.morning_alarm:
+      autodoc_description: 'Morning alarm turns on items in group.morning'
+      autodoc_file: 'alarm.yaml'
+      mode_vac: 'off'
+      mode_night: 'on'
+      mode_day: 'on'
+    automation.morning_hvac_temp_drop:
+      autodoc_description: 'Drop the temp in the morning'
+      autodoc_file: 'sunrise.yaml'
+      mode_vac: 'off'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.morning_hvac_temp_increase:
+      autodoc_description: 'When night mode turned off after sunrise turn off morning extra cool'
+      autodoc_file: 'night-day-mode.yaml'
+      mode_vac: 'off'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.morning_turn_on_undercabinet:
+      autodoc_description: 'When condo transitions from night mode turn on undercabinet in anticipation'
+      autodoc_file: 'night-day-mode.yaml'
+      mode_vac: 'off'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.motion_den_light_on:
+      autodoc_description: 'Den dresser on with motion'
+      autodoc_file: 'den.yaml'
+      mode_vac: 'off'
+      mode_night: 'xx'
+      mode_day: 'xx'
+      mode_guest: 'off'
+    automation.motion_den_light_time_ends:
+      autodoc_description: 'Turn off den light if no motion'
+      autodoc_file: 'den.yaml'
+      mode_vac: 'off'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.motion_den_light_timer_restart:
+      autodoc_description: 'Den timer motion restart'
+      autodoc_file: 'den.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.motion_den_timer_start_occupancy_only:
+      autodoc_description: 'Room occupancy'
+      autodoc_file: 'occupancy_monitoring.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.motion_dining_room_timer_start_occupancy_only:
+      autodoc_description: 'Room occupancy'
+      autodoc_file: 'occupancy_monitoring.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.motion_entry_light_on:
+      autodoc_description: 'Turn on entry light with motion or door'
+      autodoc_file: 'entry.yaml'
+      mode_vac: 'xx'
+      mode_night: 'on'
+      mode_day: 'on'
+    automation.motion_entry_light_time_ends:
+      autodoc_description: 'Entry light of after no motion'
+      autodoc_file: 'entry.yaml'
+      mode_vac: 'xx'
+      mode_night: 'on'
+      mode_day: 'on'
+    automation.motion_entry_light_timer_restart:
+      autodoc_description: 'Entry restart time with motion'
+      autodoc_file: 'entry.yaml'
+      mode_vac: 'xx'
+      mode_night: 'on'
+      mode_day: 'on'
+    automation.motion_entry_timer_start_occupancy_only:
+      autodoc_description: 'Room occupancy'
+      autodoc_file: 'occupancy_monitoring.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.motion_for_kitchen_light_on:
+      autodoc_description: 'Kitchen motion detection lighting,  Active in night mode'
+      autodoc_file: 'kitchen.yaml'
+      mode_vac: 'off'
+      mode_night: 'on'
+      mode_day: 'off'
+    automation.motion_for_kitchen_light_timer_restart:
+      autodoc_description: 'Kitchen timer restart for motion'
+      autodoc_file: 'kitchen.yaml'
+      mode_vac: 'off'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.motion_for_master_light_on:
+      autodoc_description: 'Motion turn on masterbedroom light'
+      autodoc_file: 'masterbr.yaml'
+      mode_vac: 'off'
+      mode_night: 'off'
+      mode_day: 'on'
+    automation.motion_for_master_light_timer_restart:
+      autodoc_description: 'Master timer restart for motion'
+      autodoc_file: 'masterbr.yaml'
+      mode_vac: 'off'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.motion_for_masterbath_light_on:
+      autodoc_description: 'Turn on Masterbath light by motion'
+      autodoc_file: 'bathroom-lights.yaml'
+      mode_vac: 'off'
+      mode_night: 'off'
+      mode_day: 'off'
+    automation.motion_for_masterbath_light_time_ends:
+      autodoc_description: 'Turn off Masterbath light when no motion'
+      autodoc_file: 'bathroom-lights.yaml'
+      mode_vac: 'off'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.motion_for_masterbath_light_timer_restart:
+      autodoc_description: 'Restart Masterbath timer due to motion'
+      autodoc_file: 'bathroom-lights.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.motion_hall_shower_light_on:
+      autodoc_description: 'Turn on hall shower with hall motion or Den door opening night mode'
+      autodoc_file: 'entry.yaml'
+      mode_vac: 'off'
+      mode_night: 'on'
+      mode_day: 'off'
+    automation.motion_hall_shower_light_time_ends:
+      autodoc_description: 'Turn off hall shower when timer ends'
+      autodoc_file: 'entry.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.motion_kitchen_light_time_ends:
+      autodoc_description: 'Turn off undercabinet light when no motion night mode'
+      autodoc_file: 'kitchen.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.motion_kitchen_timer_start_occupancy_only:
+      autodoc_description: 'Room occupancy'
+      autodoc_file: 'occupancy_monitoring.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+ 
+=======
+
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.motion_occupied_master_bath_timer_start_occupancy_only:
+      autodoc_description: 'Room occupancy'
+      autodoc_file: 'occupancy_monitoring.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.motion_occupied_master_timer_start_occupancy_only:
+      autodoc_description: 'Room occupancy'
+      autodoc_file: 'occupancy_monitoring.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.motion_wc_light_time_ends:
+      autodoc_description: 'Turn off WC light when the timer ends'
+      autodoc_file: 'bathroom-lights.yaml'
+      mode_vac: 'off'
+      mode_night: 'on'
+      mode_day: 'off'
+    automation.night_mode_activated:
+      autodoc_description: 'When night mode has been acitvated raise the patio shade,turn light on in bedroom.'
+      autodoc_file: 'goodnight.yaml'
+      mode_vac: 'off'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.night_mode_activated_announce:
+      autodoc_description: 'Announce with Alexa that night mode has been activated'
+      autodoc_file: 'goodnight.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.night_mode_activated_melodie:
+      autodoc_description: 'When Melodie only one home turn on additional lights'
+      autodoc_file: 'goodnight.yaml'
+      mode_vac: 'off'
+      mode_night: 'on'
+      mode_day: 'on'
+    automation.motion_master_light_time_ends:
+      autodoc_description: 'Turn off light when no motion'
+      autodoc_file: 'masterbr.yaml'
+      mode_vac: 'off'
+      mode_night: 'off'
+      mode_day: 'on'
+  
+<<<<<<< HEAD
+ 
+=======
+
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+  
+    automation.zz_weather_alert_0:
+      autodoc_description: 'When the weather alert becomes inactive hide the group containing the alert information'
+      autodoc_file: 'system.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.zz_weather_alert_1:
+      autodoc_description: 'When there is an active weather alert show the group containing the alert information'
+      autodoc_file: 'system.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.zz_weatheralert_hide_on_ha_start_if_no_active_alert:
+      autodoc_description: 'When HA restarts hide the group containing the alert information if no active alert'
+      autodoc_file: 'system.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.zzz_check_furnace_filter_change_date:
+      autodoc_description: 'Check to see if it is time to change the furnace filter based on a date set at the last change'
+      autodoc_file: 'sunrise.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.zzz_lr_sensor_power_reset:
+      autodoc_description: 'Bounce Power if LR sensor goes offline'
+      autodoc_file: 'system.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+    automation.zzzzz_occ_sim:
+      autodoc_description: 'Used for testing Occupancy simulation'
+      autodoc_file: 'system.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+ 
+=======
+
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.furnace_filter_date:
+      autodoc_description: 'Update the furnace filter change date when dash button pressed'
+      autodoc_file: 'system.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'      
+<<<<<<< HEAD
+ 
+=======
+
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.good_night_set_status:
+      autodoc_description: 'Turn night mode on when the Sense detects the TV has been turned off after 21:30'
+      autodoc_file: 'goodnight.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx' 
+      
+    automation.hall_bathroom_fan_off:
+      autodoc_description: 'Turn of hall bathroom fan after on for 5 minutes'
+      autodoc_file: 'entry.yam;'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx' 
+      
+    automation.hall_shower_set_green:
+      autodoc_description: 'When night mode turned on set the hall bathroom light to green'
+      autodoc_file: 'bathroom-lights.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx' 
+      
+    automation.hall_shower_set_white:
+      autodoc_description: 'When night mode turned off set the hall bathroom light to white'
+      autodoc_file: 'bathroom-lights.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx' 
+      
+    automation.night_mode_activated_mike:
+      autodoc_description: 'When Mike is home and night mode turned on all lights other than master area will be shut off after delay'
+      autodoc_file: 'goodnight.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx' 
+      
+    automation.night_mode_off:
+      autodoc_description: 'Night mode is off turn off night time only automations'
+      autodoc_file: 'mode-control.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx' 
+      
+<<<<<<< HEAD
+ 
+ 
+=======
 
 
-   automation.night_mode_on:
-     autodoc_description: 'Night mode is on turn on night time only automations'
-     autodoc_file: 'mode-control.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx' 
-     
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.night_mode_on:
+      autodoc_description: 'Night mode is on turn on night time only automations'
+      autodoc_file: 'mode-control.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx' 
+      
+<<<<<<< HEAD
+ 
+=======
 
-   automation.not_good_night_unset_status:
-     autodoc_description: 'TV deteced as on turn off night mode'
-     autodoc_file: 'goodnight.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx' 
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.not_good_night_unset_status:
+      autodoc_description: 'TV deteced as on turn off night mode'
+      autodoc_file: 'goodnight.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx' 
+      
+    automation.occpancy_monitoring_box_opened:
+      autodoc_description: 'Main entry has been opened if it is not nigh mode start occupancy check timer'
+      autodoc_file: 'openings.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx' 
+      
+    automation.occupancy_check_time_cancel:
+      autodoc_description: 'Motion has been detected cancel occupancy check time and consider the condo occupied'
+      autodoc_file: 'openings.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx' 
+      
+    automation.occupancy_check_time_ends:
+      autodoc_description: 'Motion has not been detected and occupancy check time ends consider the condo empty occupied'
+      autodoc_file: 'openings.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx' 
+      
+    automation.occupancy_simulation_event_begins:
+      autodoc_description: 'Occupancy simulation begins turn on the selected light from those with the attribute occupancy simulation set to on '
+      autodoc_file: 'mode-control.yaml'
+      mode_vac: 'on'
+      mode_night: 'xx'
+      mode_day: 'xx' 
+      
+    automation.occupancy_simulation_event_ends:
+      autodoc_description: 'Occupancy simulation ends turn off light from those with the attribute occupancy simulation set to on '
+      autodoc_file: 'mode-control.yaml'
+      mode_vac: 'on'
+      mode_night: 'xx'
+      mode_day: 'xx'  
+<<<<<<< HEAD
      
-   automation.occpancy_monitoring_box_opened:
-     autodoc_description: 'Main entry has been opened if it is not nigh mode start occupancy check timer'
-     autodoc_file: 'openings.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx' 
-     
-   automation.occupancy_check_time_cancel:
-     autodoc_description: 'Motion has been detected cancel occupancy check time and consider the condo occupied'
-     autodoc_file: 'openings.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx' 
-     
-   automation.occupancy_check_time_ends:
-     autodoc_description: 'Motion has not been detected and occupancy check time ends consider the condo empty occupied'
-     autodoc_file: 'openings.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx' 
-     
-   automation.occupancy_simulation_event_begins:
-     autodoc_description: 'Occupancy simulation begins turn on the selected light from those with the attribute occupancy simulation set to on '
-     autodoc_file: 'mode-control.yaml'
-     mode_vac: 'on'
-     mode_night: 'xx'
-     mode_day: 'xx' 
-     
-   automation.occupancy_simulation_event_ends:
-     autodoc_description: 'Occupancy simulation ends turn off light from those with the attribute occupancy simulation set to on '
-     autodoc_file: 'mode-control.yaml'
-     mode_vac: 'on'
-     mode_night: 'xx'
-     mode_day: 'xx'  
-    
-   automation.patio_cf_light_on:
-     autodoc_description: 'Turn on patio ceiling fan light at 21:00'
-     autodoc_file: 'sunset.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.patio_cf_light_on:
+      autodoc_description: 'Turn on patio ceiling fan light at 21:00'
+      autodoc_file: 'sunset.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+ 
+=======
 
-   automation.patio_cf_light_sunrise_off:
-     autodoc_description: 'Turn off patio ceiling fan light at sunrise'
-     autodoc_file: 'sunrise.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.patio_outlet_on_at_sunset:
-     autodoc_description: 'Turn on patio outlet at sunset no current device configured'
-     autodoc_file: sunset.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.raise_shade_any_wind_over_threshold_mph:
-     autodoc_description: 'If wind speed goes above set threshold raise the patio shade'
-     autodoc_file: 'somfy.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.reset_shade_timer_is_wind_above_threshold:
-     autodoc_description: 'If wind speed goes above set threshold restart timer used monitor for lower wind speeds'
-     autodoc_file: 'somfy.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.restore_lighting:
-     autodoc_description: 'Restore lighting that was turned of as a result of condo being determined as unoccupied'
-     autodoc_file: 'restore0lighting.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.shade_down_at_dawn:
-     autodoc_description: 'Lower patio shade at dawn'
-     autodoc_file: 'sunrise.yaml'
-     mode_vac: 'off'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.shower_set_green:
-     autodoc_description: 'When night mode turned on set shower light to green'
-     autodoc_file: 'bathroom-lights.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.shower_set_to_white:
-     autodoc_description: 'When night mode turned off set shower light to white'
-     autodoc_file: 'bathroom-lights.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.start_ceiling_fan_if_hvac_not_running_night:
-     autodoc_description: 'When night mode turned on also turn on bedroom ceiling fan if HVAC not running'
-     autodoc_file: 'hvac-ceiling-fan.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.switch_off_night_mode_br_oh_trigger:
-     autodoc_description: 'When night mode is on bedroom hall or overhead being turned on will turn night mode off.  this automation turns itself off when run.  Automation turned on by  automation.enable_morning_transition_watchdog'
-     autodoc_file: 'night-day-mode.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.turn_off_occpancy_monitoring_when_patio_opened:
-     autodoc_description: 'When patio door is opened stop occupancy monitoring'
-     autodoc_file: 'openings.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.turn_off_wax_warmers:
-     autodoc_description: 'When the condo becomes unoccupied turn off switches with wax warmer attribute'
-     autodoc_file: 'presence-condo.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.turn_on_wax_warmers:
-     autodoc_description: 'When the condo becomes unoccupied turn off switches with wax warmer attribute'
-     autodoc_file: 'presence-condo.yaml'
-     mode_vac: 'off'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.vacation_mode_activated_raise_patio_shade:
-     autodoc_description: 'When vacation mode is turned on raise patio shade'
-     autodoc_file: 'somfy.yaml;'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.vacation_mode_off:
-     autodoc_description: 'When vacation more is turned off enable and disable automations bsed on vacation mode attribute'
-     autodoc_file: 'mode-control.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.vacation_mode_on:
-     autodoc_description: 'When vacation more is turned off enable and disable automations bsed on vacation mode attribute'
-     autodoc_file: 'mode-control.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.vacation_return_day_adjust_nest_temp:
-     autodoc_description: 'Check vacation return date at sunrise if it is today set the thermostat for return'
-     autodoc_file: 'mode-control.yaml'
-     mode_vac: 'on'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.watchdog_shade_did_not_go_down_try_again:
-     autodoc_description: 'Shade was lowered but still appears to be up after 3 minutes based on sensor try to lower it again'
-     autodoc_file: 'shade.yaml'
-     mode_vac: 'off'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.watchdog_shade_did_not_go_up_try_again:
-     autodoc_description: 'Shade was riased but still appears to be lowered after 3 minutes based on sensor try to raise it again'
-     autodoc_file: 'shade.yaml'
-     mode_vac: 'off'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.wc_fan_off:
-     autodoc_description: 'Turn off WC fan after has been on for 5 minutes'
-     autodoc_file: 'bathroom-lights.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.wc_light_dash:
-     autodoc_description: 'Toggle WC light when dash button pressed'
-     autodoc_file: 'bathroom-lights.yaml'
-
-   automation.wc_light_off_door_close:
-     autodoc_description: 'Turn off the WC light when the door is closed'
-     autodoc_file: 'bathroom-lights.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.wc_light_on_color_dash:
-     autodoc_description: 'Toggle WC light when dash button pressed'
-     autodoc_file: 'bathroom-lights.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.wc_light_on_door_open:
-     autodoc_description: 'Turn on the WC light when the door is opened'
-     autodoc_file: 'bathroom-lights.yaml'
-     mode_vac: 'xx'
-     mode_night: 'off'
-     mode_day: 'on'
-    
-   automation.wc_light_on_with_motion:
-     autodoc_description: 'When night mode is on turn on WC light with motion'
-     autodoc_file: 'bathroom-lights.yaml'
-     mode_vac: 'xx'
-     mode_night: 'on'
-     mode_day: 'off'
-    
-   automation.wc_light_reset_to_white_script:
-     autodoc_description: 'When executed set WC light to white'
-     autodoc_file: 'bathroom-lights.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.wc_set_green:
-     autodoc_description: 'When night mode is turned on set WC light to green'
-     autodoc_file: 'bathroom-lights.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.wc_set_to_white:
-     autodoc_description: 'When night mode is turned off set WC light to white'
-     autodoc_file: 'bathroom-lights.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.windows_close_maybe_turn_hvac_on:
-     autodoc_description: 'Windows and doors all closed turn HVAC back on'
-     autodoc_file: 'hvac-ceiling-fan.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.xmas_off_patio_cf_light_on:
-     autodoc_description: 'Xmas turn off the patio ceiling fan light'
-     autodoc_file: 'xmas.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.xx_coffee_pot_is_on_send:
-     autodoc_description: 'Send notification that coffee pot is on'
-     autodoc_file: 'coffee-pot.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.xx_coffee_pot_is_on_send_2:
-     autodoc_description: 'Send notification that coffee pot is on'
-     autodoc_file: 'coffee-pot.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.patio_cf_light_sunrise_off:
+      autodoc_description: 'Turn off patio ceiling fan light at sunrise'
+      autodoc_file: 'sunrise.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
      
-   automation.xx_coffeepot_off_response:
-     autodoc_description: 'Process actionable notification response to turn coffee pot off '
-     autodoc_file: 'coffee-pot.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.xx_coffeepot_on_response:
-     autodoc_description: 'Process actionable notification response leave coffee pot on'
-     autodoc_file: 'coffee-pot.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
-    
-   automation.xx_ios_msg_counts:
-     autodoc_description: 'Gather iOS notification statistics for GUI display'
-     autodoc_file: 'systems.yaml'
-     mode_vac: 'xx'
-     mode_night: 'xx'
-     mode_day: 'xx'
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.patio_outlet_on_at_sunset:
+      autodoc_description: 'Turn on patio outlet at sunset no current device configured'
+      autodoc_file: sunset.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.raise_shade_any_wind_over_threshold_mph:
+      autodoc_description: 'If wind speed goes above set threshold raise the patio shade'
+      autodoc_file: 'somfy.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.reset_shade_timer_is_wind_above_threshold:
+      autodoc_description: 'If wind speed goes above set threshold restart timer used monitor for lower wind speeds'
+      autodoc_file: 'somfy.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.restore_lighting:
+      autodoc_description: 'Restore lighting that was turned of as a result of condo being determined as unoccupied'
+      autodoc_file: 'restore0lighting.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.shade_down_at_dawn:
+      autodoc_description: 'Lower patio shade at dawn'
+      autodoc_file: 'sunrise.yaml'
+      mode_vac: 'off'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.shower_set_green:
+      autodoc_description: 'When night mode turned on set shower light to green'
+      autodoc_file: 'bathroom-lights.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.shower_set_to_white:
+      autodoc_description: 'When night mode turned off set shower light to white'
+      autodoc_file: 'bathroom-lights.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.start_ceiling_fan_if_hvac_not_running_night:
+      autodoc_description: 'When night mode turned on also turn on bedroom ceiling fan if HVAC not running'
+      autodoc_file: 'hvac-ceiling-fan.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+    automation.switch_off_night_mode_br_oh_trigger:
+      autodoc_description: 'When night mode is on bedroom hall or overhead being turned on will turn night mode off. Automation turned on by  automation.enable_morning_transition_watchdog'
+=======
+      
+    automation.switch_off_night_mode_br_oh_trigger:
+      autodoc_description: 'When night mode is on bedroom hall or overhead being turned on will turn night mode off.  this automation turns itself off when run.  Automation turned on by  automation.enable_morning_transition_watchdog'
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+      autodoc_file: 'night-day-mode.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.turn_off_occpancy_monitoring_when_patio_opened:
+      autodoc_description: 'When patio door is opened stop occupancy monitoring'
+      autodoc_file: 'openings.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.turn_off_wax_warmers:
+      autodoc_description: 'When the condo becomes unoccupied turn off switches with wax warmer attribute'
+      autodoc_file: 'presence-condo.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.turn_on_wax_warmers:
+      autodoc_description: 'When the condo becomes unoccupied turn off switches with wax warmer attribute'
+      autodoc_file: 'presence-condo.yaml'
+      mode_vac: 'off'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.vacation_mode_activated_raise_patio_shade:
+      autodoc_description: 'When vacation mode is turned on raise patio shade'
+      autodoc_file: 'somfy.yaml;'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.vacation_mode_off:
+      autodoc_description: 'When vacation more is turned off enable and disable automations bsed on vacation mode attribute'
+      autodoc_file: 'mode-control.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.vacation_mode_on:
+      autodoc_description: 'When vacation more is turned off enable and disable automations bsed on vacation mode attribute'
+      autodoc_file: 'mode-control.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.vacation_return_day_adjust_nest_temp:
+      autodoc_description: 'Check vacation return date at sunrise if it is today set the thermostat for return'
+      autodoc_file: 'mode-control.yaml'
+      mode_vac: 'on'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.watchdog_shade_did_not_go_down_try_again:
+      autodoc_description: 'Shade was lowered but still appears to be up after 3 minutes based on sensor try to lower it again'
+      autodoc_file: 'shade.yaml'
+      mode_vac: 'off'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.watchdog_shade_did_not_go_up_try_again:
+      autodoc_description: 'Shade was riased but still appears to be lowered after 3 minutes based on sensor try to raise it again'
+      autodoc_file: 'shade.yaml'
+      mode_vac: 'off'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.wc_fan_off:
+      autodoc_description: 'Turn off WC fan after has been on for 5 minutes'
+      autodoc_file: 'bathroom-lights.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+    automation.wc_light_dash:
+      autodoc_description: 'Toggle WC light when dash button pressed'
+      autodoc_file: 'bathroom-lights.yaml'
+ 
+=======
+      
+    automation.wc_light_dash:
+      autodoc_description: 'Toggle WC light when dash button pressed'
+      autodoc_file: 'bathroom-lights.yaml'
+
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.wc_light_off_door_close:
+      autodoc_description: 'Turn off the WC light when the door is closed'
+      autodoc_file: 'bathroom-lights.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.wc_light_on_color_dash:
+      autodoc_description: 'Toggle WC light when dash button pressed'
+      autodoc_file: 'bathroom-lights.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.wc_light_on_door_open:
+      autodoc_description: 'Turn on the WC light when the door is opened'
+      autodoc_file: 'bathroom-lights.yaml'
+      mode_vac: 'xx'
+      mode_night: 'off'
+      mode_day: 'on'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.wc_light_on_with_motion:
+      autodoc_description: 'When night mode is on turn on WC light with motion'
+      autodoc_file: 'bathroom-lights.yaml'
+      mode_vac: 'xx'
+      mode_night: 'on'
+      mode_day: 'off'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.wc_light_reset_to_white_script:
+      autodoc_description: 'When executed set WC light to white'
+      autodoc_file: 'bathroom-lights.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.wc_set_green:
+      autodoc_description: 'When night mode is turned on set WC light to green'
+      autodoc_file: 'bathroom-lights.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.wc_set_to_white:
+      autodoc_description: 'When night mode is turned off set WC light to white'
+      autodoc_file: 'bathroom-lights.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.windows_close_maybe_turn_hvac_on:
+      autodoc_description: 'Windows and doors all closed turn HVAC back on'
+      autodoc_file: 'hvac-ceiling-fan.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.xmas_off_patio_cf_light_on:
+      autodoc_description: 'Xmas turn off the patio ceiling fan light'
+      autodoc_file: 'xmas.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.xx_coffee_pot_is_on_send:
+      autodoc_description: 'Send notification that coffee pot is on'
+      autodoc_file: 'coffee-pot.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.xx_coffee_pot_is_on_send_2:
+      autodoc_description: 'Send notification that coffee pot is on'
+      autodoc_file: 'coffee-pot.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+      
+    automation.xx_coffeepot_off_response:
+      autodoc_description: 'Process actionable notification response to turn coffee pot off '
+      autodoc_file: 'coffee-pot.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.xx_coffeepot_on_response:
+      autodoc_description: 'Process actionable notification response leave coffee pot on'
+      autodoc_file: 'coffee-pot.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+     
+=======
+      
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f
+    automation.xx_ios_msg_counts:
+      autodoc_description: 'Gather iOS notification statistics for GUI display'
+      autodoc_file: 'systems.yaml'
+      mode_vac: 'xx'
+      mode_night: 'xx'
+      mode_day: 'xx'
+<<<<<<< HEAD
+ 
+ 
+ 
+=======
 
 
 
+>>>>>>> 8e1a62856e7494913397c83f4167c748825b4c3f

@@ -77,6 +77,8 @@
     from: '23'
     to: '22'
   action:
+   - service: homeassistant.turn_on
+     entity_id: light.entryhall 
    - service: timer.start
      data_template:
        entity_id: "timer.entry_motion"
@@ -133,4 +135,20 @@
   action:
     - service: switch.turn_off
       entity_id: switch.hallbathroomfan
+
+
+- alias: 'Entry  light toggle'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id:  sensor.kitchen_window_access_control
+      from: '23'
+      to: '22'
+    - platform: state
+      entity_id:  sensor.kitchen_window_access_control
+      from: '22'
+      to: '23'
+  action:
+   - service: light.toggle
+     entity_id: light.entryhall       
       

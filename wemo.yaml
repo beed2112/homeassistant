@@ -30,3 +30,6 @@
     - !secret LR-Celing-Fan
     - !secret lrSensor
     - !secret esp
+    - !secret denswitchedoutlet
+    - !secret patiooutlet
+    - !secret guitar

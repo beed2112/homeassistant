@@ -136,7 +136,7 @@
     - service: switch.turn_on
       entity_id:
       - switch.lr_switch
-      - switch.entryhalltable
+      - switch.entryhalltable_switch
       
       
       
