@@ -15,8 +15,7 @@
       data:
         entity_id: input_select.soundboard
         option: 'none'       
-
-
+ 
  
 - alias: iheart radio
   trigger:
