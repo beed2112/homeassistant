@@ -1,3 +1,17 @@
+  ceiling_fan_time_on:
+    name: Ceiling fan time on
+    initial: 15
+    min: 1
+    max: 60
+    step: 1
+  
+  ceiling_fan_time_off:
+    name: Ceiling fan time off
+    initial: 15
+    min: 1
+    max: 60
+    step: 1
+
   alarm_clock_hour:
     min: 0
     max: 23

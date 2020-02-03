@@ -7,6 +7,7 @@
 #-autodoc description:
 #-autodoc        file: hvac-ceiling-fan.yaml
 #-autodoc
+
 - alias: 'Cooling Outside timer begin'
   initial_state: False
   trigger:
@@ -153,5 +154,57 @@
   action:
     - service: switch.turn_on
       entity_id: switch.br_ceiling_fan
-      
-      
+
+- alias: 'start ceiling fan when not in cool mode at night'
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: input_boolean.night_mode
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sensor.arizona_thermostat_arizona_operation_mode
+        state: 'heat'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.br_ceiling_fan
+    - service: timer.start
+      data_template:
+        entity_id: "timer.ceiling_fan_on"
+        duration: '{{ states.input_number.ceiling_fan_time_on.state | multiply(60) |int}}'      
+
+- alias: 'Ceiling fan on time ends'
+  initial_state: True
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.ceiling_fan_on
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.br_ceiling_fan          
+    - service: timer.start
+      data_template:
+        entity_id: "timer.ceiling_fan_off"
+        duration: '{{ states.input_number.ceiling_fan_time_off.state | multiply(60) |int}}'  
+
+
+- alias: 'Ceiling fan off time ends'
+  initial_state: True
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.ceiling_fan_off
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.br_ceiling_fan  
+    - service: timer.start
+      data_template:
+        entity_id: "timer.ceiling_fan_on"
+        duration: '{{ states.input_number.ceiling_fan_time_on.state | multiply(60) |int}}'                

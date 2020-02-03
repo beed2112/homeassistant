@@ -1,4 +1,7 @@
-  
+  ceiling_fan_on:
+    duration: '900'
+  ceiling_fan_off:
+    duration: '900'      
   occupied_den_motion:
     duration: '600'
   occupied_entry_motion:
