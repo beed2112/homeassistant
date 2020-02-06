@@ -19,7 +19,7 @@
       entity_id: group.morning
     - service: media_player.play_media
       data:
-        entity_id: media_player.den
+        entity_id: media_player.bedroom
         media_content_type: sound
         media_content_id: 'amzn_sfx_rooster_crow_01'    
     - delay: 00:02:00
