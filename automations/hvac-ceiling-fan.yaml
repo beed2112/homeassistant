@@ -200,6 +200,15 @@
       event_type: timer.finished
       event_data:
         entity_id: timer.ceiling_fan_off
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.night_mode
+        state: 'on'
+      - condition: state
+        entity_id: sensor.arizona_thermostat_arizona_operation_mode
+        state: 'heat'      
   action:
     - service: switch.turn_on
       entity_id:
