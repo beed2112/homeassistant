@@ -34,20 +34,20 @@
    - service: homeassistant.turn_off
      entity_id: input_boolean.iheart    
    
-- alias: "furnace filter date"
-  trigger:
-    platform: event
-    event_type: furnace_filter_changed
-  action:
-    service: shell_command.furnacefilterdate
+#- alias: "furnace filter date"
+#  trigger:
+#    platform: event
+#    event_type: furnace_filter_changed
+#  action:
+#    service: shell_command.furnacefilterdate
 
-- alias: "Melodie Nightstand"
-  trigger:
-    platform: event
-    event_type: nightstand_light_button
-  action:
-    service: switch.toggle
-    entity_id: switch.melodie_nightstand
+#- alias: "Melodie Nightstand"
+#  trigger:
+#    platform: event
+#    event_type: nightstand_light_button
+#  action:
+#    service: switch.toggle
+#    entity_id: switch.melodie_nightstand
 
 
 
@@ -85,72 +85,56 @@
 
 # # fire when weather alert changes to 0 hide the group in the weather view
 
-- alias: 'zz Weather alert 0'
-  initial_state: True
-  trigger:
-    platform: state
-    entity_id: sensor.pws_alerts
-    from: '1'
-    to: '0'
-  action:
-    service: group.set_visibility
-    entity_id: group.weather_alert_group
-    data:
-      visible: False
+#- alias: 'zz Weather alert 0'
+#  initial_state: True
+#  trigger:
+#    platform: state
+#    entity_id: sensor.pws_alerts
+#    from: '1'
+#    to: '0'
+#  action:
+#    service: group.set_visibility
+#    entity_id: group.weather_alert_group
+#    data:
+#      visible: False
 # fire when HA restarts and Hide aert group if no active alert
 
-- alias: 'zz Weatheralert hide on HA start if no active alert'
-  initial_state: True
-  #hide_entity: False
-  trigger:
-      platform: homeassistant
-      event: start
-  condition:
-    condition: state
-    entity_id: sensor.pws_alerts
-    state: '0'
-  action:
-    service: group.set_visibility
-    entity_id: group.weather_alert_group
-    data:
-      visible: False
+##- alias: 'zz Weatheralert hide on HA start if no active alert'
+#  initial_state: True
+#  #hide_entity: False
+#  trigger:
+#      platform: homeassistant
+#      event: start
+#  condition:
+#    condition: state
+#    entity_id: sensor.pws_alerts
+#    state: '0'
+#  action:
+#    service: group.set_visibility
+#    entity_id: group.weather_alert_group
+#    data:
+#      visible: False
 
 
 
 
 
       
-- alias: 'xx ios msg counts'
-  initial_state: True
-  trigger:
-    platform: event
-    event_type: call_service
-    event_data:
-      domain: notify
-      service: ios_michaels_iphone
-  action:
-    # putting the delay ensure that the event makes it to the log in the event this is the first notify
-    - delay: 00:00:05
-    - service: shell_command.iosnotifycount
+#- alias: 'xx ios msg counts'
+#  initial_state: True
+#  trigger:
+#    platform: event
+#    event_type: call_service
+#    event_data:
+#      domain: notify
+#      service: ios_michaels_iphone
+#  action:
+#    # putting the delay ensure that the event makes it to the log in the event this is the first notify
+#    - delay: 00:00:05
+#    - service: shell_command.iosnotifycount
 
 #call_service|{"domain": "notify", "service": "ios_michaels_iphone", "service_data": {"message": "Here i
 
-- alias: 'zzz LR sensor power reset'
-  initial_state: True
-  trigger :
-    platform: state
-    entity_id: binary_sensor.living_room_gw
-    from: 'on'
-    to: 'off'
-  condition:
-    condition: state
-    entity_id: switch.patio_outlet
-    state: 'on'
-  action:
-    - service: homeassistant.turn_off
-      entity_id: switch.patio_outlet
-    - service: homeassistant.turn_on
-      entity_id: switch.patio_outlet
 
 
 - alias: 'Alexa annnouncement testing'
