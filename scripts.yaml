@@ -12,6 +12,22 @@
   #     below: 29
   #   action:
   #     service: shell_command.renew_ssl
+
+system_cleanup:
+  sequence:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.system_ready
+    - service: input_boolean.turn_on
+      data:
+        entity_id: 'input_boolean.allow_automation_execution'
+
+customstartup:
+  sequence:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: 'input_boolean.allow_automation_execution'
+      # You can add other "startup" code here if you wish 
+
   
 white:
   sequence:

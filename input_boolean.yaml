@@ -1,6 +1,14 @@
   emptycondo:
     name: Empty Condo
 
+  allow_automation_execution:
+    name: 'Allow Automation'
+    initial: off
+
+  system_ready:
+    name: 'System Ready'
+    initial: off
+
   iheart:
     name: iheart
 
