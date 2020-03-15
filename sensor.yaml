@@ -27,36 +27,7 @@
  #   value_template: '{{ value }}'
     
     
-###------------------glances---------------------------------------------
-  - platform: glances
-    name: haserver2
-    version: 3
-    #resources:
-    #  - 'disk_use_percent'
-    #  - 'disk_use'
-    #  - 'disk_free'
-    #  - 'memory_use_percent'
-    #  - 'memory_use'
-    #  - 'memory_free'
-    #  - 'swap_use_percent'
-    #  - 'swap_use'
-    #  - 'swap_free'
-    #  - 'processor_load'
-    #  - 'process_running'
-    #  - 'process_total'
-    #  - 'process_thread'
-    #  - 'process_sleeping'
-    #  - 'cpu_use_percent'
-    #  - 'docker_active'
-    #  - 'docker_cpu_use'
-    #  - 'docker_memory_use'      
 
-
-###------------------------------------Random --------------------------------------
-## generate random times for different parts of the day
-## using 10 minutes as the starting minute to make like easy
-## 86400 seconds in 24 hours
- 
   - platform: random
     name: random_late_nite_hh
     minimum: 00
