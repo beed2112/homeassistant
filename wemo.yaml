@@ -4,7 +4,7 @@
     - !secret masterBathTub
     - !secret denSwitchTestLight
     - !secret hallShower
-    - !secret brSensor
+    #- !secret brSensor
     - !secret denOh
     - !secret lrOh
     - !secret denMiddle
@@ -31,5 +31,5 @@
     - !secret lrSensor
     - !secret esp
     - !secret denswitchedoutlet
-    - !secret patiooutlet
-    - !secret guitar
+    #- !secret patiooutlet
+    #- !secret guitar
