@@ -121,8 +121,8 @@ http:
   # login_attempts_threshold: 5
 
 # Checks for available updates
-updater:
-  include_used_components: true
+#updater:
+ # include_used_components: true
 
 #Discover some devices automatically
 #discovery:
