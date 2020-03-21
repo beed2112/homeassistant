@@ -33,7 +33,7 @@ homeassistant:
 
 
 #
-default_config:
+#default_config:
 #
 #influx "telemetry database - using different host"
 influxdb:
