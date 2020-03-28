@@ -188,7 +188,7 @@ frontend: !include frontend.yaml
 recorder: !include recorder.yaml
 
 # Enables support for tracking state changes over time.
-history: !include history.yaml
+#history: !include history.yaml
 
 # View all events in a logbook
 logbook: !include logbook.yaml
