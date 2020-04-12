@@ -10,6 +10,11 @@
       from: 'not_home'
       to: 'home'
   action:
+    - service: logbook.log
+      data_template:
+        name: "status change for  ==> "
+        message: >- 
+          {{ trigger.entity_id }}   
     - service: input_select.select_option
       data_template:
         entity_id: >
@@ -55,6 +60,11 @@
       from: 'Just Left'
       to: 'Just Arrived'
   action:
+    - service: logbook.log
+      data_template:
+        name: "status change for  ==> "
+        message: >- 
+          {{ trigger.entity_id }}   
     - service: input_select.select_option
       data_template:
         entity_id: >
@@ -77,6 +87,11 @@
       from: 'home'
       to: 'not_home'
   action:
+    - service: logbook.log
+      data_template:
+        name: "status change for  ==> "
+        message: >- 
+          {{ trigger.entity_id }}   
     - service: input_select.select_option
       data_template:
         entity_id: >
@@ -101,6 +116,11 @@
       for:
         minutes: 10
   action:
+    - service: logbook.log
+      data_template:
+        name: "status change for  ==> "
+        message: >- 
+          {{ trigger.entity_id }}   
     - service: input_select.select_option
       data_template:
         entity_id: >
@@ -125,6 +145,11 @@
       for:
         hours: 24
   action:
+    - service: logbook.log
+      data_template:
+        name: "status change for  ==> "
+        message: >- 
+          {{ trigger.entity_id }}   
     - service: input_select.select_option
       data_template:
         entity_id: >
