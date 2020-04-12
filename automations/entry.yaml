@@ -141,11 +141,11 @@
   initial_state: True
   trigger:
     - platform: state
-      entity_id:  sensor.kitchen_window_access_control
+      entity_id:  sensor.entryhall_switch_access_control
       from: '23'
       to: '22'
     - platform: state
-      entity_id:  sensor.kitchen_window_access_control
+      entity_id:  sensor.entryhall_switch_access_control
       from: '22'
       to: '23'
   action:
