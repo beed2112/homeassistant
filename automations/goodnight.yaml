@@ -206,7 +206,40 @@
           #method: all
         message: "I see that it is bedtime, I will shut off the lights for you in a few minutes. Good night!"
 
-        
+- alias: 'Night Bedroom off'
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedroom_off
+      from: 'off'
+      to: 'on'          
+  action:
+    - service: homeassistant.update_entity
+      entity_id: sensor.active_switches  
+    - service: switch.turn_off
+      data_template:
+        entity_id: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "switch.dummy" -}}
+          {%- for x in states.switch if x.attributes.occupancy_controlled == 'on' if x.state == 'on' -%}
+            {{- comma() -}}
+            {{- x.entity_id -}}
+          {%- endfor -%}
+    - service: homeassistant.update_entity
+      entity_id: sensor.active_lights 
+    - service: light.turn_off
+      data_template:
+        entity_id: >-
+          {%- set comma = joiner(', ') -%}
+          {{- comma() -}}
+          {{- "light.dummy" -}}
+          {%- for x in states.light if x.attributes.occupancy_controlled == 'on' if x.state == 'on' -%}
+            {{- comma() -}}
+            {{- x.entity_id -}}
+          {%- endfor -%}  
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.night_mode, input_boolean.bedroom_off            
 
 
 

@@ -1,6 +1,9 @@
   emptycondo:
     name: Empty Condo
 
+  bedroom_off:
+    name: Bedroom off
+
   allow_automation_execution:
     name: 'Allow Automation'
     initial: off
