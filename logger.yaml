@@ -28,7 +28,7 @@
     #homeassistant.components.binary_sensor.sense: error
     #homeassistant.components.command_line.switch: warning
     #homeassistant.components.command_line.sensor: warning
-    homeassistant.components.alexa: error
+    homeassistant.components.alexa: debug
     #homeassistant.components.ddwrt.device_tracker: error
     #custom_components.alexa_media: debug 
     
