@@ -173,9 +173,38 @@
         friendly_name: "WC Door"
         device_class: "problem"
         value_template: "{{states.sensor.wcdoor_burglar.state == '3' }}"  
-                         
-                          
-
+      something_occupied:
+        friendly_name: "Something Occupied"
+        device_class: "occupancy"
+        value_template: "{% if states.binary_sensor.occupied_entry.state or  
+                          states.binary_sensor.occupied_den.state  or  
+                          states.binary_sensor.occupied_kitchen.state  or  
+                          states.binary_sensor.occupied_living_room.state  or  
+                          states.binary_sensor.occupied_master.state  or   
+                          states.binary_sensor.occupied_bath.state  or  
+                          states.binary_sensor.occupied_dining_room.state -%}
+                          true
+                          {%- else -%}
+                          false
+                          {%- endif %}  "                          
+      something_moving:
+        friendly_name: "Something moving"
+        device_class: "motion"
+        value_template: "{% if states.binary_sensor.motion_entrydoor.state or  
+                          states.binary_sensor.motion_entrykitchen.state  or  
+                          states.binary_sensor.motion_kitchen.state  or  
+                          states.binary_sensor.motion_den.state  or   
+                          states.binary_sensor.motion_dining.state  or  
+                          states.binary_sensor.motion_lr1.state  or 
+                          states.binary_sensor.motion_masterbr1.state  or 
+                          states.binary_sensor.motion_masterhall.state  or 
+                          states.binary_sensor.motion_mikebed.state  or 
+                          states.binary_sensor.motion_melodiebed.state -%}
+                          true
+                          {%- else -%}
+                          false
+                          {%- endif %}  "                              
+ 
 
 
 
