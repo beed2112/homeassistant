@@ -239,7 +239,9 @@
             {{- x.entity_id -}}
           {%- endfor -%}  
     - service: homeassistant.turn_on
-      entity_id: input_boolean.night_mode, input_boolean.bedroom_off            
+      entity_id: input_boolean.night_mode
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.bedroom_off            
 
 
 
