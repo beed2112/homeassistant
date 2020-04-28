@@ -1,7 +1,7 @@
                                                                  
 # Turn off Patio Light sunset group at (sunset + 1hr )
 - alias: 'Patio CF Light Sunrise off'
-  initial_state: True
+  initial_state: False
   trigger:
     platform: sun
     # Possible values: sunset, sunrise

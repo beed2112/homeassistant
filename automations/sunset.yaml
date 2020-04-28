@@ -27,7 +27,7 @@
 
 
 - alias: 'Patio CF Light on'
-  initial_state: True
+  initial_state: False
   trigger:
     platform: time
     at: '22:59:00'

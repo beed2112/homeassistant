@@ -23,7 +23,14 @@
      - "Off"
      - "On"
 
-
+  alexa_devices:
+    name: Alexa
+    options:
+      - main
+      - bedroom
+      - den
+    initial: den
+    
   mike_status_dropdown:
     name: Mike
     options:

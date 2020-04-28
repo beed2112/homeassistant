@@ -8,7 +8,7 @@
   action:
     - service: media_player.play_media
       data_template:
-        entity_id: media_player.den
+        entity_id: media_player.'{{ states.input_select.alexa_devices.state}}'
         media_content_type: sound
         media_content_id: '{{ states.input_select.soundboard.state}}'
     - service: input_select.select_option
