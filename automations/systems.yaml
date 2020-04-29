@@ -1,21 +1,21 @@
-- alias: Play sound
-  trigger:
-    platform: state
-    entity_id: input_select.soundboard
-  condition:
-    condition: template
-    value_template: '{{ states.input_select.soundboard.state !=  "none" }}'    
-  action:
-    - service: media_player.play_media
-      data_template:
-        entity_id = '{{states.input_select.alexa_devices.state}}'
-        #entity_id: media_player.'{{ states.input_select.alexa_devices.state}}'
-        media_content_type: sound
-        media_content_id: '{{ states.input_select.soundboard.state}}'
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.soundboard
-        option: 'none'       
+#- alias: Play sound
+ # trigger:
+  #  platform: state
+ #   entity_id: input_select.soundboard
+#  condition:
+#    condition: template
+#    value_template: '{{ states.input_select.soundboard.state !=  "none" }}'    
+#  action:
+#    - service: media_player.play_media
+#      data_template:
+#        entity_id = '{{states.input_select.alexa_devices.state}}'
+#        #entity_id: media_player.'{{ states.input_select.alexa_devices.state}}'
+#        media_content_type: sound
+#        media_content_id: '{{ states.input_select.soundboard.state}}'
+ #   - service: input_select.select_option
+#      data:
+ #       entity_id: input_select.soundboard
+ #       option: 'none'       
  
  
 - alias: iheart radio
