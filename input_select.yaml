@@ -26,10 +26,10 @@
   alexa_devices:
     name: Alexa
     options:
-      - main
-      - bedroom
-      - den
-    initial: den
+      - media_player.main
+      - media_player.bedroom
+      - media_player.den
+    initial: media_player.den
     
   mike_status_dropdown:
     name: Mike
