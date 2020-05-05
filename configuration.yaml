@@ -41,11 +41,11 @@ influxdb:
   database: !secret influx_db
   default_measurement: state
   
-panel_custom:
-  - name: zwavegraph2
-    sidebar_title: ZWave Graph2
-    sidebar_icon: mdi:access-point-network
-    url_path: zwave
+#panel_custom:
+#  - name: zwavegraph2
+#    sidebar_title: ZWave Graph2
+ #   sidebar_icon: mdi:access-point-network
+ #   url_path: zwave
 
 cloud: 
   alexa:
@@ -56,18 +56,18 @@ cloud:
 #        - group
         - input_boolean
         - climate
-      include_entities:
-        - zwave.mudroom_receptacle
-        - zwave.lrwarmer
-        - zwave.entryhalltable
-        - zwave.vanity_left
-        - zwave.vanity_right
-        - zwave.lr_light  
+     # include_entities:
+      #  - zwave.mudroom_receptacle
+      #  - zwave.lrwarmer
+       # - zwave.entryhalltable
+      # - zwave.vanity_left
+      #  - zwave.vanity_right
+       # - zwave.lr_light  
         
 
-zwave:
-  usb_path: /dev/ttyACM0
-  network_key: !secret zwavekey
+#zwave:
+ # usb_path: /dev/ttyACM0
+ # network_key: !secret zwavekey
   
 
 
