@@ -1,35 +1,35 @@
   discovery: false
   static:
-    - !secret kitchenUnderCab
-    - !secret masterBathTub
+  #  - !secret kitchenUnderCab
+  #  - !secret masterBathTub
     - !secret denSwitchTestLight
-    - !secret hallShower
+  #  - !secret hallShower
     #- !secret brSensor
-    - !secret denOh
-    - !secret lrOh
-    - !secret denMiddle
-    - !secret entryHall
+  #  - !secret denOh
+  #  - !secret lrOh
+  #  - !secret denMiddle
+  #  - !secret entryHall
     - !secret lrhutch
     - !secret denDresser
-    - !secret HallBathfan
-    - !secret HallBath
-    - !secret MasterBathFan
-    - !secret MasterBathLight
-    - !secret WCFan
-    - !secret kitchenOh
-    - !secret brHall
-    - !secret diningRoom
-    - !secret master-shower
-    - !secret br-oh-light
-    - !secret master-wc-light
-    - !secret melodieNightStand
-    - !secret BR-SwitchedOutlet
-    - !secret BR-CeilingFan
-    - !secret LR-SwitchedOutlet
+  #  - !secret HallBathfan
+  #  - !secret HallBath
+  #  - !secret MasterBathFan
+  #  - !secret MasterBathLight
+  #  - !secret WCFan
+  #  - !secret kitchenOh
+  #  - !secret brHall
+  #  - !secret diningRoom
+  #  - !secret master-shower
+  #  - !secret br-oh-light
+  #  - !secret master-wc-light
+  #  - !secret melodieNightStand
+  #  - !secret BR-SwitchedOutlet
+  #  - !secret BR-CeilingFan
+  #  - !secret LR-SwitchedOutlet
     - !secret CoffeePot
-    - !secret LR-Celing-Fan
+ #   - !secret LR-Celing-Fan
     - !secret lrSensor
     - !secret esp
-    - !secret denswitchedoutlet
+ #   - !secret denswitchedoutlet
     #- !secret patiooutlet
     #- !secret guitar
