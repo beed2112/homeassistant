@@ -9,8 +9,8 @@
   action:
     - service: switch.turn_on
       entity_id:
-      - switch.lr_switch
-      - switch.lrlight_switch
+      - switch.patio_outlet
+      - switch.lnrsensor
 
 
 - alias: 'LR switch Sunset(+3) off'
@@ -48,7 +48,7 @@
       - switch.dendresser
 
 - alias: 'Entry Table Sunset on'
-  initial_state: True
+  initial_state: False
   trigger:
     platform: sun
     event: sunset
