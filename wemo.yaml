@@ -32,4 +32,6 @@
     - !secret esp
  #   - !secret denswitchedoutlet
     - !secret patiooutlet
-    - !secret guitar
+    - !secret travel1
+    - !sectet travel2
+    #- !secret guitar
