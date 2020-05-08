@@ -22,7 +22,7 @@
   #  - !secret master-shower
   #  - !secret br-oh-light
   #  - !secret master-wc-light
-  #  - !secret melodieNightStand
+    - !secret dentv
   #  - !secret BR-SwitchedOutlet
   #  - !secret BR-CeilingFan
   #  - !secret LR-SwitchedOutlet
