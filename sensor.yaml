@@ -408,26 +408,26 @@
           {% elif states.sensor.dark_sky_nearest_storm_bearing.state | float<=348 | float>326 %}NNW
           {%- endif %}    
 
-      alexadestinations:
-        friendly_name: 'Alexa Destinations'
-        value_template: >-
-          {% set found = 'off'%}
-          {% if is_state("binary_sensor.occupied_den", "on") -%}
-          {% set player = 'media_player.den' %}
-          {% set found = 'on'%}
-          {%- endif %}
-          {%- if is_state("binary_sensor.occupied_master", "on") -%}
-          {%- if found == 'on' -%}  
-          {% set player = (player ~ ", media_player.bedroom") %}
-          {% else %}
-          {% set player = "media_player.bedroom" %}
-          {%- endif %}
-          {% else %}
-          {%- if found == 'off' -%}  
-          {% set player = "media_player.main" %}
-          {% endif %}
-          {%- endif %}
-          {{- player -}} 
+#      alexadestinations:
+#        friendly_name: 'Alexa Destinations'
+#        value_template: >-
+#          {% set found = 'off'%}
+#          {% if is_state("binary_sensor.occupied_den", "on") -%}
+#          {% set player = 'media_player.den' %}
+#          {% set found = 'on'%}
+#          {%- endif %}
+#          {%- if is_state("binary_sensor.occupied_master", "on") -%}
+#          {%- if found == 'on' -%}  
+#          {% set player = (player ~ ", media_player.bedroom") %}
+#          {% else %}
+#          {% set player = "media_player.bedroom" %}
+#          {%- endif %}
+#          {% else %}
+#          {%- if found == 'off' -%}  
+#          {% set player = "media_player.main" %}
+#          {% endif %}
+#          {%- endif %}
+#          {{- player -}} 
 # turn the counter into a word for alexa to speak... 0 should never happen but covering it for completeness           
       shade_raised_times_word:
         friendly_name: 'Share raised count'
