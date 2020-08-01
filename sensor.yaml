@@ -122,38 +122,38 @@
     scan_interval: 86399
 ###----
 ###------------------------------------command_line begin  --------------------------------------
-  - platform: command_line
-    name: mikeiossent
-    command: "cat /config/cmds/iosmikesent.sensor"
-  - platform: command_line
-    name: mikeioslimit
-    command: "cat /config/cmds/iosmikelimit.sensor"
-  - platform: command_line
-    name: mikeioserrors
-    command: "cat /config/cmds/iosmikeerrors.sensor"
-  - platform: command_line
-    name: mikeiosresetin
-    command: "cat /config/cmds/iosmikeresettime.sensor"
-  - platform: command_line
-    name: furnacefilter
-    scan_interval: 10800
-    command: "cat /config/cmds/dash-furnacefilter.sensor"
-  - platform: command_line
-    name: lr tv status
-    scan_interval: 5
-    command: "cat /config/cmds/lr_tv.sensor"
-  - platform: command_line
-    name: wclightdash
-    scan_interval: 5
-    command: "cat /config/cmds/dash-wclight.sensor"
-  - platform: command_line
-    name: melodiedash
-    scan_interval: 5
-    command: "cat /config/cmds/dash-melodie.sensor"
-  - platform: command_line
-    name: dendash
-    scan_interval: 5
-    command: "cat /config/cmds/dash-den.sensor"
+#  - platform: command_line
+#    name: mikeiossent
+#    command: "cat /config/cmds/iosmikesent.sensor"
+#  - platform: command_line
+#    name: mikeioslimit
+#    command: "cat /config/cmds/iosmikelimit.sensor"
+#  - platform: command_line
+#    name: mikeioserrors
+#    command: "cat /config/cmds/iosmikeerrors.sensor"
+#  - platform: command_line
+#    name: mikeiosresetin
+#    command: "cat /config/cmds/iosmikeresettime.sensor"
+#  - platform: command_line
+#    name: furnacefilter
+#    scan_interval: 10800
+#    command: "cat /config/cmds/dash-furnacefilter.sensor"
+#  - platform: command_line
+#    name: lr tv status
+#    scan_interval: 5
+#    command: "cat /config/cmds/lr_tv.sensor"
+#  - platform: command_line
+#    name: wclightdash
+#    scan_interval: 5
+#    command: "cat /config/cmds/dash-wclight.sensor"
+#  - platform: command_line
+#    name: melodiedash
+#    scan_interval: 5
+#    command: "cat /config/cmds/dash-melodie.sensor"
+#  - platform: command_line
+#    name: dendash
+#    scan_interval: 5
+#    command: "cat /config/cmds/dash-den.sensor"
 
     
 #
@@ -355,15 +355,15 @@
       condo_status:
         value_template: '{{ states.input_select.condo_status_dropdown.state }}'
         friendly_name: 'Condo'
-      volume_den:
-        value_template: '{{states.media_player.den_2.attributes.volume_level | float}}' 
-        friendly_name: 'Den Volume' 
-      volume_main:
-        value_template: '{{states.media_player.main_2.attributes.volume_level | float}}' 
-        friendly_name: 'Main Volume' 
-      volume_master_bedroom:
-        value_template: '{{states.media_player.bedroom_2.attributes.volume_level| float }}' 
-        friendly_name: 'Master Bedroom Volume' 
+#      volume_den:
+#        value_template: '{{states.media_player.den_2.attributes.volume_level | float}}' 
+#        friendly_name: 'Den Volume' 
+#      volume_main:
+#        value_template: '{{states.media_player.main_2.attributes.volume_level | float}}' 
+#        friendly_name: 'Main Volume' 
+#      volume_master_bedroom:
+#        value_template: '{{states.media_player.bedroom_2.attributes.volume_level| float }}' 
+#        friendly_name: 'Master Bedroom Volume' 
       friendly_wind_direction:
         friendly_name: 'Wind Direction'
         value_template: >-
@@ -408,8 +408,10 @@
           {% elif states.sensor.dark_sky_nearest_storm_bearing.state | float<=348 | float>326 %}NNW
           {%- endif %}    
 
-#      alexadestinations:
-#        friendly_name: 'Alexa Destinations'
+      alexadestinations:
+        friendly_name: 'Alexa Destinations'
+        value_template: 'media_player.den, media_player.bedroom, media_player.den'
+
 #        value_template: >-
 #          {% set found = 'off'%}
 #          {% if is_state("binary_sensor.occupied_den", "on") -%}

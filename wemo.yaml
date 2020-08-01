@@ -9,7 +9,7 @@
   #  - !secret lrOh
   #  - !secret denMiddle
   #  - !secret entryHall
-    - !secret lrhutch
+  #  - !secret lrhutch
     - !secret denDresser
   #  - !secret HallBathfan
   #  - !secret HallBath
@@ -31,7 +31,7 @@
     - !secret lrSensor
     - !secret esp
  #   - !secret denswitchedoutlet
-    - !secret patiooutlet
-    - !secret travel1
-    - !secret travel2
+    #- !secret patiooutlet
+    #- !secret travel1
+    #- !secret travel2
     #- !secret guitar

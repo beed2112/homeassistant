@@ -9,6 +9,8 @@ homeassistant:
   longitude: !secret config_longitude
   elevation: 377
   unit_system: imperial
+  external_url: https://beed2112az.duckdns.org/
+  internal_url: https://beed2112az.duckdns.org/
 #  whitelist_external_dirs:
 #    - www
   
@@ -113,10 +115,13 @@ config:
 
 
 http:
+
+  
+
  # api_password: !secret api_pass
   #ssl_certificate: !secret ssl_certificate
  # ssl_key: !secret ssl_key
-  base_url: !secret base_url
+  # base_url: !secret base_url
   # ip_ban_enabled: True
   # login_attempts_threshold: 5
 
@@ -132,15 +137,15 @@ http:
  
 ssdp:
 zeroconf:
-  
+ios:  
 
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 #conversation:
 
 
-lifx:
-  light:
+#lifx:
+ # light:
 
 python_script:
 
