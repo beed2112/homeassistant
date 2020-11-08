@@ -15,6 +15,10 @@
   
 #
 
+
+  - platform: hyperion
+    host: 192.168.11.119
+    name: DenHyper
   
 # home/LimeLight01_ha/state/out
 # mclighting stuff
