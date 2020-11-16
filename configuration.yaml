@@ -281,7 +281,7 @@ notify syslog:
     
 
 
-alert: !include alert.yaml
+#alert: !include alert.yaml
 
 
 

@@ -1,5 +1,5 @@
 ####---------------------------------alarm clock begin ------------------------------------###
-   # Alarm clock sensors:
+   # Alarm clock sensors: 
     # sensor.time:
     #   hidden: true
     sensor.alarm_clock_hour:
