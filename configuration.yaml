@@ -12,7 +12,7 @@ homeassistant:
   external_url: https://beed2112az.duckdns.org/
   internal_url: https://beed2112az.duckdns.org/
 #  whitelist_external_dirs:
-#    - www
+#    - www 
   
   time_zone: America/Phoenix
 
@@ -104,8 +104,8 @@ notify:
       - target: !secret iosapp_target_mikepad
   - name: syslog
     platform: syslog
-  - platform: alexa_media
-    name: alexa_media  
+#  - platform: alexa_media
+#    name: alexa_media  
     #platform: alexa_media
        
 
@@ -158,11 +158,11 @@ python_script:
 
 
 
-alexa_media:
-  accounts:
-    - email: !secret amazonId
-      password: !secret amazonPass
-      url: amazon.com
+#alexa_media:
+#  accounts:
+#    - email: !secret amazonId
+#      password: !secret amazonPass
+#      url: amazon.com
 
 
 wemo: !include wemo.yaml
