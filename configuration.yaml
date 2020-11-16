@@ -158,11 +158,11 @@ python_script:
 
 
 
-#alexa_media:
-#  accounts:
-#    - email: !secret amazonId
-#      password: !secret amazonPass
-#      url: amazon.com
+alexa_media:
+  accounts:
+    - email: !secret amazonId
+      password: !secret amazonPass
+      url: amazon.com
 
 
 wemo: !include wemo.yaml
