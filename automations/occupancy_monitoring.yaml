@@ -1,5 +1,5 @@
 - alias: 'Motion Den timer start occupancy only'
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id: sensor.multiden_burglar 
@@ -11,7 +11,7 @@
         
 
 - alias: 'Motion Entry timer start occupancy only'
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id: sensor.multientryhalldoor_burglar
@@ -26,7 +26,7 @@
       entity_id: "timer.occupied_entry_motion"
         
 - alias: 'Motion Kitchen timer start occupancy only'
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id: sensor.multikitchen_burglar
@@ -37,7 +37,7 @@
       entity_id: "timer.occupied_kitchen_motion"
         
 - alias: 'Motion Living Room timer start occupancy only'
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id: sensor.multilr1_burglar
@@ -48,7 +48,7 @@
       entity_id: "timer.occupied_living_room_motion"   
 
 - alias: 'Motion Dining Room timer start occupancy only'
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id: sensor.multidining_burglar
@@ -59,7 +59,7 @@
       entity_id: "timer.occupied_dining_room_motion"     
 
 - alias: 'Motion occupied master timer start occupancy only'
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id: sensor.multimasterbr1_burglar 
@@ -70,7 +70,7 @@
       entity_id: "timer.occupied_master_motion"
 
 - alias: 'Motion occupied master bath timer start occupancy only'
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id: sensor.multimasterhall_burglar

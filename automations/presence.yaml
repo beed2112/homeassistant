@@ -1,5 +1,5 @@
 - alias: Mark person as just arrived
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id:  device_tracker.michaels_iphone
@@ -39,7 +39,7 @@
           {% endif %}
  
 - alias: Mark person as home
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id: input_select.mike_status_dropdown
@@ -76,7 +76,7 @@
         option: Home
  
 - alias: Mark person as just left
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id:  device_tracker.michaels_iphone
@@ -103,7 +103,7 @@
         option: Just Left
  
 - alias: Mark person as away
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id: input_select.mike_status_dropdown
@@ -132,7 +132,7 @@
         option: Away
  
 - alias: Mark person as extended away
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id: input_select.mike_status_dropdown

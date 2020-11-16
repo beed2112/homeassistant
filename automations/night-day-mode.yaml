@@ -4,14 +4,14 @@
   initial_state: False
   trigger:
     - platform: state
-      entity_id: switch.br_oh
+      entity_id: switch.dresser
       # entity_id: group.br_mode_triggers
       from: 'off'
       to: 'on'
-    - platform: state
-      entity_id: switch.br_hall
-      from: 'off'
-      to: 'on'
+#    - platform: state
+#      entity_id: switch.br_hall
+#      from: 'off'
+#      to: 'on'
   condition:
     condition: state
     entity_id: input_boolean.night_mode
@@ -40,7 +40,7 @@
       
       
 - alias: 'turn on wax warmers'
-  initial_state: True
+  initial_state: False
   trigger:
     platform: state
     entity_id: input_boolean.night_mode
@@ -59,7 +59,7 @@
           {%- endfor -%}
 
 - alias: 'morning turn on undercabinet'
-  initial_state: True
+  initial_state: False
   trigger:
     platform: state
     entity_id: input_boolean.night_mode

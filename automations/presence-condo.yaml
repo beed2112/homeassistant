@@ -1,5 +1,5 @@
 - alias: Mark Condo as just occupied
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id:  input_boolean.emptycondo
@@ -19,7 +19,7 @@
            {% endif %}
 
 - alias: Mark Condo as Occupied
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id: input_select.condo_status_dropdown
@@ -37,7 +37,7 @@
         option: Occupied
  
 - alias: Mark Condo as just Unoccupied
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id:  input_boolean.emptycondo
@@ -50,7 +50,7 @@
         option: Just Unoccupied
  
 - alias: Mark Condo as Unoccupied
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id: input_select.condo_status_dropdown
@@ -81,7 +81,7 @@
 
 
 - alias: 'Just Unoccupied turn off wax warmers'
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id: input_select.condo_status_dropdown
@@ -120,7 +120,7 @@
 
 
 - alias: 'Just Occupied turn on some lights'
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id: input_select.condo_status_dropdown
@@ -143,7 +143,7 @@
       
       
 - alias: 'Just Unocc turn off occ controlled stuff'
-  initial_state: True
+  initial_state: False
   trigger:
     - platform: state
       entity_id: input_select.condo_status_dropdown
@@ -179,7 +179,7 @@
 #          {%- for x in states.switch if x.attributes.occupancy_controlled == 'on' if x.state == 'on' if x.attributes.location == 'den'  -%}
 
 # - alias: 'Motion tracking'
-#   initial_state: true
+#   initial_state: False
 #   trigger:
 #     - platform: state
 #       entity_id: group.condo_motion_g

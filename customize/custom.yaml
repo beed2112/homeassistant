@@ -136,13 +136,30 @@
       friendly_name: Dresser
       location: 'master'    
     
+    switch.denswitchtestlight:
+      occupancy_simulation: 'on'
+      occupancy_controlled: 'on'
+      location: 'den'
+      friendly_name: Den Light 
+
     switch.dendresser:
       occupancy_simulation: 'on'
       occupancy_controlled: 'on'
       location: 'den'
       friendly_name: Den Table 
       
+    switch.den_tv:
+      occupancy_simulation: 'on'
+      occupancy_controlled: 'on'
+      location: 'den'
+      friendly_name: Den Table     
 
+    light.denhyper:
+      occupancy_simulation: 'on'
+      occupancy_controlled: 'on'
+      location: 'den'
+      friendly_name: Den Hyper    
+    
     switch.br_ceiling_fan:
       friendly_name: Bedroom Ceiling Fan
       location: 'master'

@@ -1,38 +1,38 @@
 
 #----    Good night set status begin
 #
-- alias: 'Good Night set status'
-  initial_state: True
-  trigger:
+#- alias: 'Good Night set status'
+#  initial_state: Flase
+#  trigger:
 #    platform: state
 #    entity_id: sensor.lr_tv_status      #this is the lr room tv uses command_line -lr tv status
 #    from: '1'
 #    to: '0'
-    platform: state
-    entity_id: binary_sensor.samsung_tv      #sense monitor 
-    to: 'off'    
-  condition:
-    condition: time
-    after: '21:30:00'
-  action:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.night_mode
+#    platform: state
+#    entity_id: binary_sensor.samsung_tv      #sense monitor 
+#    to: 'off'    
+#  condition:
+#    condition: time
+#    after: '21:30:00'
+#  action:
+#    - service: homeassistant.turn_on
+#      entity_id: input_boolean.night_mode
 
 #----    Good night set status begin
 #
-- alias: 'Not Good Night unset status'
-  initial_state: True
-  trigger:
-    platform: state
-    entity_id: sensor.lr_tv_status      #this is the lr room tv uses command_line -lr tv status
-    from: '0'
-    to: '1'
-  condition:
-    condition: time
-    after: '21:30:00'
-  action:
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.night_mode
+#- alias: 'Not Good Night unset status'
+#  initial_state: False
+#  trigger:
+#    platform: state
+#    entity_id: sensor.lr_tv_status      #this is the lr room tv uses command_line -lr tv status
+#    from: '0'
+#    to: '1'
+#  condition:
+#    condition: time
+#    after: '21:30:00'
+#  action:
+#    - service: homeassistant.turn_off
+#      entity_id: input_boolean.night_mode
 
 #Night mode on -- close patio shade
 

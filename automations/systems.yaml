@@ -16,7 +16,18 @@
 #      data:
  #       entity_id: input_select.soundboard
  #       option: 'none'       
- 
+
+
+- alias: Turn Hyperion effect on when light goes on
+  trigger:
+    - platform: state
+      entity_id: light.denhyper
+      to: 'on'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.dehnyper
+        effect: "Full color mood blobs" 
  
 - alias: iheart radio
   trigger:

@@ -14,7 +14,7 @@
 
 # check if furnace filter change time
 - alias: 'zzz check furnace filter change date'
-  initial_state: True
+  initial_state: False
   trigger:
     platform: sun
     # Possible values: sunset, sunrise
