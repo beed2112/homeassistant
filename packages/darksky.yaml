@@ -17,7 +17,7 @@ sensor:
       - 4
       - 5
       - 6
-      - 7
+    #  - 7
     monitored_conditions:
       - icon
     #  - summary
@@ -108,14 +108,14 @@ sensor:
         entity_picture_template: >-
           {{ '/local/icons/dark_sky/' ~ states.sensor.dark_sky_icon_6.state ~ '.png'}}
 
-      forecast_7:
-        friendly_name_template: >
-          {%- set date = as_timestamp(now()) + (7 * 86400 ) -%}
-          {{ date | timestamp_custom("%A (%m/%d)") | replace("(0", "(") | replace("/0", "/") }}
-        value_template: >
-            {{states.sensor.dark_sky_daytime_high_temperature_7.state|round(0)}}°/{{states.sensor.dark_sky_overnight_low_temperature_7.state|round(0)}}°/{{states.sensor.dark_sky_precip_probability_7.state|round(0)}}%
-        entity_picture_template: >-
-          {{ '/local/icons/dark_sky/' ~ states.sensor.dark_sky_icon_7.state ~ '.png'}}
+#      forecast_7:
+#        friendly_name_template: >
+#          {%- set date = as_timestamp(now()) + (7 * 86400 ) -%}
+#          {{ date | timestamp_custom("%A (%m/%d)") | replace("(0", "(") | replace("/0", "/") }}
+#        value_template: >
+#            {{states.sensor.dark_sky_daytime_high_temperature_7.state|round(0)}}°/{{states.sensor.dark_sky_overnight_low_temperature_7.state|round(0)}}°/{{states.sensor.#dark_sky_precip_probability_7.state|round(0)}}%
+#        entity_picture_template: >-
+#          {{ '/local/icons/dark_sky/' ~ states.sensor.dark_sky_icon_7.state ~ '.png'}}
 
 group:
   weather_card_forecast:
@@ -130,4 +130,4 @@ group:
       - sensor.forecast_4
       - sensor.forecast_5
       - sensor.forecast_6
-      - sensor.forecast_7
+#      - sensor.forecast_7
