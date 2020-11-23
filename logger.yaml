@@ -31,6 +31,8 @@
     homeassistant.components.alexa: error
     #homeassistant.components.ddwrt.device_tracker: error
     #custom_components.alexa_media: debug 
+    homeassistant.helpers.condition: debug
+
     
 
 
