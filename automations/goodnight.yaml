@@ -51,6 +51,7 @@
     - service: switch.turn_off
       entity_id:
       - switch.somfy
+      - light.wled
     - service: counter.reset
       entity_id: counter.shade_raised_counter    
     - service: notify.ios_michaels_iphone

@@ -10,7 +10,16 @@
     - service: switch.turn_on
       entity_id:
       - switch.brsensor
-
+- alias: 'Patio Rail on'
+  initial_state: True
+  trigger:
+    platform: sun
+    event: sunset
+    #offset: '-01:00:00'
+  action:
+    - service: light.turn_on
+      entity_id:
+      - Light.wled
 
 #- alias: 'LR switch Sunset(+3) off'
 #  initial_state: False
