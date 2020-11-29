@@ -15,12 +15,8 @@ homeassistant:
 #    - www 
   
   time_zone: America/Phoenix
-<<<<<<< HEAD
 
-=======
   #customize: !include customize.yaml  
->>>>>>> 3f98103c8ddad6bc5a57be5472e4c9d2a692eb83
-
 
 # a directory of automaions
   #customize: !include_dir_merge_named customize/
