@@ -10,11 +10,6 @@
 # location: 'wc'
 # location: 'masterbath'
 
-    light.wled:
-      friendly_name: Rail
-      occupancy_simulation: 'off'
-      occupancy_controlled: 'on'
-      location: 'patio'
 
     switch.melodie_nightstand:
       friendly_name: Den Tv

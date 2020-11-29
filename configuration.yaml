@@ -15,7 +15,11 @@ homeassistant:
 #    - www 
   
   time_zone: America/Phoenix
+<<<<<<< HEAD
 
+=======
+  #customize: !include customize.yaml  
+>>>>>>> 3f98103c8ddad6bc5a57be5472e4c9d2a692eb83
 
 
 # a directory of automaions
@@ -33,15 +37,15 @@ homeassistant:
    - type: legacy_api_password
      api_password: !secret api_pass
 
-system_health:
-#
+ # system_health:
+# 
 #default_config:
 #
 #influx "telemetry database - using different host"
-influxdb:
-  host: !secret influx_host
-  database: !secret influx_db
-  default_measurement: state
+#influxdb:
+#  host: !secret influx_host
+#  database: !secret influx_db
+#  default_measurement: state
   
 #panel_custom:
 #  - name: zwavegraph2
