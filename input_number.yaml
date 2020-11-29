@@ -12,6 +12,20 @@
     max: 60
     step: 1
 
+  railledspeed:
+    name: Rail Speed
+    initial: 0
+    min: 0
+    max: 255
+    step: 1
+  railledintensity:
+    name: Rail Intensity
+    initial: 0
+    min: 0
+    max: 255
+    step: 1
+
+
   alarm_clock_hour:
     min: 0
     max: 23
