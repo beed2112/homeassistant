@@ -128,3 +128,11 @@
     min: 0
     max: 255
     step: 5        
+
+  limelight02_animation_speed:
+    name: ShadowBox Animation Speed
+    initial: 200
+    min: 0
+    max: 255
+    step: 5        
+

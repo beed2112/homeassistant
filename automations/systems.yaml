@@ -212,6 +212,29 @@
       service: input_number.set_value
 
 
+- alias: 'ShadowBox Animation Speed Send'
+  initial_state: true
+  trigger:
+   - entity_id: input_number.limelight02_animation_speed
+     platform: state
+  action:
+    - data_template:
+        payload_template: '{"speed": {{ trigger.to_state.state | int }}}'
+        retain: true
+        topic: home/LimeLight02_ha/state/in
+      service: mqtt.publish
+
+
+- alias: 'ShadowBox Animation Speed Receive'
+  trigger:
+  - platform: mqtt
+    topic: home/LimeLight02_ha/state/out
+  action:
+    - data_template:
+        entity_id: input_number.limelight02_animation_speed
+        value: '{{ trigger.payload_json.speed | int }}'
+      service: input_number.set_value
+
  
  #- alias: 'zzz toggle automations off'
 #  initial_state: True
