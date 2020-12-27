@@ -30,7 +30,7 @@
  #   - !secret LR-Celing-Fan
     - !secret lrSensor
     - !secret esp
- #   - !secret denswitchedoutlet
+    - !secret hallLight
     #- !secret patiooutlet
     #- !secret travel1
     #- !secret travel2
