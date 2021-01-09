@@ -17,6 +17,18 @@
  #       entity_id: input_select.soundboard
  #       option: 'none'       
 
+- alias: 'Enail Temp Set'
+  initial_state: true
+  trigger:
+   - entity_id: input_number.enail_temp_set
+     platform: state
+  action:
+    - data_template:
+        payload_template: '{{ trigger.to_state.state | int }}'
+        retain: true
+        topic: home/in_temp
+      service: mqtt.publish
+
 
 - alias: Turn Hyperion effect on when light goes on
   trigger:

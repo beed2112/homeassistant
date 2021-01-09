@@ -1,3 +1,11 @@
+  enail_temp_set:
+    name: Enail Temp Setting
+    initial: 710
+    min: 200
+    max: 750
+    step: 1
+
+
   ceiling_fan_time_on:
     name: Ceiling fan time on
     initial: 15

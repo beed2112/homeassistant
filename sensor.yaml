@@ -26,7 +26,25 @@
  #   state_topic: "home/occsim/active"
  #   value_template: '{{ value }}'
     
-    
+  - platform: mqtt
+    name: "enail_mode"
+    state_topic: "home/climate/nail_controller/mode/state"
+    value_template: '{{ value }}'
+       
+  - platform: mqtt
+    name: "enail_temp_current"
+    state_topic: "home/climate/nail_controller/current_temperature/state"
+    value_template: '{{ value }}'
+
+  - platform: mqtt
+    name: "enail_temp_target"
+    state_topic: "home/climate/nail_controller/target_temperature/state"
+    value_template: '{{ value }}'
+
+  - platform: mqtt
+    name: "enail_temp_target"
+    state_topic: "home/climate/nail_controller/action/state"
+    value_template: '{{ value }}'
 
   - platform: random
     name: random_late_nite_hh
