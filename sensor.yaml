@@ -42,6 +42,11 @@
     value_template: '{{ value }}'
 
   - platform: mqtt
+    name: "enail_temp_f_target"
+    state_topic: "home/climate/nail_controller/target_temperature/state"
+    value_template: '{{ value | float * (9.0/5.0) + 32.0}}'    
+
+  - platform: mqtt
     name: "enail_temp_target"
     state_topic: "home/climate/nail_controller/action/state"
     value_template: '{{ value }}'
