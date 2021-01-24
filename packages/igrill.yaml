@@ -23,27 +23,27 @@ homeassistant:
     sensor.igrill_probe1:
       <<: *customize  
       friendly_name: 'IGrill Probe1'
-      icon: mdi:Thermometer     
+      icon: mdi:thermometer     
 
     sensor.igrill_probe2:
       <<: *customize  
       friendly_name: 'IGrill Probe2'
-      icon: mdi:Thermometer     
+      icon: mdi:thermometer     
 
     sensor.igrill_probe3:
       <<: *customize  
       friendly_name: 'IGrill Probe3'
-      icon: mdi:Thermometer     
+      icon: mdi:thermometer     
 
     sensor.igrill_probe4:
       <<: *customize  
       friendly_name: 'IGrill probe4'
-      icon: mdi:Thermometer     
+      icon: mdi:thermometer     
 
     sensor.igrill_sysinfo:
       <<: *customize  
-      friendly_name: 'IGrill INfo'
-      icon: mdi:Information     
+      friendly_name: 'IGrill Info'
+      icon: mdi:information     
 automation:
 
 
@@ -57,26 +57,31 @@ sensor:
   - platform: mqtt
     name: "igrill_battery_level"
     state_topic: "igrill/igrill/battery_level"
+    unit_of_measurement: "%" 
     value_template: '{{ value }}'
 
   - platform: mqtt
     name: "igrill_probe1"
     state_topic: "igrill/igrill/probe_1"
+    unit_of_measurement: "°F" 
     value_template: '{{ value }}'
 
   - platform: mqtt
     name: "igrill_probe2"
     state_topic: "igrill/igrill/probe_2"
+    unit_of_measurement: "°F" 
     value_template: '{{ value }}'
 
   - platform: mqtt
     name: "igrill_probe3"
     state_topic: "igrill/igrill/probe_3"
+    unit_of_measurement: "°F" 
     value_template: '{{ value }}'
 
   - platform: mqtt
     name: "igrill_probe4"
     state_topic: "igrill/igrill/probe_4"
+    unit_of_measurement: "°F" 
     value_template: '{{ value }}'
 
   - platform: mqtt
