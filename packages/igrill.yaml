@@ -17,6 +17,7 @@ homeassistant:
         package: 'igrill.yaml'
    
     sensor.igrill_battery_level:
+      <<: *customize  
       friendly_name: 'IGrill Battery Level'
       icon: mdi:battery   
 
