@@ -71,7 +71,7 @@ sensor:
 
   - platform: mqtt
     name: "igrill_probe3"
-    state_topic: "igrill/igrill_probe_3"
+    state_topic: "igrill/igrill/probe_3"
     value_template: '{{ value }}'
 
   - platform: mqtt
