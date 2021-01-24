@@ -1,0 +1,90 @@
+################################################################
+## Packages / igrill
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'igrill.yaml'
+   
+    sensor.igrill_battery_level:
+      friendly_name: 'IGrill Battery Level'
+      icon: mdi:battery   
+
+    sensor.igrill_probe1:
+      <<: *customize  
+      friendly_name: 'IGrill Probe1'
+      icon: mdi:Thermometer     
+
+    sensor.igrill_probe2:
+      <<: *customize  
+      friendly_name: 'IGrill Probe2'
+      icon: mdi:Thermometer     
+
+    sensor.igrill_probe3:
+      <<: *customize  
+      friendly_name: 'IGrill Probe3'
+      icon: mdi:Thermometer     
+
+    sensor.igrill_probe4:
+      <<: *customize  
+      friendly_name: 'IGrill probe4'
+      icon: mdi:Thermometer     
+
+    sensor.igrill_sysinfo:
+      <<: *customize  
+      friendly_name: 'IGrill INfo'
+      icon: mdi:Information     
+automation:
+
+
+#-- Sensors
+
+#{"uptime":" 15:08:34 up 3 days, 12 min, 0 users, load average: 2.33, 2.58, 2.65", "ssid":"SpiritOfTheRadio-g", "bitrate":"72.2 Mb/s", "signal_level":"100%", "link_quality":"85%", "noise_level":"0%" }
+# topic : myhome/cameraden, messageId : , length : 220
+#parse the message into the various fields  and place  into sensors.   Full message is also placed in a sensor
+
+sensor:
+  - platform: mqtt
+    name: "igrill_battery_level"
+    state_topic: "igrill/igrill/battery_level"
+    value_template: '{{ value }}'
+
+  - platform: mqtt
+    name: "igrill_probe1"
+    state_topic: "igrill/igrill/probe_1"
+    value_template: '{{ value }}'
+
+  - platform: mqtt
+    name: "igrill_probe2"
+    state_topic: "igrill/igrill/probe_2"
+    value_template: '{{ value }}'
+
+  - platform: mqtt
+    name: "igrill_probe3"
+    state_topic: "igrill/igrill/igrill_probe_3"
+    value_template: '{{ value }}'
+
+  - platform: mqtt
+    name: "igrill_probe4"
+    state_topic: "igrill/igrill/probe_4"
+    value_template: '{{ value }}'
+
+  - platform: mqtt
+    name: "igrill_sysinfo"
+    state_topic: "igrill/igrill/systeminfo"
+    value_template: '{{ value }}'
+
+
+
+
+
